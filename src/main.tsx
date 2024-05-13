@@ -7,10 +7,10 @@ import { ThemeProvider } from 'styled-components';
 
 import { queryClient } from '@/api/queryClient.ts';
 
+import GlobalStyle from '@/styles/GlobalStyles.ts';
 import theme from '@/styles/theme.ts';
 
 import App from './App.tsx';
-import GlobalStyle from './styles/GlobalStyles.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

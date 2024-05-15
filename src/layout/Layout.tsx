@@ -1,13 +1,15 @@
-import LayoutHeaderTop from '@/layout/_components/LayoutHeaderTop';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+
+import LayoutHeaderBottom from '@/layout/_components/LayoutHeaderBottom';
+import LayoutHeaderTop from '@/layout/_components/LayoutHeaderTop';
 
 function Layout() {
   return (
     <Container>
       <Header>
         <LayoutHeaderTop />
-        <HeaderBottomBox></HeaderBottomBox>
+        <LayoutHeaderBottom />
       </Header>
       <Wrapper>
         <Outlet />

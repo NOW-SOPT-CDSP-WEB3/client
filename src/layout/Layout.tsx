@@ -1,8 +1,9 @@
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-import LayoutHeaderBottom from '@/layout/_components/LayoutHeaderBottom';
 import LayoutHeaderTop from '@/layout/_components/LayoutHeaderTop';
+
+import LayoutHeaderBottom from './_components/LayoutHeaderBottom';
 
 function Layout() {
   return (
@@ -47,13 +48,4 @@ const Header = styled.header`
   height: 102px;
 
   background-color: ${({ theme }) => theme.COLORS.HD_WHITE};
-`;
-
-const HeaderBottomBox = styled.div`
-  display: flex;
-  align-items: center;
-
-  width: 100%;
-  height: 42px;
-  border-bottom: 1px solid ${({ theme }) => theme.COLORS.HD_GRAY_03};
 `;

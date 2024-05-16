@@ -69,6 +69,7 @@ const CardContentInfoParagraph = styled.p`
   max-width: 7.7rem;
   word-break: break-all; /* 텍스트가 길어질 경우 단어 단위로 줄바꿈 */
   white-space: pre-wrap; /* 공백과 줄바꿈 문자도 유지 */
+  line-height: 1rem;
 `;
 
 const CardContentImgBox = styled.div`

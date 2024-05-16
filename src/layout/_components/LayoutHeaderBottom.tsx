@@ -4,6 +4,8 @@ import NextIcon from '@/assets/svg/bar_record_ic_next.svg?react';
 
 import { MAIN_ROUTES } from '@/constants/routes';
 
+import LayoutAuthButtons from './LayoutAuthButtons';
+
 interface ILayoutHeaderBottom {
   pathname: string;
 }
@@ -22,10 +24,7 @@ function LayoutHeaderBottom({ pathname }: ILayoutHeaderBottom) {
         </NextIconBox>
         <HeaderBottomBreadccumbsItem>{title}</HeaderBottomBreadccumbsItem>
       </HeaderBottomBreadcrumbsList>
-      <LoginBox>
-        <LoginButton>로그인</LoginButton>
-        <SignUpButton>회원가입</SignUpButton>
-      </LoginBox>
+      <LayoutAuthButtons />
     </HeaderBottomBox>
   );
 }

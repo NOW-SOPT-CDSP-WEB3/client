@@ -3,11 +3,19 @@ import styled from 'styled-components';
 import Divider from '@/assets/svg/Vertical Divider.svg?react';
 import SearchIcon from '@/assets/svg/ic_gnb_input_search.svg?react';
 
+import { MAIN_ROUTES } from '@/constants/routes';
+
 import { HEADER_TOP_RIGHT_NAV_ITEMS } from '@/layout/_constants/header';
+
+import LayoutAuthButtons from './LayoutAuthButtons';
+
+interface ILayoutHeaderTopRight {
+  pathname: string;
+}
 
 const INPUT_PLACEHOLDER = '카드, 메뉴, 혜택을 검색해 보세요';
 
-function LayoutHeaderTopRight() {
+function LayoutHeaderTopRight({ pathname }: ILayoutHeaderTopRight) {
   return (
     <HeaderTopRightSection>
       <HeaderTopNav>
@@ -21,10 +29,17 @@ function LayoutHeaderTopRight() {
               <HeaderTopRightNavItem key={item}>{item}</HeaderTopRightNavItem>
             ),
           )}
-          <HeaderInputBox>
-            <SearchIcon />
-            <HeaderInput placeholder={INPUT_PLACEHOLDER} />
-          </HeaderInputBox>
+
+          {pathname === MAIN_ROUTES.HOME.path ? (
+            <AuthButtonBox>
+              <LayoutAuthButtons />
+            </AuthButtonBox>
+          ) : (
+            <HeaderInputBox>
+              <SearchIcon />
+              <HeaderInput placeholder={INPUT_PLACEHOLDER} />
+            </HeaderInputBox>
+          )}
         </HeaderTopRightNavList>
       </HeaderTopNav>
     </HeaderTopRightSection>
@@ -99,4 +114,8 @@ const HeaderInput = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+const AuthButtonBox = styled.div`
+  margin-left: 24px;
 `;

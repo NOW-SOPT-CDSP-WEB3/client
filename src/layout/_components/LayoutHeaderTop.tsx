@@ -11,7 +11,7 @@ function LayoutHeaderTop({ pathname }: ILayoutHeaderTop) {
   return (
     <HeaderTopBox>
       <LayoutHeaderTopLeft pathname={pathname} />
-      <LayoutHeaderTopRight />
+      <LayoutHeaderTopRight pathname={pathname} />
     </HeaderTopBox>
   );
 }

@@ -122,6 +122,7 @@ const FooterCompanySection = styled.section`
 
 const FooterEtcSection = styled.section`
   margin-top: 22px;
+  margin-left: 82px;
 `;
 
 const FooterLawSection = styled.section`

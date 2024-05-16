@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import Divider from '@/assets/svg/Vertical Divider.svg?react';
 import ApplePayIcon from '@/assets/svg/logo_applepay.svg?react';
@@ -7,7 +7,11 @@ import HyundaiCardIcon from '@/assets/svg/logo_hyundaicard_scr.svg?react';
 
 import { MAIN_ROUTES } from '@/constants/routes';
 
-function LayoutHeaderTopLeft() {
+interface ILayoutHeaderTopLeft {
+  pathname: string;
+}
+
+function LayoutHeaderTopLeft({ pathname }: ILayoutHeaderTopLeft) {
   return (
     <HeaderTopLeftSection>
       <HeaderTopNav>
@@ -18,18 +22,18 @@ function LayoutHeaderTopLeft() {
         </LogoBox>
         <HeaderTopLeftNavList>
           <HeaderTopLeftNavItem>My Account</HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem $isCurrentPath={MAIN_ROUTES.CARD.path === pathname}>
             <HeaderTopLeftLink to={MAIN_ROUTES.CARD.path}>
               {MAIN_ROUTES.CARD.title}
             </HeaderTopLeftLink>
           </HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem $isCurrentPath={MAIN_ROUTES.BENEFIT.path === pathname}>
             <HeaderTopLeftLink to={MAIN_ROUTES.BENEFIT.path}>
               {MAIN_ROUTES.BENEFIT.title}
             </HeaderTopLeftLink>
           </HeaderTopLeftNavItem>
           <HeaderTopLeftNavItem>금융</HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem $isCurrentPath={MAIN_ROUTES.CULTURE.path === pathname}>
             <HeaderTopLeftLink to={MAIN_ROUTES.CULTURE.path}>
               {MAIN_ROUTES.CULTURE.title}
             </HeaderTopLeftLink>
@@ -59,7 +63,7 @@ const HeaderTopLeftNavList = styled.ul`
   display: flex;
 `;
 
-const HeaderTopLeftNavItem = styled.li`
+const HeaderTopLeftNavItem = styled.li<{ $isCurrentPath?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +72,12 @@ const HeaderTopLeftNavItem = styled.li`
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
+
+  ${({ $isCurrentPath, theme }) =>
+    $isCurrentPath &&
+    css`
+      border-bottom: 1px solid ${theme.COLORS.HD_BLK};
+    `}
 
   &:hover {
     border-bottom: 1px solid ${({ theme }) => theme.COLORS.HD_BLK};

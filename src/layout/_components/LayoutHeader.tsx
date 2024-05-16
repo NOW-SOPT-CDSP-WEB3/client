@@ -12,7 +12,7 @@ interface ILayoutHeader {
 function LayoutHeader({ pathname }: ILayoutHeader) {
   return (
     <Header>
-      <LayoutHeaderTop />
+      <LayoutHeaderTop pathname={pathname} />
       {pathname !== MAIN_ROUTES.HOME.path && <LayoutHeaderBottom pathname={pathname} />}
     </Header>
   );

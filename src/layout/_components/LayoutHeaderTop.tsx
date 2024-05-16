@@ -3,10 +3,14 @@ import styled from 'styled-components';
 import LayoutHeaderTopLeft from '@/layout/_components/LayoutHeaderTopLeft';
 import LayoutHeaderTopRight from '@/layout/_components/LayoutHeaderTopRight';
 
-function LayoutHeaderTop() {
+interface ILayoutHeaderTop {
+  pathname: string;
+}
+
+function LayoutHeaderTop({ pathname }: ILayoutHeaderTop) {
   return (
     <HeaderTopBox>
-      <LayoutHeaderTopLeft />
+      <LayoutHeaderTopLeft pathname={pathname} />
       <LayoutHeaderTopRight />
     </HeaderTopBox>
   );

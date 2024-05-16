@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
 import IconBannerPlay from '@/assets/svg/home_banner_btn_play.svg';
-import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg';
+
+// import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg';
 
 interface CarouselDotsProps {
   total: number;
   activeIndex: number;
-  onClick: (index: number) => void;
+  handleClickDotBtn: (index: number) => void;
 }
 
-function CarouselDots({ total, activeIndex, onClick }: CarouselDotsProps) {
+function CarouselDots({ total, activeIndex, handleClickDotBtn }: CarouselDotsProps) {
   return (
     <CarouselDotsBox>
       <BannerButton icon={IconBannerPlay}></BannerButton>
       {Array.from({ length: total }).map((_, index) => (
-        <Dot key={index} isActive={index === activeIndex} onClick={() => onClick(index)} />
+        <DotBox
+          key={index}
+          isActive={index === activeIndex}
+          onClick={() => handleClickDotBtn(index)}
+        />
       ))}
     </CarouselDotsBox>
   );
@@ -36,7 +41,7 @@ const BannerButton = styled.button<{ icon: string }>`
   margin-right: 14px;
 `;
 
-const Dot = styled.div<{ isActive: boolean }>`
+const DotBox = styled.div<{ isActive: boolean }>`
   width: 6px;
   height: 6px;
   margin-right: 6px;

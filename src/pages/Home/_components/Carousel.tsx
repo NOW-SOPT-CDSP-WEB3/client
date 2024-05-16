@@ -42,25 +42,24 @@ function Carousel() {
   return (
     <CarouselSection>
       <CarouselWrapperBox ref={carouselContentRef}>
-        <CarouselContentBox translateX={translateX}>
-          {CAROUSEL_DATA.map((item, index) => (
+        <CarouselItemBox translateX={translateX}>
+          {CAROUSEL_DATA.map(({ src, alt }, index) => (
             <CarouselItem
-              key={item.src}
-              src={item.src}
-              alt={item.alt}
+              key={index}
+              src={src}
+              alt={alt}
               width={index % 3 === 0 ? '445px' : '214px'}
-              height='337px'
               marginRight={index % 3 === 2 ? '0px' : '20px'}
             />
           ))}
-        </CarouselContentBox>
+        </CarouselItemBox>
         <BannerButton onClick={handlePrevBtn} icon={IconBannerMoveBtn} />
         <BannerButton onClick={handleNextBtn} icon={IconBannerMoveBtn} />
       </CarouselWrapperBox>
       <CarouselDots
         total={totalPage}
         activeIndex={Math.floor(currentIndex / itemsPerPage)}
-        onClick={handleClickDotBtn}
+        handleClickDotBtn={handleClickDotBtn}
       />
     </CarouselSection>
   );
@@ -97,7 +96,7 @@ const BannerButton = styled.button<{ icon: string }>`
     rotate: 180deg;
   }
 `;
-const CarouselContentBox = styled.div<{ translateX: number }>`
+const CarouselItemBox = styled.div<{ translateX: number }>`
   display: flex;
   width: 100%;
   justify-content: space-between;

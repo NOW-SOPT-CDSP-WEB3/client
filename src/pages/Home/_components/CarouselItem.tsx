@@ -4,17 +4,16 @@ interface CarouselItemProps {
   src: string;
   alt: string;
   width: string;
-  height: string;
   marginRight: string;
 }
 
-function CarouselItem({ src, alt, width, height, marginRight }: CarouselItemProps) {
-  return <Image src={src} alt={alt} width={width} height={height} marginRight={marginRight} />;
+function CarouselItem({ src, alt, width, marginRight }: CarouselItemProps) {
+  return <Image src={src} alt={alt} width={width} marginRight={marginRight} />;
 }
 
-const Image = styled.img<{ width: string; height: string; marginRight: string }>`
+const Image = styled.img<{ width: string; marginRight: string }>`
   width: ${(props) => props.width};
-  height: ${(props) => props.height};
+  height: 337px;
   margin-right: ${(props) => props.marginRight};
 `;
 

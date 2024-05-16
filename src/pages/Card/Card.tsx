@@ -1,5 +1,5 @@
-import CardBox from './_components/CardBox';
-import { CARD_BOX_DATA } from './_constants/cardData';
+import CardBox from '@/pages/Card/_components/CardBox';
+import { CARD_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
 function Card() {
   return (

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-import CardContent from '../_components/CardContent';
-import { CARD_DATA } from '../_constants/cardData';
+import CardContent from '@/pages/Card/_components/CardContent';
+import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
 interface CardBoxProps {
   cardBoxTitle: string;

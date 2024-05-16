@@ -14,6 +14,7 @@ function Carousel() {
   const totalPage = Math.ceil(CAROUSEL_DATA.length / itemsPerPage);
   const [slideWidth, setSlideWidth] = useState(0);
   const carouselContentRef = useRef<HTMLDivElement>(null);
+  const [isAutoSlide, setIsAutoSlide] = useState(true);
 
   useEffect(() => {
     if (carouselContentRef.current) {
@@ -28,9 +29,11 @@ function Carousel() {
   }, [currentIndex, itemsPerPage]);
 
   useEffect(() => {
-    const interval = setInterval(handleNextBtn, 5000);
-    return () => clearInterval(interval);
-  }, [handleNextBtn]);
+    if (isAutoSlide) {
+      const interval = setInterval(handleNextBtn, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [handleNextBtn, isAutoSlide]);
 
   const handlePrevBtn = () => {
     const newIndex =
@@ -43,6 +46,10 @@ function Carousel() {
   };
 
   const translateX = -(currentIndex * (slideWidth / itemsPerPage));
+
+  const handleClickAutoSlide = () => {
+    setIsAutoSlide(!isAutoSlide);
+  };
 
   return (
     <CarouselSection>
@@ -65,6 +72,8 @@ function Carousel() {
         total={totalPage}
         activeIndex={Math.floor(currentIndex / itemsPerPage)}
         handleClickDotBtn={handleClickDotBtn}
+        handleClickAutoSlide={handleClickAutoSlide}
+        isAutoSlide={isAutoSlide}
       />
     </CarouselSection>
   );

@@ -1,19 +1,29 @@
 import styled from 'styled-components';
 
 import IconBannerPlay from '@/assets/svg/home_banner_btn_play.svg';
-
-// import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg';
+import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg';
 
 interface CarouselDotsProps {
   total: number;
   activeIndex: number;
   handleClickDotBtn: (index: number) => void;
+  handleClickAutoSlide: () => void;
+  isAutoSlide: boolean;
 }
 
-function CarouselDots({ total, activeIndex, handleClickDotBtn }: CarouselDotsProps) {
+function CarouselDots({
+  total,
+  activeIndex,
+  handleClickDotBtn,
+  handleClickAutoSlide,
+  isAutoSlide,
+}: CarouselDotsProps) {
   return (
     <CarouselDotsBox>
-      <BannerPlayButton $icon={IconBannerPlay}></BannerPlayButton>
+      <BannerPlayButton
+        onClick={handleClickAutoSlide}
+        $isAutoSlide={isAutoSlide}
+      ></BannerPlayButton>
       {Array.from({ length: total }).map((_, index) => (
         <DotBox
           key={index}
@@ -34,13 +44,13 @@ const CarouselDotsBox = styled.div`
   height: 24px;
 `;
 
-const BannerPlayButton = styled.button<{ $icon: string }>`
+const BannerPlayButton = styled.button<{ $isAutoSlide: boolean }>`
   width: 15px;
   height: 8px;
   margin-right: 14px;
   border: none;
 
-  background-image: url(${({ $icon }) => $icon});
+  background-image: url(${({ $isAutoSlide }) => ($isAutoSlide ? IconBannerPlay : IconBannerStop)});
 `;
 
 const DotBox = styled.div<{ $isActive: boolean }>`

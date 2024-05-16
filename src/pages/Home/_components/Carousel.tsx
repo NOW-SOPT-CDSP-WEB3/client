@@ -68,29 +68,35 @@ function Carousel() {
 const CarouselSection = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
   position: relative;
+
   max-width: 913px;
   height: 361px;
-  overflow: hidden;
 `;
 
 const CarouselWrapperBox = styled.div`
   display: flex;
-  width: 100%;
   justify-content: space-between;
   align-items: center;
+
+  width: 100%;
 `;
 
 const BannerButton = styled.button<{ icon: string }>`
   position: absolute;
+
   width: 40px;
   height: 40px;
   border: none;
-  cursor: pointer;
+
   background: none;
   background-image: url(${(props) => props.icon});
+
+  cursor: pointer;
+
   &:last-child {
     right: 0;
     rotate: 180deg;
@@ -98,9 +104,11 @@ const BannerButton = styled.button<{ icon: string }>`
 `;
 const CarouselItemBox = styled.div<{ translateX: number }>`
   display: flex;
-  width: 100%;
   justify-content: space-between;
-  transform: ${(props) => `translateX(${props.translateX}px)`};
+
+  width: 100%;
+
   transition: transform 0.4s ease-in-out;
+  transform: ${(props) => `translateX(${props.translateX}px)`};
 `;
 export default Carousel;

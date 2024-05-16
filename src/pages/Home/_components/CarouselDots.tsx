@@ -13,7 +13,7 @@ interface CarouselDotsProps {
 function CarouselDots({ total, activeIndex, handleClickDotBtn }: CarouselDotsProps) {
   return (
     <CarouselDotsBox>
-      <BannerButton icon={IconBannerPlay}></BannerButton>
+      <BannerPlayButton icon={IconBannerPlay}></BannerPlayButton>
       {Array.from({ length: total }).map((_, index) => (
         <DotBox
           key={index}
@@ -29,26 +29,31 @@ const CarouselDotsBox = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-  height: 24px;
+
   max-width: 148px;
+  height: 24px;
 `;
 
-const BannerButton = styled.button<{ icon: string }>`
-  background-image: url(${(props) => props.icon});
+const BannerPlayButton = styled.button<{ icon: string }>`
   width: 15px;
   height: 8px;
-  border: none;
   margin-right: 14px;
+  border: none;
+
+  background-image: url(${(props) => props.icon});
 `;
 
 const DotBox = styled.div<{ isActive: boolean }>`
   width: 6px;
   height: 6px;
-  margin-right: 6px;
   margin-top: 1px;
-  cursor: pointer;
+  margin-right: 6px;
   border-radius: 50%;
-  background: ${(props) => (props.isActive ? '#000' : '#bbb')};
+
+  background: ${({ isActive, theme }) =>
+    isActive ? theme.COLORS.HD_BLK : theme.COLORS.HD_GRAY_03};
+
+  cursor: pointer;
 `;
 
 export default CarouselDots;

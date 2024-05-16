@@ -10,6 +10,10 @@ export const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
+html {
+    font-size: 10px;
+}
+
  a{
   text-decoration: none;
  }

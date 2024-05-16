@@ -47,9 +47,9 @@ const CardBoxLayout = styled.section`
   flex-direction: column;
   align-items: flex-start;
 
-  width: 57.3125rem;
-  margin-top: 3.4375rem;
-  margin-left: 2.25rem;
+  width: 91.7rem;
+  margin-top: 6.5rem;
+  margin-left: 3.6rem;
 `;
 
 const CardBoxTitle = styled.h1`
@@ -60,16 +60,15 @@ const CardBoxTitle = styled.h1`
 
 const CardGridBox = styled.div`
   display: grid;
-  gap: 4.875rem 3.3125rem;
-
-  margin-top: 2.75rem;
+  gap: 7.8rem 5.3rem;
+  margin-top: 4.4rem;
   grid-template-columns: repeat(5, 1fr);
 `;
 
 const CardBoxLine = styled.div`
   width: 100%;
   height: 0.1rem;
-  margin-top: 2.75rem;
+  margin-top: 4.4rem;
 
   background-color: ${({ theme }) => theme.COLORS.HD_GRAY_03};
 `;

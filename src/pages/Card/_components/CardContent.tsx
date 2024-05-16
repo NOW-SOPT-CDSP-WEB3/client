@@ -44,9 +44,9 @@ const CardContentLayout = styled.article`
 `;
 
 const CardContentImg = styled.img`
-  width: 8.8125rem;
-  height: 13.8125rem;
-  margin-top: 0.8125rem;
+  width: 14.1rem;
+  height: 22.1rem;
+  margin-top: 1.3rem;
 `;
 
 const CardContentTitle = styled.h2`
@@ -56,7 +56,7 @@ const CardContentTitle = styled.h2`
 `;
 
 const CardContentTargetParagraph = styled.p`
-  margin-top: 0.8125rem;
+  margin-top: 1.3rem;
 
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
@@ -64,13 +64,13 @@ const CardContentTargetParagraph = styled.p`
 `;
 
 const CardContentInfoParagraph = styled.p`
-  max-width: 7.7rem;
-  margin-top: 0.8125rem;
+  max-width: 12rem;
+  margin-top: 1.3rem;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_04_MED_17};
-  line-height: 1rem;
+  line-height: 1.5rem;
   white-space: pre-wrap;
   word-break: break-all;
 `;
@@ -81,7 +81,7 @@ const CardContentImgBox = styled.div`
 
 const BookmarkIconBox = styled.div`
   position: absolute;
-  top: 1.5rem;
+  top: 2.1rem;
   right: 0.4rem;
 
   cursor: pointer;

@@ -1,18 +1,11 @@
-import CardContent from '@/pages/Card/_components/CardContent';
-
-import { CARD_DATA } from './_constants/cardData';
+import CardBox from './_components/CardBox';
+import { CARD_BOX_DATA } from './_constants/cardData';
 
 function Card() {
   return (
     <>
-      {CARD_DATA.map((data, index) => (
-        <CardContent
-          key={index}
-          cardTitle={data.cardTitle}
-          cardSrc={data.cardSrc}
-          cardTarget={data.cardTarget}
-          cardInfo={data.cardInfo}
-        />
+      {CARD_BOX_DATA.map((data, index) => (
+        <CardBox key={index} cardBoxTitle={data.cardBoxTitle} />
       ))}
     </>
   );

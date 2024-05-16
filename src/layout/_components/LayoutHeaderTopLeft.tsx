@@ -40,6 +40,7 @@ const HeaderTopNav = styled.nav`
 
 const HeaderTopLeftNavList = styled.ul`
   display: flex;
+
   padding: 22px 0 15px;
 `;
 
@@ -47,6 +48,7 @@ const HeaderTopLeftNavItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+
   padding: 0 12px;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};

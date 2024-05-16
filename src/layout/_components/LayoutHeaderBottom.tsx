@@ -27,24 +27,27 @@ const HeaderBottomBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 36px;
+
   width: 100%;
   height: 42px;
+  padding: 0 36px;
   border-bottom: 1px solid ${({ theme }) => theme.COLORS.HD_GRAY_03};
+
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
 `;
 
 const HeaderBottomBreadcrumbsList = styled.ul`
   display: flex;
+  gap: 4px;
   justify-content: center;
   align-items: center;
-  gap: 4px;
 `;
 
 const HeaderBottomBreadccumbsItem = styled.li`
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+
   width: 24px;
   height: 24px;
 `;
@@ -53,29 +56,33 @@ const NextIconBox = styled.div``;
 
 const HeaderBottomButton = styled.button`
   display: flex;
-  width: 56px;
-  height: 24px;
-  padding: 0px 1px;
   justify-content: center;
   align-items: center;
-  border-radius: 5px;
+
+  width: 56px;
+  height: 24px;
+  padding: 0 1px;
   border: 0;
+  border-radius: 5px;
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
 `;
 
 const LoginButton = styled(HeaderBottomButton)`
   background-color: ${({ theme }) => theme.COLORS.HD_BLK};
+
   color: ${({ theme }) => theme.COLORS.HD_WHITE};
 `;
 const SignUpButton = styled(HeaderBottomButton)`
   background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+
   color: ${({ theme }) => theme.COLORS.HD_BLK};
 `;
 
 const LoginBox = styled.div`
   display: flex;
+  gap: 8px;
   justify-content: center;
   align-items: center;
-  gap: 8px;
 `;

@@ -42,7 +42,7 @@ function Carousel() {
   return (
     <CarouselSection>
       <CarouselWrapperBox ref={carouselContentRef}>
-        <CarouselItemBox translateX={translateX}>
+        <CarouselItemBox $translateX={translateX}>
           {CAROUSEL_DATA.map(({ src, alt }, index) => (
             <CarouselItem
               key={index}
@@ -53,8 +53,8 @@ function Carousel() {
             />
           ))}
         </CarouselItemBox>
-        <BannerButton onClick={handlePrevBtn} icon={IconBannerMoveBtn} />
-        <BannerButton onClick={handleNextBtn} icon={IconBannerMoveBtn} />
+        <BannerButton onClick={handlePrevBtn} $icon={IconBannerMoveBtn} />
+        <BannerButton onClick={handleNextBtn} $icon={IconBannerMoveBtn} />
       </CarouselWrapperBox>
       <CarouselDots
         total={totalPage}
@@ -85,7 +85,7 @@ const CarouselWrapperBox = styled.div`
   width: 100%;
 `;
 
-const BannerButton = styled.button<{ icon: string }>`
+const BannerButton = styled.button<{ $icon: string }>`
   position: absolute;
 
   width: 40px;
@@ -93,7 +93,7 @@ const BannerButton = styled.button<{ icon: string }>`
   border: none;
 
   background: none;
-  background-image: url(${(props) => props.icon});
+  background-image: url(${({ $icon }) => $icon});
 
   cursor: pointer;
 
@@ -102,13 +102,13 @@ const BannerButton = styled.button<{ icon: string }>`
     rotate: 180deg;
   }
 `;
-const CarouselItemBox = styled.div<{ translateX: number }>`
+const CarouselItemBox = styled.div<{ $translateX: number }>`
   display: flex;
   justify-content: space-between;
 
   width: 100%;
 
   transition: transform 0.4s ease-in-out;
-  transform: ${(props) => `translateX(${props.translateX}px)`};
+  transform: ${({ $translateX }) => `translateX(${$translateX}px)`};
 `;
 export default Carousel;

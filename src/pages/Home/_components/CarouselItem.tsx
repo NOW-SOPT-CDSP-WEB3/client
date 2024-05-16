@@ -8,13 +8,13 @@ interface CarouselItemProps {
 }
 
 function CarouselItem({ src, alt, width, marginRight }: CarouselItemProps) {
-  return <Image src={src} alt={alt} width={width} marginRight={marginRight} />;
+  return <Image src={src} alt={alt} $width={width} $marginRight={marginRight} />;
 }
 
-const Image = styled.img<{ width: string; marginRight: string }>`
-  width: ${(props) => props.width};
+const Image = styled.img<{ $width: string; $marginRight: string }>`
+  width: ${({ $width }) => $width};
   height: 337px;
-  margin-right: ${(props) => props.marginRight};
+  margin-right: ${({ $marginRight }) => $marginRight};
 `;
 
 export default CarouselItem;

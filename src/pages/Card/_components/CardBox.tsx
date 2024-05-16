@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import CardContent from '../_components/CardContent';
@@ -8,6 +9,16 @@ interface CardBoxProps {
 }
 
 function CardBox({ cardBoxTitle }: CardBoxProps) {
+  // 북마크 상태를 관리하는 상태 배열 초기화
+  const [bookmarked, setBookmarked] = useState(new Array(CARD_DATA.length).fill(false));
+
+  // 북마크 상태를 변경하는 함수
+  const handleBookmarkClick = (index: number) => {
+    const updatedBookmarked = [...bookmarked];
+    updatedBookmarked[index] = !updatedBookmarked[index];
+    setBookmarked(updatedBookmarked);
+  };
+
   return (
     <CardBoxLayout>
       <CardBoxTitle>{cardBoxTitle}</CardBoxTitle>
@@ -19,6 +30,8 @@ function CardBox({ cardBoxTitle }: CardBoxProps) {
             cardSrc={data.cardSrc}
             cardTarget={data.cardTarget}
             cardInfo={data.cardInfo}
+            isBookmarked={bookmarked[index]}
+            onBookmarkClick={() => handleBookmarkClick(index)}
           />
         ))}
       </CardGridBox>
@@ -33,27 +46,30 @@ const CardBoxLayout = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 2.25rem;
+
   width: 57.3125rem;
+  margin-top: 3.4375rem;
+  margin-left: 2.25rem;
 `;
 
 const CardBoxTitle = styled.h1`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_02};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
+  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_02};
 `;
 
 const CardGridBox = styled.div`
-  margin-top: 2.75rem;
   display: grid;
+  gap: 4.875rem 3.3125rem;
+
+  margin-top: 2.75rem;
   grid-template-columns: repeat(5, 1fr);
-  row-gap: 4.875rem;
-  column-gap: 3.3125rem;
 `;
 
 const CardBoxLine = styled.div`
   width: 100%;
   height: 0.1rem;
-  background-color: ${({ theme }) => theme.COLORS.HD_GRAY_03};
   margin-top: 2.75rem;
+
+  background-color: ${({ theme }) => theme.COLORS.HD_GRAY_03};
 `;

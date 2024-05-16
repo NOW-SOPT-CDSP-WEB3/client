@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+
+import CarouselDots from '@/pages/Home/_components/CarouselDots';
+import CarouselItem from '@/pages/Home/_components/CarouselItem';
 
 import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg';
 
 import { CAROUSEL_DATA } from '@/constants/carouselDate';
-
-import CarouselDots from './CarouselDots';
-import CarouselItem from './CarouselItem';
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,15 +21,20 @@ function Carousel() {
     }
   }, []);
 
+  const handleNextBtn = useCallback(() => {
+    const newIndex =
+      currentIndex + itemsPerPage >= CAROUSEL_DATA.length ? 0 : currentIndex + itemsPerPage;
+    setCurrentIndex(newIndex);
+  }, [currentIndex, itemsPerPage]);
+
+  useEffect(() => {
+    const interval = setInterval(handleNextBtn, 5000);
+    return () => clearInterval(interval);
+  }, [handleNextBtn]);
+
   const handlePrevBtn = () => {
     const newIndex =
       currentIndex === 0 ? CAROUSEL_DATA.length - itemsPerPage : currentIndex - itemsPerPage;
-    setCurrentIndex(newIndex);
-  };
-
-  const handleNextBtn = () => {
-    const newIndex =
-      currentIndex + itemsPerPage >= CAROUSEL_DATA.length ? 0 : currentIndex + itemsPerPage;
     setCurrentIndex(newIndex);
   };
 

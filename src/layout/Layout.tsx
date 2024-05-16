@@ -1,17 +1,19 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 import LayoutFooter from '@/layout/_components/LayoutFooter';
 import LayoutHeader from '@/layout/_components/LayoutHeader';
 
 function Layout() {
+  const { pathname }: { pathname: string } = useLocation();
+
   return (
     <Container>
-      <LayoutHeader />
+      <LayoutHeader pathname={pathname} />
       <Wrapper>
         <Outlet />
       </Wrapper>
-      <LayoutFooter />
+      <LayoutFooter pathname={pathname} />
     </Container>
   );
 }

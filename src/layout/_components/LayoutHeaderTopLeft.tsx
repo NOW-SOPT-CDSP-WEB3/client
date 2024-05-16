@@ -1,22 +1,39 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Divider from '@/assets/svg/Vertical Divider.svg?react';
 import ApplePayIcon from '@/assets/svg/logo_applepay.svg?react';
 import HyundaiCardIcon from '@/assets/svg/logo_hyundaicard_scr.svg?react';
 
+import { MAIN_ROUTES } from '@/constants/routes';
+
 function LayoutHeaderTopLeft() {
   return (
     <HeaderTopLeftSection>
       <HeaderTopNav>
         <LogoBox>
-          <HyundaiCardIcon />
+          <HeaderTopLeftLink to={MAIN_ROUTES.HOME.path}>
+            <HyundaiCardIcon />
+          </HeaderTopLeftLink>
         </LogoBox>
         <HeaderTopLeftNavList>
           <HeaderTopLeftNavItem>My Account</HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>카드</HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>혜택</HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem>
+            <HeaderTopLeftLink to={MAIN_ROUTES.CARD.path}>
+              {MAIN_ROUTES.CARD.title}
+            </HeaderTopLeftLink>
+          </HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem>
+            <HeaderTopLeftLink to={MAIN_ROUTES.BENEFIT.path}>
+              {MAIN_ROUTES.BENEFIT.title}
+            </HeaderTopLeftLink>
+          </HeaderTopLeftNavItem>
           <HeaderTopLeftNavItem>금융</HeaderTopLeftNavItem>
-          <HeaderTopLeftNavItem>컬쳐</HeaderTopLeftNavItem>
+          <HeaderTopLeftNavItem>
+            <HeaderTopLeftLink to={MAIN_ROUTES.CULTURE.path}>
+              {MAIN_ROUTES.CULTURE.title}
+            </HeaderTopLeftLink>
+          </HeaderTopLeftNavItem>
           <HeaderTopLeftNavItem>고객지원</HeaderTopLeftNavItem>
           <DividerBox>
             <Divider />
@@ -40,8 +57,6 @@ const HeaderTopNav = styled.nav`
 
 const HeaderTopLeftNavList = styled.ul`
   display: flex;
-
-  padding: 22px 0 15px;
 `;
 
 const HeaderTopLeftNavItem = styled.li`
@@ -49,11 +64,18 @@ const HeaderTopLeftNavItem = styled.li`
   justify-content: center;
   align-items: center;
 
-  padding: 0 12px;
+  padding: 22px 12px 15px;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
-  font-weight: 500;
+
+  &:hover {
+    border-bottom: 1px solid ${({ theme }) => theme.COLORS.HD_BLK};
+  }
+`;
+
+const HeaderTopLeftLink = styled(Link)`
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
 `;
 
 const DividerBox = styled.div`

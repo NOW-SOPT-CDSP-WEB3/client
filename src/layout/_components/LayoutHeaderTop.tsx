@@ -1,6 +1,7 @@
+import styled from 'styled-components';
+
 import LayoutHeaderTopLeft from '@/layout/_components/LayoutHeaderTopLeft';
 import LayoutHeaderTopRight from '@/layout/_components/LayoutHeaderTopRight';
-import styled from 'styled-components';
 
 function LayoutHeaderTop() {
   return (

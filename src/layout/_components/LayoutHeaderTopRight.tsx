@@ -3,22 +3,27 @@ import styled from 'styled-components';
 import Divider from '@/assets/svg/Vertical Divider.svg?react';
 import SearchIcon from '@/assets/svg/ic_gnb_input_search.svg?react';
 
+import { HEADER_TOP_RIGHT_NAV_ITEMS } from '@/layout/_constants/header';
+
+const INPUT_PLACEHOLDER = '카드, 메뉴, 혜택을 검색해 보세요';
+
 function LayoutHeaderTopRight() {
   return (
     <HeaderTopRightSection>
       <HeaderTopNav>
         <HeaderTopRightNavList>
-          <HeaderTopRightNavItem>개인 사업자</HeaderTopRightNavItem>
-          <HeaderTopRightNavItem>법인</HeaderTopRightNavItem>
-          <HeaderTopRightNavItem>가맹점</HeaderTopRightNavItem>
-          <DividerBox>
-            <Divider />
-          </DividerBox>
-          <HeaderTopRightNavItem>소비자보호 포털</HeaderTopRightNavItem>
-          <HeaderTopRightNavItem>상품 공사실</HeaderTopRightNavItem>
+          {HEADER_TOP_RIGHT_NAV_ITEMS.map((item, index) =>
+            item === 'DIVIDER' ? (
+              <DividerBox key={`divider-${index}`}>
+                <Divider />
+              </DividerBox>
+            ) : (
+              <HeaderTopRightNavItem key={item}>{item}</HeaderTopRightNavItem>
+            ),
+          )}
           <HeaderInputBox>
             <SearchIcon />
-            <HeaderInput placeholder='카드, 메뉴, 혜택을 검색해 보세요' />
+            <HeaderInput placeholder={INPUT_PLACEHOLDER} />
           </HeaderInputBox>
         </HeaderTopRightNavList>
       </HeaderTopNav>

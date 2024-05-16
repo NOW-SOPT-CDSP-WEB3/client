@@ -2,7 +2,17 @@ import styled from 'styled-components';
 
 import NextIcon from '@/assets/svg/bar_record_ic_next.svg?react';
 
-function LayoutHeaderBottom() {
+import { MAIN_ROUTES } from '@/constants/routes';
+
+interface ILayoutHeaderBottom {
+  pathname: string;
+}
+
+function LayoutHeaderBottom({ pathname }: ILayoutHeaderBottom) {
+  const mainRoutes = { ...MAIN_ROUTES };
+  const currentRoute = Object.values(mainRoutes).find((route) => route.path === pathname);
+  const title = currentRoute ? currentRoute.title : '';
+
   return (
     <HeaderBottomBox>
       <HeaderBottomBreadcrumbsList>
@@ -10,9 +20,8 @@ function LayoutHeaderBottom() {
         <NextIconBox>
           <NextIcon />
         </NextIconBox>
-        <HeaderBottomBreadccumbsItem>컬쳐</HeaderBottomBreadccumbsItem>
+        <HeaderBottomBreadccumbsItem>{title}</HeaderBottomBreadccumbsItem>
       </HeaderBottomBreadcrumbsList>
-
       <LoginBox>
         <LoginButton>로그인</LoginButton>
         <SignUpButton>회원가입</SignUpButton>

@@ -4,14 +4,22 @@ import UpIcon from '@/assets/svg/ic_up.svg?react';
 import Logo1 from '@/assets/svg/img_footer_logo_01.svg?react';
 import Logo2 from '@/assets/svg/img_footer_logo_02.svg?react';
 
-function LayoutFooter() {
+import { MAIN_ROUTES } from '@/constants/routes';
+
+import { COMPANY_INFO_LINKS, ETC_LINKS, LEGAL_CONTENTS, PHONE_NUMBERS } from '../_constants/footer';
+
+interface ILayoutFooter {
+  pathname: string;
+}
+
+function LayoutFooter({ pathname }: ILayoutFooter) {
   return (
     <Footer>
       <FooterContentBox>
         <FooterPhoneSection>
           <FooterBetweenBox>
-            <FooterTitle>고객센터</FooterTitle>
-            <FooterParagraph>1577-6000</FooterParagraph>
+            <FooterTitle>{PHONE_NUMBERS.CUSTOMER_SERVICE.TITLE}</FooterTitle>
+            <FooterParagraph>{PHONE_NUMBERS.CUSTOMER_SERVICE.PHONE_NUMBER}</FooterParagraph>
           </FooterBetweenBox>
           <FooterInfoBox>
             <FooterInfoParagraph>외국인(Foreigner)·청각장애인을 위한</FooterInfoParagraph>
@@ -19,56 +27,55 @@ function LayoutFooter() {
           </FooterInfoBox>
           <FooterColBox>
             <FooterBetweenBox>
-              <FooterTitle>도난분실신고</FooterTitle>
-              <FooterParagraph>1577-6200</FooterParagraph>
+              <FooterTitle>{PHONE_NUMBERS.LOSS_REPORT.TITLE}</FooterTitle>
+              <FooterParagraph>{PHONE_NUMBERS.LOSS_REPORT.PHONE_NUMBER}</FooterParagraph>
             </FooterBetweenBox>
             <FooterBetweenBox>
-              <FooterTitle>카드신청</FooterTitle>
-              <FooterParagraph>1577-0100</FooterParagraph>
+              <FooterTitle>{PHONE_NUMBERS.CARD_APPLICATION.TITLE}</FooterTitle>
+              <FooterParagraph>{PHONE_NUMBERS.CARD_APPLICATION.PHONE_NUMBER}</FooterParagraph>
             </FooterBetweenBox>
             <FooterBetweenBox>
-              <FooterTitle>금융신청</FooterTitle>
-              <FooterParagraph>1577-6100</FooterParagraph>
+              <FooterTitle>{PHONE_NUMBERS.FINANCIAL_APPLICATION.TITLE}</FooterTitle>
+              <FooterParagraph>{PHONE_NUMBERS.FINANCIAL_APPLICATION.PHONE_NUMBER}</FooterParagraph>
             </FooterBetweenBox>
             <FooterBetweenBox>
-              <FooterTitle>점자카드신청</FooterTitle>
-              <FooterParagraph>1577-5630</FooterParagraph>
+              <FooterTitle>{PHONE_NUMBERS.BRAILLE_CARD_APPLICATION.TITLE}</FooterTitle>
+              <FooterParagraph>
+                {PHONE_NUMBERS.BRAILLE_CARD_APPLICATION.PHONE_NUMBER}
+              </FooterParagraph>
             </FooterBetweenBox>
             <FooterBetweenBox>
-              <FooterTitle>해외</FooterTitle>
-              <FooterBasicParagraph>82-2-3015-9000</FooterBasicParagraph>
+              <FooterTitle>{PHONE_NUMBERS.OVERSEAS.TITLE}</FooterTitle>
+              <FooterBasicParagraph>{PHONE_NUMBERS.OVERSEAS.PHONE_NUMBER}</FooterBasicParagraph>
             </FooterBetweenBox>
           </FooterColBox>
         </FooterPhoneSection>
         <FooterCompanySection>
-          <CompanyTitle>회사소개</CompanyTitle>
+          <CompanyTitle>{COMPANY_INFO_LINKS.TITLE}</CompanyTitle>
           <FooterColBox>
-            <FooterBasicParagraph>회사소개(한글·ENG)</FooterBasicParagraph>
-            <FooterBasicParagraph>영업점 안내</FooterBasicParagraph>
-            <FooterBasicParagraph>개인정보 처리방침</FooterBasicParagraph>
-            <FooterBasicParagraph>고객권리안내</FooterBasicParagraph>
-            <FooterBasicParagraph>이용약관</FooterBasicParagraph>
-            <FooterBasicParagraph>윤리경영</FooterBasicParagraph>
+            {COMPANY_INFO_LINKS.LINKS.map((link) => (
+              <FooterBasicParagraph key={link}>{link}</FooterBasicParagraph>
+            ))}
           </FooterColBox>
         </FooterCompanySection>
         <FooterEtcSection>
           <FooterColBox>
-            <FooterBasicParagraph>업무위탁현황</FooterBasicParagraph>
-            <FooterBasicParagraph>인재모집</FooterBasicParagraph>
-            <FooterBasicParagraph>사이트맵</FooterBasicParagraph>
-            <FooterBasicParagraph>현대카드 SNS·패밀리·그룹사</FooterBasicParagraph>
+            {ETC_LINKS.map((link) => (
+              <FooterBasicParagraph key={link}>{link}</FooterBasicParagraph>
+            ))}
           </FooterColBox>
         </FooterEtcSection>
         <FooterLawSection>
           <FooterRowBox>
-            <FooterTitle>개인</FooterTitle>
-            <FooterTitle>개인사업자</FooterTitle>
-            <FooterTitle>법인</FooterTitle>
-            <FooterTitle>가맹점</FooterTitle>
+            {LEGAL_CONTENTS.LINKS.map((link) => (
+              <FooterTitle key={link}>{link}</FooterTitle>
+            ))}
           </FooterRowBox>
           <FooterLawContent>
-            <FooterLawParagraph>서울시 영등포구 의사당대로 3 현대카드빌딩 1관</FooterLawParagraph>
-            <FooterLawParagraph>사업자 등록번호 213-86-15419</FooterLawParagraph>
+            <FooterLawParagraph>{LEGAL_CONTENTS.ADDRESS}</FooterLawParagraph>
+            <FooterLawParagraph>
+              사업자 등록번호 {LEGAL_CONTENTS.REGISTRATION_NUMBER}
+            </FooterLawParagraph>
             <FooterLawParagraph>© Hyundai Card Co., Ltd.</FooterLawParagraph>
           </FooterLawContent>
           <FooterLogoBox>
@@ -77,10 +84,12 @@ function LayoutFooter() {
           </FooterLogoBox>
         </FooterLawSection>
       </FooterContentBox>
-      <AddInterestCardButton>
-        <IntrestCardParagraph>관심 카드 비교하기</IntrestCardParagraph>
-        <UpIcon />
-      </AddInterestCardButton>
+      {pathname === MAIN_ROUTES.CARD.path && (
+        <AddInterestCardButton>
+          <IntrestCardParagraph>관심 카드 비교하기</IntrestCardParagraph>
+          <UpIcon />
+        </AddInterestCardButton>
+      )}
     </Footer>
   );
 }
@@ -146,14 +155,21 @@ const FooterParagraph = styled.p`
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_02_REG};
 `;
 
+const FooterBasicParagraph = styled(FooterParagraph)`
+  margin: 0;
+`;
+
+const FooterInfoParagraph = styled(FooterParagraph)`
+  margin: 0;
+
+  color: ${({ theme }) => theme.COLORS.HD_GRAY_02};
+  line-height: normal;
+`;
+
 const FooterColBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
-`;
-
-const FooterBasicParagraph = styled(FooterParagraph)`
-  margin: 0;
 `;
 
 const FooterRowBox = styled.div`
@@ -164,13 +180,6 @@ const FooterRowBox = styled.div`
 const FooterBetweenBox = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-
-const FooterInfoParagraph = styled(FooterParagraph)`
-  margin: 0;
-
-  color: ${({ theme }) => theme.COLORS.HD_GRAY_02};
-  line-height: normal;
 `;
 
 const FooterInfoBox = styled.div`

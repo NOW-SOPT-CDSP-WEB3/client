@@ -24,6 +24,7 @@
     "^@/utils/(.*)$",
     "^@/constants/(.*)$",
     "^@/styles/(.*)$",
+    "^@/layout/(.*)$",
     "^[./]"
   ],
   "importOrderSeparation": true,

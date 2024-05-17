@@ -1,5 +1,11 @@
+import EventBox from '@/components/event/EventBox';
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <EventBox />
+    </div>
+  );
 }
 
 export default Home;

@@ -23,6 +23,10 @@ const CardLayout = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 10px;
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-1rem);
+  }
 `;
 
 const CardImg = styled.img``;

@@ -24,7 +24,6 @@ ${reset}
   font-size: 62.5%;
 }
 
-
  button {
   cursor: pointer;
  }

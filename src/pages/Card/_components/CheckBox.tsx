@@ -1,4 +1,3 @@
-// CheckBox 컴포넌트 수정
 import styled from 'styled-components';
 
 import CheckBoxImg from '@/assets/svg/ic_check.svg?react';
@@ -6,7 +5,7 @@ import CheckBoxImg from '@/assets/svg/ic_check.svg?react';
 interface CheckboxProps {
   checked: boolean;
   onChange: () => void;
-  size?: string; // 추가된 prop
+  size?: string;
   imgSize?: string;
 }
 

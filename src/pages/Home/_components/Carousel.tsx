@@ -3,10 +3,9 @@ import styled from 'styled-components';
 
 import CarouselDots from '@/pages/Home/_components/CarouselDots';
 import CarouselItem from '@/pages/Home/_components/CarouselItem';
+import { CAROUSEL_DATA } from '@/pages/Home/_constants/carouselData';
 
-import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg?react';
-
-import { CAROUSEL_DATA } from '@/constants/carouselData';
+import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg';
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);

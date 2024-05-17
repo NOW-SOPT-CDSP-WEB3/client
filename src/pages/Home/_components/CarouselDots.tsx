@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import IconBannerPlay from '@/assets/svg/home_banner_btn_play.svg?react';
-import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg?react';
+import IconBannerPlay from '@/assets/svg/home_banner_btn_play.svg';
+import IconBannerStop from '@/assets/svg/home_banner_btn_stop.svg';
 
 interface CarouselDotsProps {
   total: number;

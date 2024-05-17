@@ -1,15 +1,22 @@
 import styled from 'styled-components';
 
-import { CARD_DATA } from '@/pages/Home/_constants/cardData';
+import { CardInfo } from '@/pages/Home/type';
 
 import CardBox from './CardBox';
 import CardExplanation from './CardExplanationBox';
 
-function HomeCardArea() {
+interface HomeCardAreaProps {
+  cardTitle: string;
+  cards: CardInfo[];
+  cardDetail: string;
+  hashtags: string[];
+}
+
+function HomeCardArea({ cardTitle, cards, cardDetail, hashtags }: HomeCardAreaProps) {
   return (
     <HomeCardAreaLayout>
-      <CardExplanation />
-      <CardBox />
+      <CardExplanation cardTitle={cardTitle} cardDetail={cardDetail} hashtags={hashtags} />
+      <CardBox cards={cards} />
     </HomeCardAreaLayout>
   );
 }

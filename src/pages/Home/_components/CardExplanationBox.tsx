@@ -2,19 +2,24 @@ import styled from 'styled-components';
 
 import IconViewAll from '@/assets/svg/home_list_ic_move.svg?react';
 
-function CardExplanation() {
+interface CardExplanationProps {
+  cardTitle: string;
+  cardDetail: string;
+  hashtags: string[];
+}
+
+function CardExplanation({ cardTitle, cardDetail, hashtags }: CardExplanationProps) {
   return (
     <CardExplanationBox>
-      <CardTitleText>Hyundai Originals</CardTitleText>
-      <CardDetailText>현대카드의 오리지널리티를 담은 진정한 현대카드</CardDetailText>
+      <CardTitleText>{cardTitle}</CardTitleText>
+      <CardDetailText>{cardDetail}</CardDetailText>
       <ViewAllBox>
         전체보기 <IconViewAll />
       </ViewAllBox>
       <HashtagWrapperBox>
-        <HashtagBox>#프리미엄</HashtagBox>
-        <HashtagBox>#쓸 때마다 할인</HashtagBox>
-        <HashtagBox>#어디서나 포인트적립</HashtagBox>
-        <HashtagBox>#3F 시스템 혜택</HashtagBox>
+        {hashtags.map((hashtag) => (
+          <HashtagBox key={hashtag}>#{hashtag}</HashtagBox>
+        ))}
       </HashtagWrapperBox>
     </CardExplanationBox>
   );

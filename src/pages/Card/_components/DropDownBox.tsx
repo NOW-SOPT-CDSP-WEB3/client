@@ -37,14 +37,9 @@ function DropDownBox() {
 export default DropDownBox;
 
 const DropDownBoxLayout = styled.div`
-  margin-left: 3.6rem;
-  margin-top: 6.8rem;
+  margin-top: 1.8rem;
 `;
 
 const CategoryItem = styled.div`
   margin-bottom: 1.8rem;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;

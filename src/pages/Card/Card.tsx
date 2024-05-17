@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import CardBox from '@/pages/Card/_components/CardBox';
 import { CARD_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
-import DropDownBox from './_components/DropDownBox';
+import SidebarFilter from './_components/SidebarFilter';
 
 function Card() {
   return (
     <CardLayout>
-      <DropDownBox />
+      <SidebarFilter />
       <CardBoxContainer>
         {CARD_BOX_DATA.map((data, index) => (
           <CardBox key={index} cardBoxTitle={data.cardBoxTitle} />

@@ -27,11 +27,12 @@ function EventBox({ isShowPeriod, events }: EventBoxProps) {
 
 const EventBoxLayout = styled.div`
   display: flex;
-  width: 91rem;
-  padding-top: 1.2rem;
+  flex-wrap: wrap;
+  gap: 3.8rem 1.8rem;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 3.8rem 1.8rem;
-  flex-wrap: wrap;
+
+  width: 91rem;
+  padding-top: 1.2rem;
 `;
 export default EventBox;

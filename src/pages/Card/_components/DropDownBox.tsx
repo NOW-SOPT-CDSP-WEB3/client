@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import DropDownMenu from '@/pages/Card/_components/DropDownMenu';
 import DropDownTop from '@/pages/Card/_components/DropDownTop';
 
-type Category = {
+interface Category {
   categoryName: string;
   checkboxes: Array<{ title: string }>;
-};
+}
 
-type DropDownBoxProps = {
+interface DropDownBoxProps {
   checkBoxData: Category[];
   activeCategories: boolean[];
   onCategoryClick: (index: number) => void;
   checkboxStates: boolean[][];
   onCheckboxChange: (categoryIndex: number, checkboxIndex: number) => void;
-};
+}
 
 function DropDownBox({
   checkBoxData,

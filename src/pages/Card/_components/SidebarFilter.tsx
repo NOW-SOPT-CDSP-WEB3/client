@@ -8,7 +8,7 @@ import { CHECK_BOX_DATA } from '@/pages/Card/_constants/cardData';
 import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
 
 function SidebarFilter() {
-  const [checkedState, setCheckedState] = useState(false);
+  const [isAllChecked, setIsAllChecked] = useState(false);
   const [activeCategories, setActiveCategories] = useState(
     Array(CHECK_BOX_DATA.length).fill(false),
   );
@@ -18,7 +18,7 @@ function SidebarFilter() {
 
   // 전체보기 체크박스 상태 변경 함수
   const handleCheckChange = () => {
-    setCheckedState((prev) => !prev);
+    setIsAllChecked((prev) => !prev);
   };
 
   // 드롭다운 카테고리 활성화 상태 변경 함수
@@ -43,7 +43,7 @@ function SidebarFilter() {
         <CheckBox
           size='1.4rem'
           imgSize='0.7rem'
-          checked={checkedState}
+          checked={isAllChecked}
           onChange={handleCheckChange}
         />
         <Label>전체보기</Label>

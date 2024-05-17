@@ -10,30 +10,18 @@ import { CAROUSEL_DATA } from '@/constants/carouselDate';
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const carouselItemBoxRef = useRef<HTMLDivElement>(null);
+  const [isAutoSlide, setIsAutoSlide] = useState(true);
   const itemsPerPage = 3;
   const totalPage = Math.ceil(CAROUSEL_DATA.length / itemsPerPage);
-  const [slideWidth, setSlideWidth] = useState(0);
-  const carouselContentRef = useRef<HTMLDivElement>(null);
-  const [isAutoSlide, setIsAutoSlide] = useState(true);
-
-  useEffect(() => {
-    if (carouselContentRef.current) {
-      setSlideWidth(carouselContentRef.current.clientWidth);
-    }
-  }, []);
+  const translateX = -(currentIndex * (slideWidth / itemsPerPage));
 
   const handleNextBtn = useCallback(() => {
     const newIndex =
       currentIndex + itemsPerPage >= CAROUSEL_DATA.length ? 0 : currentIndex + itemsPerPage;
     setCurrentIndex(newIndex);
   }, [currentIndex, itemsPerPage]);
-
-  useEffect(() => {
-    if (isAutoSlide) {
-      const interval = setInterval(handleNextBtn, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [handleNextBtn, isAutoSlide]);
 
   const handlePrevBtn = () => {
     const newIndex =
@@ -45,16 +33,29 @@ function Carousel() {
     setCurrentIndex(index * itemsPerPage);
   };
 
-  const translateX = -(currentIndex * (slideWidth / itemsPerPage));
-
   const handleClickAutoSlide = () => {
     setIsAutoSlide(!isAutoSlide);
   };
 
+  useEffect(() => {
+    // 항상 913으로 같지만 카라셀은 현재 보이는 만큼 밀어야 하니 useRef의 current, clientWidth를 통해서 width를 알아냈다.
+    if (carouselItemBoxRef.current) {
+      console.log(carouselItemBoxRef.current.clientWidth);
+      setSlideWidth(carouselItemBoxRef.current.clientWidth);
+    }
+  }, [carouselItemBoxRef]);
+
+  useEffect(() => {
+    if (isAutoSlide) {
+      const interval = setInterval(handleNextBtn, 3000);
+      return () => clearInterval(interval);
+    }
+  }, [handleNextBtn, isAutoSlide]);
+
   return (
     <CarouselSection>
-      <CarouselWrapperBox ref={carouselContentRef}>
-        <CarouselItemBox $translateX={translateX}>
+      <CarouselWrapperBox>
+        <CarouselItemBox ref={carouselItemBoxRef} $translateX={translateX}>
           {CAROUSEL_DATA.map(({ src, alt }, index) => (
             <CarouselItem
               key={index}

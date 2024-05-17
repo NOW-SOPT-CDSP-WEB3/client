@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
 import Event from '@/components/event/Event';
-import { EventInfo } from '@/components/type';
+
+import { EVENT_DATA } from '@/constants/eventData';
 
 interface EventBoxProps {
   isShowPeriod: boolean;
-  events: EventInfo[];
 }
 
-function EventBox({ isShowPeriod, events }: EventBoxProps) {
+function EventBox({ isShowPeriod }: EventBoxProps) {
   return (
     <EventBoxLayout>
-      {events.map(({ id, image, name, description, period }) => (
+      {EVENT_DATA.map(({ id, image, name, description, period }) => (
         <Event
           key={id}
           image={image}

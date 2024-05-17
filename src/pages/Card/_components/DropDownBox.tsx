@@ -23,7 +23,10 @@ function DropDownBox() {
         <CategoryItem key={category.categoryName}>
           <DropDownTop title={category.categoryName} onClick={() => handleDropDownClick(index)} />
           {activeCategories[index] && (
-            <DropDownMenu numberOfCheckboxes={category.checkboxes.length} />
+            <DropDownMenu
+              numberOfCheckboxes={category.checkboxes.length}
+              checkboxesData={category.checkboxes}
+            />
           )}
         </CategoryItem>
       ))}

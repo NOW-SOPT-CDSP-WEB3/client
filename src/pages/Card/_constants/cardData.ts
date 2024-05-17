@@ -70,11 +70,34 @@ export const CHECK_BOX_DATA = [
   {
     categoryName: 'Champion Brands',
     checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
       { title: 'M' },
       { title: 'X' },
       { title: 'Z' },
       { title: 'ZERO' },
-      // 추가적인 체크박스 데이터
+    ],
+  },
+  {
+    categoryName: '제휴카드',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
+  },
+  {
+    categoryName: 'My Business',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
     ],
   },
 ];

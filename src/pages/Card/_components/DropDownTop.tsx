@@ -4,14 +4,12 @@ import DropDownIcon from '@/assets/svg/ic_arrow_drop_down.svg?react';
 
 interface DropDownTopProps {
   title: string;
-  onClick: () => void; // onClick 속성 추가
+  onClick: () => void;
 }
 
 function DropDownTop({ title, onClick }: DropDownTopProps) {
   return (
     <DropDownTopLayout onClick={onClick}>
-      {' '}
-      {/* 클릭 이벤트 핸들러 추가 */}
       <DropDownTopTitle>{title}</DropDownTopTitle>
       <DropDownIcon />
     </DropDownTopLayout>

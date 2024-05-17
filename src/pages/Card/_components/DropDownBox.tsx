@@ -34,5 +34,6 @@ function DropDownBox() {
 export default DropDownBox;
 
 const DropDownBoxLayout = styled.div`
-  // 스타일링 코드
+  margin-left: 3.6rem;
+  margin-top: 6.8rem;
 `;

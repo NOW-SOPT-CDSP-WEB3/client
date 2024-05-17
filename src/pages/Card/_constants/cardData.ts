@@ -54,3 +54,50 @@ export const CARD_BOX_DATA = [
     cardBoxTitle: 'Premium',
   },
 ];
+
+export const CHECK_BOX_DATA = [
+  {
+    categoryName: 'Hyundai Originals',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
+  },
+  {
+    categoryName: 'Champion Brands',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
+  },
+  {
+    categoryName: '제휴카드',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
+  },
+  {
+    categoryName: 'My Business',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
+  },
+];

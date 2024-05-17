@@ -18,7 +18,7 @@ function SidebarFilter() {
 
   // 전체보기 체크박스 상태 변경 함수
   const handleCheckChange = () => {
-    setCheckedState(!checkedState);
+    setCheckedState((prev) => !prev);
   };
 
   // 드롭다운 카테고리 활성화 상태 변경 함수

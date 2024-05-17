@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CarouselDots from '@/pages/Home/_components/CarouselDots';
 import CarouselItem from '@/pages/Home/_components/CarouselItem';
 
-import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg';
+import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg?react';
 
 import { CAROUSEL_DATA } from '@/constants/carouselData';
 

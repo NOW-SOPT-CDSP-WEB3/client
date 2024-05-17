@@ -12,14 +12,18 @@ function BenefitTitle() {
         <BenefitTitleLinkParagraph>로그인 후 혜택 확인하기</BenefitTitleLinkParagraph>
         <TitleIcon />
       </BenefitTitleLinkBox>
-      ;
     </BenefitTitleSection>
   );
 }
 
 export default BenefitTitle;
 
-const BenefitTitleSection = styled.section``;
+const BenefitTitleSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 const BenefitTitleHead = styled.h1`
   margin-top: 4.4rem;

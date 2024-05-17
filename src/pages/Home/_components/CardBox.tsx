@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
+import Card from '@/pages/Home/_components/Card';
 import { CardInfo } from '@/pages/Home/type';
-
-import Card from './Card';
 
 interface CardBoxProps {
   cards: CardInfo[];

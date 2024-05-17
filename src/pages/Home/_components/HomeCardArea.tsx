@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 
+import CardBox from '@/pages/Home/_components/CardBox';
+import CardExplanation from '@/pages/Home/_components/CardExplanationBox';
 import { CardInfo } from '@/pages/Home/type';
-
-import CardBox from './CardBox';
-import CardExplanation from './CardExplanationBox';
 
 interface HomeCardAreaProps {
   cardTitle: string;

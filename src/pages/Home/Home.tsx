@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
+import HomeCardArea from '@/pages/Home/_components/HomeCardArea';
 import { CARD_DATA } from '@/pages/Home/_constants/cardData';
 
 import IconVector from '@/assets/svg/vector2.svg?react';
-
-import HomeCardArea from './_components/HomeCardArea';
 
 function Home() {
   return (

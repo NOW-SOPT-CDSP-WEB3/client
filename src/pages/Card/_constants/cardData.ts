@@ -54,3 +54,15 @@ export const CARD_BOX_DATA = [
     cardBoxTitle: 'Premium',
   },
 ];
+
+export const CHECK_BOX_DATA = [
+  {
+    title: 'Premium',
+  },
+  {
+    title: 'Premium',
+  },
+  {
+    title: 'Premium',
+  },
+];

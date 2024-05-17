@@ -61,6 +61,7 @@ const CardBoxTitle = styled.h1`
 const CardGridBox = styled.div`
   display: grid;
   gap: 7.8rem 5.3rem;
+
   margin-top: 4.4rem;
   grid-template-columns: repeat(5, 1fr);
 `;

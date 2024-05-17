@@ -20,12 +20,12 @@ function DropDownBox() {
   return (
     <DropDownBoxLayout>
       {CHECK_BOX_DATA.map((category, index) => (
-        <div key={category.categoryName}>
+        <CategoryItem key={category.categoryName}>
           <DropDownTop title={category.categoryName} onClick={() => handleDropDownClick(index)} />
           {activeCategories[index] && (
             <DropDownMenu numberOfCheckboxes={category.checkboxes.length} />
           )}
-        </div>
+        </CategoryItem>
       ))}
     </DropDownBoxLayout>
   );
@@ -36,4 +36,12 @@ export default DropDownBox;
 const DropDownBoxLayout = styled.div`
   margin-left: 3.6rem;
   margin-top: 6.8rem;
+`;
+
+const CategoryItem = styled.div`
+  margin-bottom: 1.8rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;

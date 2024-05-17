@@ -1,29 +1,33 @@
 import styled from 'styled-components';
 
-import { EventInfo } from '../type';
-
 interface EventProps {
   image: string;
   name: string;
   description: string;
   period: string;
+  isShowPeriod: boolean;
 }
 
-function Event({ image, name, description, period }: EventProps) {
+function Event({ image, name, description, period, isShowPeriod }: EventProps) {
   return (
     <EventLayout>
-      <EventImg src={image} />
+      <EventImg src={image} alt={name} />
       <EventVeiwTitle>
         <EventName>{name}</EventName>
         <EventDescription>{description}</EventDescription>
       </EventVeiwTitle>
-      <EventPeriod>{period}</EventPeriod>
+      {isShowPeriod && <EventPeriod>{period}</EventPeriod>}
     </EventLayout>
   );
 }
 
 const EventLayout = styled.div`
   width: 21.4rem;
+
+  transition: transform 0.3s ease;
+  &:hover {
+    transform: translateY(-1rem);
+  }
 `;
 
 const EventImg = styled.img`

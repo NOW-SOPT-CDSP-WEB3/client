@@ -10,10 +10,6 @@ export const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
-html {
-    font-size: 10px;
-}
-
  a{
   text-decoration: none;
  }
@@ -21,6 +17,12 @@ html {
  * {
   box-sizing: border-box;
  }
+
+ html {
+  /* 62.5% of 16px browser font size is 10px */
+  /* 16px * 0.625 = 10px */
+  font-size: 62.5%;
+}
 
  button {
   cursor: pointer;

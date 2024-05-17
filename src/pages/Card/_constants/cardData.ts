@@ -57,12 +57,24 @@ export const CARD_BOX_DATA = [
 
 export const CHECK_BOX_DATA = [
   {
-    title: 'Premium',
+    categoryName: 'Hyundai Originals',
+    checkboxes: [
+      { title: 'All' },
+      { title: 'Premium' },
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+    ],
   },
   {
-    title: 'Premium',
-  },
-  {
-    title: 'Premium',
+    categoryName: 'Champion Brands',
+    checkboxes: [
+      { title: 'M' },
+      { title: 'X' },
+      { title: 'Z' },
+      { title: 'ZERO' },
+      // 추가적인 체크박스 데이터
+    ],
   },
 ];

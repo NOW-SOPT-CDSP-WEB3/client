@@ -1,12 +1,12 @@
 import CardBox from '@/pages/Card/_components/CardBox';
-import { CARD_BOX_DATA, CHECK_BOX_DATA } from '@/pages/Card/_constants/cardData';
+import { CARD_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
-import DropDownMenu from './_components/DropDownMenu';
+import DropDownBox from './_components/DropDownBox';
 
 function Card() {
   return (
     <>
-      <DropDownMenu numberOfCheckboxes={CHECK_BOX_DATA.length} />
+      <DropDownBox />
       {CARD_BOX_DATA.map((data, index) => (
         <CardBox key={index} cardBoxTitle={data.cardBoxTitle} />
       ))}

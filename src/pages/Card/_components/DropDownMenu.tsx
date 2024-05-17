@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 
 import CheckBox from '@/pages/Card/_components/CheckBox';
 

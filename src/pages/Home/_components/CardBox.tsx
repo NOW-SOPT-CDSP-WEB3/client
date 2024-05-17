@@ -19,10 +19,11 @@ function CardBox({ cards }: CardBoxProps) {
 
 const CardBoxLayout = styled.div`
   display: flex;
-  width: 62.6rem;
+  flex-wrap: wrap;
+  gap: 3.6rem 2.2rem;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 3.6rem 2.2rem;
-  flex-wrap: wrap;
+
+  width: 62.6rem;
 `;
 export default CardBox;

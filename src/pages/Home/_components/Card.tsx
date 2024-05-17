@@ -15,15 +15,18 @@ function Card({ imgSrc, title }: CardProps) {
 }
 
 const CardLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+
   width: 14rem;
   height: 14.6rem;
   padding: 0 2.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 10px;
+
   transition: transform 0.3s ease;
+
   &:hover {
     transform: translateY(-1rem);
   }
@@ -35,7 +38,7 @@ const CardTitle = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_03_MED};
-  line-height: normal;
   text-align: center;
+  line-height: normal;
 `;
 export default Card;

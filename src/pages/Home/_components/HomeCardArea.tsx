@@ -21,13 +21,14 @@ function HomeCardArea({ cardTitle, cards, cardDetail, hashtags }: HomeCardAreaPr
 }
 
 const HomeCardAreaLayout = styled.div`
-  width: 85.4rem;
-  height: 32.8rem;
   display: flex;
-  padding-bottom: 1.5rem;
   justify-content: space-between;
   align-items: flex-start;
+
+  width: 85.4rem;
+  height: 32.8rem;
   margin: 5rem 0;
+  padding-bottom: 1.5rem;
 `;
 
 export default HomeCardArea;

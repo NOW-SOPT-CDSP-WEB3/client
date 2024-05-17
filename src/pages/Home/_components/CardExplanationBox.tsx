@@ -31,46 +31,51 @@ const CardExplanationBox = styled.div`
 `;
 
 const CardTitleText = styled.h1`
+  margin-bottom: 0.9rem;
+
   font-family: ${({ theme }) => theme.FONTS.HEAD_01};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
   line-height: 4.8rem;
-  margin-bottom: 0.9rem;
 `;
 
 const CardDetailText = styled.p`
-  line-height: 1.7rem;
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_03_MED_17};
+  line-height: 1.7rem;
   letter-spacing: -0.044rem;
 `;
 
 const ViewAllBox = styled.div`
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+
+  height: 2.4rem;
+  margin-bottom: 2.5rem;
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLUE_02};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
-  height: 2.4rem;
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
-  gap: 0.2rem;
 `;
 
 const HashtagWrapperBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 4px;
+  align-items: flex-start;
 `;
 
 const HashtagBox = styled.div`
-  padding: 0.4rem 0.9rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 12px;
+
+  padding: 0.4rem 0.9rem;
   border: 0.5px solid ${({ theme }) => theme.COLORS.HD_GRAY_03};
+  border-radius: 12px;
+
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_MED};
 `;

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 function LayoutAuthButtons() {
   return (
     <LoginBox>
-      <LoginButton>로그인</LoginButton>
       <SignUpButton>회원가입</SignUpButton>
+      <LoginButton>로그인</LoginButton>
     </LoginBox>
   );
 }
@@ -35,6 +35,10 @@ const SignUpButton = styled(HeaderButton)`
   background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
 
   color: ${({ theme }) => theme.COLORS.HD_BLK};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.COLORS.HD_GRAY_03};
+  }
 `;
 
 const LoginBox = styled.div`

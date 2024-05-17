@@ -19,7 +19,7 @@ function CarouselDots({
   isAutoSlide,
 }: CarouselDotsProps) {
   return (
-    <CarouselDotsBox>
+    <CarouselDotsLayout>
       <BannerPlayButton
         onClick={handleClickAutoSlide}
         $isAutoSlide={isAutoSlide}
@@ -31,11 +31,11 @@ function CarouselDots({
           onClick={() => handleClickDotBtn(index)}
         />
       ))}
-    </CarouselDotsBox>
+    </CarouselDotsLayout>
   );
 }
 
-const CarouselDotsBox = styled.div`
+const CarouselDotsLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-content: center;

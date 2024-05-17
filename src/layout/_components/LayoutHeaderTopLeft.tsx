@@ -68,7 +68,7 @@ const HeaderTopLeftNavItem = styled.li<{ $isCurrentPath?: boolean }>`
   justify-content: center;
   align-items: center;
 
-  padding: 22px 12px 15px;
+  padding: 2.2rem 1.2rem 1.5rem;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
@@ -76,11 +76,11 @@ const HeaderTopLeftNavItem = styled.li<{ $isCurrentPath?: boolean }>`
   ${({ $isCurrentPath, theme }) =>
     $isCurrentPath &&
     css`
-      border-bottom: 1px solid ${theme.COLORS.HD_BLK};
+      border-bottom: 0.1rem solid ${theme.COLORS.HD_BLK};
     `}
 
   &:hover {
-    border-bottom: 1px solid ${({ theme }) => theme.COLORS.HD_BLK};
+    border-bottom: 0.1rem solid ${({ theme }) => theme.COLORS.HD_BLK};
   }
 `;
 
@@ -99,5 +99,5 @@ const LogoBox = styled.li`
   justify-content: center;
   align-items: center;
 
-  padding: 20px 28px 19px 29px;
+  padding: 2rem 2.8rem 1.9rem 2.9rem;
 `;

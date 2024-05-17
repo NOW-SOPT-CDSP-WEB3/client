@@ -11,14 +11,14 @@ function LayoutAuthButtons() {
 
 export default LayoutAuthButtons;
 
-const HeaderBottomButton = styled.button`
+const HeaderButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 56px;
-  height: 24px;
-  padding: 0 1px;
+  width: 5.6rem;
+  height: 2.4rem;
+  padding: 0 0.1rem;
   border: 0;
   border-radius: 5px;
 
@@ -26,12 +26,12 @@ const HeaderBottomButton = styled.button`
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
 `;
 
-const LoginButton = styled(HeaderBottomButton)`
+const LoginButton = styled(HeaderButton)`
   background-color: ${({ theme }) => theme.COLORS.HD_BLK};
 
   color: ${({ theme }) => theme.COLORS.HD_WHITE};
 `;
-const SignUpButton = styled(HeaderBottomButton)`
+const SignUpButton = styled(HeaderButton)`
   background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
 
   color: ${({ theme }) => theme.COLORS.HD_BLK};
@@ -39,7 +39,7 @@ const SignUpButton = styled(HeaderBottomButton)`
 
 const LoginBox = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 0.8rem;
   justify-content: center;
   align-items: center;
 `;

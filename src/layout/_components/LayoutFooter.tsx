@@ -102,8 +102,8 @@ const Footer = styled.footer`
   display: grid;
   justify-content: center;
 
-  height: 229px;
-  border-top: 1px solid ${({ theme }) => theme.COLORS.HD_GRAY_02};
+  height: 22.9rem;
+  border-top: 0.1rem solid ${({ theme }) => theme.COLORS.HD_GRAY_02};
 
   color: ${({ theme }) => theme.COLORS.HD_BLK};
 `;
@@ -112,33 +112,33 @@ const FooterContentBox = styled.div`
   display: flex;
   grid-column: 2;
 
-  width: 888px;
-  height: 150px;
-  margin: 36.22px 0 42.78px;
+  width: 88.8rem;
+  height: 15rem;
+  margin: 3.622rem 0 4.278rem;
 `;
 
 const FooterPhoneSection = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 164px;
+  width: 16.4rem;
 `;
 
 const FooterCompanySection = styled.section`
-  width: 152px;
-  margin-left: 78px;
+  width: 15.2rem;
+  margin-left: 7.8rem;
 `;
 
 const FooterEtcSection = styled.section`
-  margin-top: 22px;
-  margin-left: 82px;
+  margin-top: 2.2rem;
+  margin-left: 8.2rem;
 `;
 
 const FooterLawSection = styled.section`
   display: flex;
   flex-direction: column;
 
-  margin-left: 121px;
+  margin-left: 12.1rem;
 `;
 
 const FooterTitle = styled.h3`
@@ -149,7 +149,7 @@ const FooterTitle = styled.h3`
 `;
 
 const FooterParagraph = styled.p`
-  margin-right: 25px;
+  margin-right: 2.5rem;
 
   font-family: ${({ theme }) => theme.FONTS.DEFAULT};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_02_REG};
@@ -169,12 +169,12 @@ const FooterInfoParagraph = styled(FooterParagraph)`
 const FooterColBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0.8rem;
 `;
 
 const FooterRowBox = styled.div`
   display: flex;
-  gap: 11px;
+  gap: 1.1rem;
 `;
 
 const FooterBetweenBox = styled.div`
@@ -186,32 +186,32 @@ const FooterInfoBox = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin: 7px 0 23px;
+  margin: 0.7rem 0 2.3rem;
 `;
 
 const CompanyTitle = styled(FooterTitle)`
-  margin-bottom: 12px;
+  margin-bottom: 1.2rem;
 `;
 
 const FooterLawContent = styled.div`
   display: flex;
   flex-direction: column;
 
-  margin-top: 9px;
+  margin-top: 0.9rem;
 `;
 
 const FooterLawParagraph = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_02_MED};
-  line-height: 14px;
+  line-height: 1.4rem;
 `;
 
 const FooterLogoBox = styled.div`
   display: flex;
-  gap: 13px;
+  gap: 1.3rem;
   align-items: center;
 
-  margin-top: 13.78px;
+  margin-top: 1.378rem;
 `;
 
 const AddInterestCardButton = styled.button`
@@ -219,16 +219,16 @@ const AddInterestCardButton = styled.button`
   justify-content: space-between;
   align-items: center;
 
-  width: 200px;
-  height: 40px;
-  margin-top: 173.42px;
-  margin-left: 32.23px;
-  padding: 8px 23px;
+  width: 20rem;
+  height: 4rem;
+  margin-top: 17.342rem;
+  margin-left: 3.223rem;
+  padding: 0.8rem 2.3rem;
   border: 0;
   border-radius: 8px;
 
   background-color: ${({ theme }) => theme.COLORS.HD_WHITE};
-  box-shadow: 1px 1px 3px 0 rgb(0 0 0 / 25%);
+  box-shadow: 0.1rem 0.1rem 0.3rem 0 rgb(0 0 0 / 25%);
   grid-column: 3;
 `;
 

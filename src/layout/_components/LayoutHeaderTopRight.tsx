@@ -58,10 +58,10 @@ const HeaderTopNav = styled.nav`
 
 const HeaderTopRightNavList = styled.ul`
   display: flex;
-  gap: 0 12px;
+  gap: 0 1.2rem;
   align-items: center;
 
-  padding: 22px 0 15px;
+  padding: 2.2rem 0 1.5rem;
 `;
 
 const HeaderTopRightNavItem = styled.li`
@@ -69,7 +69,7 @@ const HeaderTopRightNavItem = styled.li`
   justify-content: center;
   align-items: center;
 
-  height: 24px;
+  height: 2.4rem;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_GRAY_01};
@@ -84,16 +84,16 @@ const DividerBox = styled.div`
 
 const HeaderInputBox = styled.div`
   display: flex;
-  gap: 4px;
+  gap: 0.4rem;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
 
-  width: 183px;
-  height: 31px;
-  margin: 0 20px 0 15.77px;
-  padding: 4px 9px 4px 6px;
-  border: 1px solid ${({ theme }) => theme.COLORS.HD_GRAY_01};
+  width: 18.3rem;
+  height: 3.1rem;
+  margin: 0 2rem 0 1.577rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.6rem;
+  border: 0.1rem solid ${({ theme }) => theme.COLORS.HD_GRAY_01};
   border-radius: 18px;
 
   background-color: ${({ theme }) => theme.COLORS.HD_WHITE};
@@ -101,15 +101,15 @@ const HeaderInputBox = styled.div`
 
 const HeaderInput = styled.input`
   width: 100%;
-  height: 17px;
+  height: 1.7rem;
   border: 0;
 
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_GRAY_02};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_04_MED};
   font-weight: 500;
-  line-height: 17px;
-  letter-spacing: -0.4px;
+  line-height: 1.7rem;
+  letter-spacing: -0.04rem;
 
   &:focus {
     outline: none;
@@ -117,5 +117,5 @@ const HeaderInput = styled.input`
 `;
 
 const AuthButtonBox = styled.div`
-  margin-left: 24px;
+  margin-left: 2.4rem;
 `;

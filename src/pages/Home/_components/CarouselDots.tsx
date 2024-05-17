@@ -40,24 +40,24 @@ const CarouselDotsBox = styled.div`
   flex-wrap: wrap;
   align-content: center;
 
-  max-width: 148px;
-  height: 24px;
+  max-width: 14.8rem;
+  height: 2.4rem;
 `;
 
 const BannerPlayButton = styled.button<{ $isAutoSlide: boolean }>`
-  width: 15px;
-  height: 8px;
-  margin-right: 14px;
+  width: 1.5rem;
+  height: 0.8rem;
+  margin-right: 1.4rem;
   border: none;
 
   background-image: url(${({ $isAutoSlide }) => ($isAutoSlide ? IconBannerPlay : IconBannerStop)});
 `;
 
 const DotBox = styled.div<{ $isActive: boolean }>`
-  width: 6px;
-  height: 6px;
-  margin-top: 1px;
-  margin-right: 6px;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-top: 0.1rem;
+  margin-right: 0.6rem;
   border-radius: 50%;
 
   background: ${({ $isActive, theme }) =>

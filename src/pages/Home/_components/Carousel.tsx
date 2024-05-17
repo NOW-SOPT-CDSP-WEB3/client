@@ -6,7 +6,7 @@ import CarouselItem from '@/pages/Home/_components/CarouselItem';
 
 import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg';
 
-import { CAROUSEL_DATA } from '@/constants/carouselDate';
+import { CAROUSEL_DATA } from '@/constants/carouselData';
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,7 +15,7 @@ function Carousel() {
   const [isAutoSlide, setIsAutoSlide] = useState(true);
   const itemsPerPage = 3;
   const totalPage = Math.ceil(CAROUSEL_DATA.length / itemsPerPage);
-  const translateX = -(currentIndex * (slideWidth / itemsPerPage));
+  const translateX = -(currentIndex * (slideWidth / itemsPerPage)) / 10;
 
   const handleNextBtn = useCallback(() => {
     const newIndex =
@@ -38,9 +38,7 @@ function Carousel() {
   };
 
   useEffect(() => {
-    // 항상 913으로 같지만 카라셀은 현재 보이는 만큼 밀어야 하니 useRef의 current, clientWidth를 통해서 width를 알아냈다.
     if (carouselItemBoxRef.current) {
-      console.log(carouselItemBoxRef.current.clientWidth);
       setSlideWidth(carouselItemBoxRef.current.clientWidth);
     }
   }, [carouselItemBoxRef]);
@@ -61,8 +59,8 @@ function Carousel() {
               key={index}
               src={src}
               alt={alt}
-              width={index % 3 === 0 ? '445px' : '214px'}
-              marginRight={index % 3 === 2 ? '0px' : '20px'}
+              width={index % 3 === 0 ? '44.5rem' : '21.4rem'}
+              marginRight={index % 3 === 2 ? '0rem' : '2rem'}
             />
           ))}
         </CarouselItemBox>
@@ -88,8 +86,8 @@ const CarouselSection = styled.section`
   overflow: hidden;
   position: relative;
 
-  max-width: 913px;
-  height: 361px;
+  max-width: 91.3rem;
+  height: 36.1rem;
 `;
 
 const CarouselWrapperBox = styled.div`
@@ -103,8 +101,8 @@ const CarouselWrapperBox = styled.div`
 const BannerButton = styled.button<{ $icon: string }>`
   position: absolute;
 
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
   border: none;
 
   background: none;
@@ -124,6 +122,6 @@ const CarouselItemBox = styled.div<{ $translateX: number }>`
   width: 100%;
 
   transition: transform 0.4s ease-in-out;
-  transform: ${({ $translateX }) => `translateX(${$translateX}px)`};
+  transform: ${({ $translateX }) => `translateX(${$translateX}rem)`};
 `;
 export default Carousel;

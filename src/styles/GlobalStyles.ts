@@ -10,6 +10,12 @@ export const GlobalStyle = createGlobalStyle`
 
 ${reset}
 
+html {
+  /* 62.5% of 16px browser font size is 10px */
+  /* 16px * 0.625 = 10px */
+  font-size: 62.5%;
+}
+
  a{
   text-decoration: none;
  }
@@ -43,6 +49,7 @@ ${reset}
     font-family: "SpoqaHanSansNeoBold";
     src: url(${SpoqaHanSansNeoBold});
 }
+
 `;
 
 export default GlobalStyle;

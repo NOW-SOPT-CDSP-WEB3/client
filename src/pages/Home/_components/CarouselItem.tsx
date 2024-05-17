@@ -13,11 +13,11 @@ function CarouselItem({ src, alt, width, marginRight }: CarouselItemProps) {
 
 const Image = styled.img<{ $width: string; $marginRight: string }>`
   width: ${({ $width }) => $width};
-  height: 337px;
+  height: 33.7rem;
   margin-right: ${({ $marginRight }) => $marginRight};
 
   &:hover {
-    transform: translateY(-8px);
+    transform: translateY(-0.8rem);
   }
 
   transition: transform 0.3s ease;

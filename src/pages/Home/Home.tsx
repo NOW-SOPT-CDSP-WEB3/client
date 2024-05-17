@@ -1,5 +1,11 @@
+import CardBox from './_components/CardBox';
+
 function Home() {
-  return <div>Home</div>;
+  return (
+    <div>
+      <CardBox />
+    </div>
+  );
 }
 
 export default Home;

@@ -33,7 +33,7 @@ const CheckBoxStyled = styled.div<{ checked: boolean; size: string; imgSize: str
   height: ${({ size }) => size};
   border: 0.1rem solid
     ${({ theme, checked }) => (checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_GRAY_03)};
-  border-radius: 0.2rem;
+  border-radius: 2px;
   background-color: ${({ theme, checked }) =>
     checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_WHITE};
   display: flex;

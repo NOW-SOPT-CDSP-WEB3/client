@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import CheckBox from '@/pages/Card/_components/CheckBox';
+import DropDownBox from '@/pages/Card/_components/DropDownBox';
 import { CHECK_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
 import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
-
-import CheckBox from './CheckBox';
-import DropDownBox from './DropDownBox';
 
 function SidebarFilter() {
   const [checkedState, setCheckedState] = useState(false);

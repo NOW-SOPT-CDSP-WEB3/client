@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 import DropDownMenu from '@/pages/Card/_components/DropDownMenu';
-
-import DropDownTop from './DropDownTop';
+import DropDownTop from '@/pages/Card/_components/DropDownTop';
 
 type Category = {
   categoryName: string;

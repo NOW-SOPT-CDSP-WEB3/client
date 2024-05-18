@@ -1,0 +1,142 @@
+import img1 from '@/assets/images/Card_pic.png';
+
+export const CULTURE_DATA = {
+  categories: [
+    {
+      name: 'space',
+      cultures: [
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+      ],
+    },
+    {
+      name: 'culture',
+      cultures: [
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+        {
+          description: '바이닐로 듣는 아날로그 음악의 울림',
+          image: img1,
+          name: 'BONUS TRACK 13.김사월',
+          summary: '보편적 감성을 자극하는 한극 포크의 새 모델',
+          period: '2024.04.01 ~ 2024.05.01',
+        },
+      ],
+    },
+  ],
+};

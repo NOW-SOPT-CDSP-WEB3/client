@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { userLogin } from '@/api/axios/Benefit/benefitAxios';
+import { userLogin } from '@/api/axios/Auth/authAxios';
 
 // 회원가입 UI가 없어서, 로그인 아이디는 하나로 고정
 const loginData = {

@@ -5,7 +5,7 @@ import IconSearch from '@/assets/svg/ic_search.svg?react';
 function Input() {
   return (
     <InputLayout>
-      <InputBox></InputBox>
+      <InputBox placeholder='카드, 메뉴, 혜택을 검색해 보세요'></InputBox>
       <IconSearch />
     </InputLayout>
   );
@@ -18,6 +18,7 @@ const InputLayout = styled.div`
 
   width: 68.5rem;
   height: 4.8rem;
+  margin: 4.5rem 0;
   padding: 1.2rem 2rem;
   border: 1px solid ${({ theme }) => theme.COLORS.HD_GRAY_01};
   border-radius: 12px;

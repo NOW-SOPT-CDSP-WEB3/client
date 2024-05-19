@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import Carousel from '@/pages/Home/_components/Carousel';
 import HomeCardArea from '@/pages/Home/_components/HomeCardArea';
+import Input from '@/pages/Home/_components/Input';
 import { HOME_CARD_DATA } from '@/pages/Home/_constants/homeCardData';
 
 import EventBox from '@/components/event/EventBox';
@@ -11,6 +12,7 @@ import IconVector from '@/assets/svg/vector2.svg?react';
 function Home() {
   return (
     <HomePageLayout>
+      <Input />
       <Carousel />
       <HomeCardArea
         cardTitle='Hyundai Originals'
@@ -31,14 +33,9 @@ function Home() {
 }
 
 const HomePageLayout = styled.div`
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const HomeCardAreaBox = styled.div`
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-`;
 export default Home;

@@ -1,10 +1,22 @@
 import styled from 'styled-components';
 
+import { userLogin } from '@/api/axios/Benefit/benefitAxios';
+
+// 회원가입 UI가 없어서, 로그인 아이디는 하나로 고정
+const loginData = {
+  email: 'test@gmail.com',
+  password: 'test',
+};
+
 function LayoutAuthButtons() {
+  const handleLoginClick = () => {
+    userLogin(loginData);
+  };
+
   return (
     <LoginBox>
       <SignUpButton>회원가입</SignUpButton>
-      <LoginButton>로그인</LoginButton>
+      <LoginButton onClick={handleLoginClick}>로그인</LoginButton>
     </LoginBox>
   );
 }

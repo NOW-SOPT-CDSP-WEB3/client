@@ -30,7 +30,7 @@ function Carousel() {
   };
 
   const handleClickAutoSlide = () => {
-    setIsAutoSlide(!isAutoSlide);
+    setIsAutoSlide((prev) => !prev);
   };
 
   useEffect(() => {

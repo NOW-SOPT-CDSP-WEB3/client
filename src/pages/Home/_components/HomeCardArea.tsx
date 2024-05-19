@@ -29,7 +29,6 @@ const HomeCardAreaLayout = styled.div`
 
   width: 85.4rem;
   height: 32.8rem;
-  margin: 5rem 0;
   padding-bottom: 1.5rem;
 `;
 

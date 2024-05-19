@@ -1,23 +1,25 @@
 import styled from 'styled-components';
 
-import Card from '@/pages/Home/_components/Card';
-import { CardInfo } from '@/pages/Home/type';
+import Card from '@/pages/Home/_components/HomeCard';
 
-interface CardBoxProps {
-  cards: CardInfo[];
+interface HomeCardBoxProps {
+  cards: {
+    imgSrc: string;
+    title: string;
+  }[];
 }
 
-function CardBox({ cards }: CardBoxProps) {
+function HomeCardBox({ cards }: HomeCardBoxProps) {
   return (
-    <CardBoxLayout>
+    <HomeCardBoxLayout>
       {cards.map(({ title, imgSrc }, index) => (
         <Card key={index} imgSrc={imgSrc} title={title} />
       ))}
-    </CardBoxLayout>
+    </HomeCardBoxLayout>
   );
 }
 
-const CardBoxLayout = styled.div`
+const HomeCardBoxLayout = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 3.6rem 2.2rem;
@@ -26,4 +28,4 @@ const CardBoxLayout = styled.div`
 
   width: 62.6rem;
 `;
-export default CardBox;
+export default HomeCardBox;

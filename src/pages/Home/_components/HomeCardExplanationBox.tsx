@@ -2,17 +2,17 @@ import styled from 'styled-components';
 
 import IconViewAll from '@/assets/svg/home_list_ic_move.svg?react';
 
-interface CardExplanationProps {
+interface HomeCardExplanationProps {
   cardTitle: string;
   cardDetail: string;
   hashtags: string[];
 }
 
-function CardExplanation({ cardTitle, cardDetail, hashtags }: CardExplanationProps) {
+function HomeCardExplanation({ cardTitle, cardDetail, hashtags }: HomeCardExplanationProps) {
   return (
-    <CardExplanationBox>
-      <CardTitleText>{cardTitle}</CardTitleText>
-      <CardDetailText>{cardDetail}</CardDetailText>
+    <HomeCardExplanationBox>
+      <HomeCardTitleText>{cardTitle}</HomeCardTitleText>
+      <HomeCardDetailText>{cardDetail}</HomeCardDetailText>
       <ViewAllBox>
         전체보기 <IconViewAll />
       </ViewAllBox>
@@ -21,16 +21,16 @@ function CardExplanation({ cardTitle, cardDetail, hashtags }: CardExplanationPro
           <HashtagBox key={hashtag}>#{hashtag}</HashtagBox>
         ))}
       </HashtagWrapperBox>
-    </CardExplanationBox>
+    </HomeCardExplanationBox>
   );
 }
 
-const CardExplanationBox = styled.div`
+const HomeCardExplanationBox = styled.div`
   width: 15.4rem;
   height: 28.3rem;
 `;
 
-const CardTitleText = styled.h1`
+const HomeCardTitleText = styled.h1`
   margin-bottom: 0.9rem;
 
   font-family: ${({ theme }) => theme.FONTS.HEAD_01};
@@ -39,7 +39,7 @@ const CardTitleText = styled.h1`
   line-height: 4.8rem;
 `;
 
-const CardDetailText = styled.p`
+const HomeCardDetailText = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_03_MED_17};
@@ -80,4 +80,4 @@ const HashtagBox = styled.div`
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_MED};
 `;
 
-export default CardExplanation;
+export default HomeCardExplanation;

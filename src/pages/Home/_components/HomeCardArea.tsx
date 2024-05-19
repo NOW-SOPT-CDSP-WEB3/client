@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 
-import CardBox from '@/pages/Home/_components/CardBox';
-import CardExplanation from '@/pages/Home/_components/CardExplanationBox';
-import { CardInfo } from '@/pages/Home/type';
+import CardBox from '@/pages/Home/_components/HomeCardBox';
+import CardExplanation from '@/pages/Home/_components/HomeCardExplanationBox';
 
 interface HomeCardAreaProps {
   cardTitle: string;
-  cards: CardInfo[];
+  cards: {
+    imgSrc: string;
+    title: string;
+  }[];
   cardDetail: string;
   hashtags: string[];
 }

@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
-interface CardProps {
+interface HomeCardProps {
   imgSrc: string;
   title: string;
 }
 
-function Card({ imgSrc, title }: CardProps) {
+function HomeCard({ imgSrc, title }: HomeCardProps) {
   return (
-    <CardLayout>
-      <CardImg src={imgSrc}></CardImg>
-      <CardTitle>{title}</CardTitle>
-    </CardLayout>
+    <HomeCardLayout>
+      <HomeCardImg src={imgSrc}></HomeCardImg>
+      <HomeCardTitle>{title}</HomeCardTitle>
+    </HomeCardLayout>
   );
 }
 
-const CardLayout = styled.div`
+const HomeCardLayout = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -32,13 +32,16 @@ const CardLayout = styled.div`
   }
 `;
 
-const CardImg = styled.img``;
+const HomeCardImg = styled.img`
+  width: 7.6rem;
+  height: 12.1rem;
+`;
 
-const CardTitle = styled.p`
+const HomeCardTitle = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_03_MED};
   text-align: center;
   line-height: normal;
 `;
-export default Card;
+export default HomeCard;

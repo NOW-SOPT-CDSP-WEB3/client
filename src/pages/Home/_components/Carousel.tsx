@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import CarouselDots from '@/pages/Home/_components/CarouselDots';
@@ -9,38 +9,29 @@ import IconBannerMoveBtn from '@/assets/svg/btn_home_banner_back.svg';
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slideWidth, setSlideWidth] = useState(0);
-  const carouselItemBoxRef = useRef<HTMLDivElement>(null);
+  const slideWidth = 913;
   const [isAutoSlide, setIsAutoSlide] = useState(true);
   const itemsPerPage = 3;
   const totalPage = Math.ceil(CAROUSEL_DATA.length / itemsPerPage);
-  const translateX = -(currentIndex * (slideWidth / itemsPerPage)) / 10;
+  const translateX = -((currentIndex * slideWidth) / 10);
 
   const handleNextBtn = useCallback(() => {
-    const newIndex =
-      currentIndex + itemsPerPage >= CAROUSEL_DATA.length ? 0 : currentIndex + itemsPerPage;
+    const newIndex = currentIndex + 1 >= totalPage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
-  }, [currentIndex, itemsPerPage]);
+  }, [currentIndex, totalPage]);
 
   const handlePrevBtn = () => {
-    const newIndex =
-      currentIndex === 0 ? CAROUSEL_DATA.length - itemsPerPage : currentIndex - itemsPerPage;
+    const newIndex = currentIndex === 0 ? totalPage - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
   };
 
   const handleClickDotBtn = (index: number) => {
-    setCurrentIndex(index * itemsPerPage);
+    setCurrentIndex(index);
   };
 
   const handleClickAutoSlide = () => {
     setIsAutoSlide(!isAutoSlide);
   };
-
-  useEffect(() => {
-    if (carouselItemBoxRef.current) {
-      setSlideWidth(carouselItemBoxRef.current.clientWidth);
-    }
-  }, [carouselItemBoxRef]);
 
   useEffect(() => {
     if (isAutoSlide) {
@@ -52,7 +43,7 @@ function Carousel() {
   return (
     <CarouselSection>
       <CarouselWrapperBox>
-        <CarouselItemBox ref={carouselItemBoxRef} $translateX={translateX}>
+        <CarouselItemBox $translateX={translateX}>
           {CAROUSEL_DATA.map(({ src, alt }, index) => (
             <CarouselItem
               key={index}
@@ -68,7 +59,7 @@ function Carousel() {
       </CarouselWrapperBox>
       <CarouselDots
         total={totalPage}
-        activeIndex={Math.floor(currentIndex / itemsPerPage)}
+        activeIndex={Math.floor(currentIndex)}
         handleClickDotBtn={handleClickDotBtn}
         handleClickAutoSlide={handleClickAutoSlide}
         isAutoSlide={isAutoSlide}

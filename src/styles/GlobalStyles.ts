@@ -49,6 +49,7 @@ ${reset}
     font-family: "SpoqaHanSansNeoBold";
     src: url(${SpoqaHanSansNeoBold});
 }
+
 `;
 
 export default GlobalStyle;

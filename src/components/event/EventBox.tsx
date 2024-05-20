@@ -1,17 +1,42 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Event from '@/components/event/Event';
 
-import { EVENT_DATA } from '@/constants/eventData';
+import { axiosEventsData } from '@/api/axios/Home/homeAxios';
 
 interface EventBoxProps {
   isShowPeriod: boolean;
 }
 
+interface EventData {
+  id: number;
+  image: string;
+  name: string;
+  description: string;
+  period: string;
+}
+
 function EventBox({ isShowPeriod }: EventBoxProps) {
+  const [eventData, setEventData] = useState<EventData[]>([]);
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        const eventData = await axiosEventsData();
+        setEventData(eventData);
+        console.log(eventData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchEventData();
+  }, []);
+
   return (
     <EventBoxLayout>
-      {EVENT_DATA.map(({ id, image, name, description, period }) => (
+      {eventData.map(({ id, image, name, description, period }) => (
         <Event
           key={id}
           image={image}

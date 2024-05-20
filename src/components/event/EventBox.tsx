@@ -25,7 +25,6 @@ function EventBox({ isShowPeriod }: EventBoxProps) {
       try {
         const eventData = await axiosEventsData();
         setEventData(eventData);
-        console.log(eventData);
       } catch (error) {
         console.error(error);
       }

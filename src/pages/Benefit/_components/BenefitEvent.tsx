@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
+import EventBox from '@/components/event/EventBox';
+
 function BenefitEvent() {
   return (
     <CurrentEvenSection>
       <CurrentEventTitle>진행중인 이벤트</CurrentEventTitle>
-      <CurrentEventBox>성희 컴포넌트 들어갈 자리</CurrentEventBox>
+      <EventBox isShowPeriod={true} />
     </CurrentEvenSection>
   );
 }
@@ -18,11 +20,5 @@ const CurrentEvenSection = styled.div`
 
 const CurrentEventTitle = styled.h2`
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
-`;
-
-const CurrentEventBox = styled.div`
-  height: 91rem;
-  margin-top: 2rem;
-
-  background-color: aquamarine;
+  margin-bottom: 2rem;
 `;

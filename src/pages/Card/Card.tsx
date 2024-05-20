@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
 import CardBanner from './_components/CardBanner';
+import CardInfo from './_components/CardInfo';
 import CategoryBox from './_components/CategoryBox';
 import SidebarFilter from './_components/SidebarFilter';
 
@@ -17,6 +18,7 @@ function Card() {
             {index === 0 && <CardBanner />} {/* 첫 번째 카테고리 박스 밑에만 CardBanner 표시 */}
           </div>
         ))}
+        <CardInfo />
       </CardBoxContainer>
     </CardLayout>
   );

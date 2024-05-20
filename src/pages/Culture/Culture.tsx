@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import AppDownIcon from '@/assets/svg/culture_app_box_download_ic_next.svg?react';
 import App from '@/assets/svg/img_dive_app.svg?react';
 
 import CultureCard from './_components/CultureCard';
@@ -8,17 +9,17 @@ import { CULTURE_DATA } from './_constants/cultureData';
 function Culture() {
   const { categories } = CULTURE_DATA; //객체를 가져오는 다른 방법!
   return (
-    <CultureBody>
-      {categories.map((categorie) => {
+    <CultureLayout>
+      {/* {categories.map((categorie) => {
         const { cultures, name } = categorie;
         return (
           <>
-            <CardListWrapper>
+            <CardListBox key={categorie.name}>
               <Name>{name}</Name>
-              <InfoWrapper>
+              <InfoBox>
                 {cultures.map((Info) => (
                   <CultureCard
-                    key={name}
+                    key={Info.id}
                     description={Info.description}
                     image={Info.image}
                     name={Info.name}
@@ -26,33 +27,56 @@ function Culture() {
                     period={Info.period}
                   />
                 ))}
-              </InfoWrapper>
-            </CardListWrapper>
+              </InfoBox>
+            </CardListBox>
           </>
         );
-      })}
-      <DiveApp>
-        <AppImg />
-        <AppTitle>현대카드 DIVE</AppTitle>
-        <AppDetail>놀면 놀수록 빠져드는 컬처 앱</AppDetail>
-      </DiveApp>
-    </CultureBody>
+      })} */}
+      {categories.map((category) => (
+        <CardListBox key={category.name}>
+          <Name>{category.name}</Name>
+          <InfoBox>
+            {category.cultures.map((Info) => (
+              <CultureCard
+                key={Info.id}
+                description={Info.description}
+                image={Info.image}
+                name={Info.name}
+                summary={Info.summary}
+                period={Info.period}
+              />
+            ))}
+          </InfoBox>
+        </CardListBox>
+      ))}
+      <DiveAppBox>
+        <DiveBox>
+          <AppImg />
+          <AppTitleBox>
+            <AppTitle>현대카드 DIVE</AppTitle>
+            <AppDetail>놀면 놀수록 빠져드는 컬처 앱</AppDetail>
+          </AppTitleBox>
+          <AppDownLoadBox>
+            <AppDownLoad>앱 다운로드</AppDownLoad>
+            <AppDownIcon />
+          </AppDownLoadBox>
+        </DiveBox>
+      </DiveAppBox>
+    </CultureLayout>
   );
 }
 
 export default Culture;
 
-const CultureBody = styled.div`
-  //전체적인 박스 가운데로 오게 하다가 끝남
+const CultureLayout = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 9.2rem;
-  /* align-content: flex-start; */
 `;
-const CardListWrapper = styled.div`
+const CardListBox = styled.div`
   align-items: flex-start;
 `;
 const Name = styled.h1`
@@ -61,54 +85,84 @@ const Name = styled.h1`
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-weight: 400;
   font-style: normal;
-  line-height: 48px; /* 137.143% */
+  line-height: 4.8rem;
   text-align: left;
   margin-bottom: 4rem;
   margin-top: 4.8rem;
 `;
 
-const InfoWrapper = styled.div`
-  /* display: grid;
-  grid-template-columns: repeat(3, 1fr); */
+const InfoBox = styled.div`
   display: flex;
-  width: 900px;
+  width: 90rem;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 72px 24px;
+  gap: 7.2rem 2.4rem;
   flex-wrap: wrap;
 `;
 
-const DiveApp = styled.div`
+const DiveAppBox = styled.div`
   display: flex;
-  width: 1366px;
-  height: 305px;
-  padding: 39px 0px 38px 0px;
+  width: 136.6rem;
+  height: 30.5rem;
+  padding: 3.9rem 0rem 3.8rem 0rem;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   background: ${({ theme }) => theme.COLORS.HD_GRAY_04};
 `;
+const DiveBox = styled.div`
+  display: ruby;
+  width: 23.9rem;
+  height: 22.8rem;
+  flex-shrink: 0;
+`;
+const AppTitleBox = styled.div`
+  margin-top: 2.678rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+`;
 
 const AppImg = styled(App)`
-  width: 102px;
-  height: 102px;
+  justify-content: center;
+  width: 10.2rem;
+  height: 10%.2rem;
   flex-shrink: 0;
 `;
 
 const AppTitle = styled.p`
+  justify-content: center;
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_04};
+  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
   font-style: normal;
   line-height: normal;
 `;
 
 const AppDetail = styled.p`
+  justify-content: center;
+
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_BOLD};
+  font-style: normal;
+  line-height: normal;
+`;
+
+const AppDownLoadBox = styled.div`
+  margin-top: 2.3rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+`;
+const AppDownLoad = styled.p`
+  color: ${({ theme }) => theme.COLORS.HD_BLUE_02};
+  text-align: center;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_02_BOLD};
   font-style: normal;
   line-height: normal;
 `;

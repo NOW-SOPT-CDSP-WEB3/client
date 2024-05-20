@@ -15,9 +15,10 @@ interface CardBoxProps {
     hasEvent: boolean;
     tags: string[];
   }[];
+  isLast: boolean;
 }
 
-function CardBox({ tag, cards }: CardBoxProps) {
+function CardBox({ tag, cards, isLast }: CardBoxProps) {
   return (
     <CardBoxLayout>
       <CardBoxTitle>{tag}</CardBoxTitle>
@@ -34,7 +35,7 @@ function CardBox({ tag, cards }: CardBoxProps) {
           />
         ))}
       </CardGridBox>
-      <CardBoxLine />
+      {!isLast && <CardBoxLine />}
     </CardBoxLayout>
   );
 }
@@ -48,7 +49,6 @@ const CardBoxLayout = styled.section`
 
   width: 91.7rem;
   margin-top: 6.5rem;
-  // margin-left: 3.6rem;
 `;
 
 const CardBoxTitle = styled.h1`

@@ -33,11 +33,19 @@ function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
     }
   }, [categoryBoxTitle]);
 
+  const tags = Object.keys(groupedCards);
+  const isLastCategory = CARD_DATA[CARD_DATA.length - 1].category === categoryBoxTitle;
+
   return (
     <CategoryBoxLayout>
       <CategoryBoxTitle>{categoryBoxTitle}</CategoryBoxTitle>
-      {Object.keys(groupedCards).map((tag) => (
-        <CardBox key={tag} tag={tag} cards={groupedCards[tag]} />
+      {tags.map((tag, index) => (
+        <CardBox
+          key={tag}
+          tag={tag}
+          cards={groupedCards[tag]}
+          isLast={isLastCategory && index === tags.length - 1}
+        />
       ))}
     </CategoryBoxLayout>
   );

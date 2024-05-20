@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import CardContent from '@/pages/Card/_components/CardContent';
-import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
 interface CardBoxProps {
   tag: string;

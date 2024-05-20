@@ -57,7 +57,6 @@ const CategoryBoxLayout = styled.section`
   display: flex;
   flex-direction: column;
   margin-top: 6rem;
-  margin-left: 3.6rem;
 `;
 
 const CategoryBoxTitle = styled.h1`

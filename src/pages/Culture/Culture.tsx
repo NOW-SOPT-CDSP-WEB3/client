@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import AppDownIcon from '@/assets/svg/culture_app_box_download_ic_next.svg?react';
-import App from '@/assets/svg/img_dive_app.svg?react';
+import IconApp from '@/assets/svg/img_dive_app.svg?react';
 
 import CultureCard from './_components/CultureCard';
 import { CULTURE_DATA } from './_constants/cultureData';
@@ -53,11 +53,11 @@ function Culture() {
         <DiveBox>
           <AppImg />
           <AppTitleBox>
-            <AppTitle>현대카드 DIVE</AppTitle>
-            <AppDetail>놀면 놀수록 빠져드는 컬처 앱</AppDetail>
+            <AppTitleParagraph>현대카드 DIVE</AppTitleParagraph>
+            <AppDetailParagraph>놀면 놀수록 빠져드는 컬처 앱</AppDetailParagraph>
           </AppTitleBox>
           <AppDownLoadBox>
-            <AppDownLoad>앱 다운로드</AppDownLoad>
+            <AppDownLoadParagraph>앱 다운로드</AppDownLoadParagraph>
             <AppDownIcon />
           </AppDownLoadBox>
         </DiveBox>
@@ -124,14 +124,14 @@ const AppTitleBox = styled.div`
   gap: 0.2rem;
 `;
 
-const AppImg = styled(App)`
+const AppImg = styled(IconApp)`
   justify-content: center;
   width: 10.2rem;
   height: 10%.2rem;
   flex-shrink: 0;
 `;
 
-const AppTitle = styled.p`
+const AppTitleParagraph = styled.p`
   justify-content: center;
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   text-align: center;
@@ -141,7 +141,7 @@ const AppTitle = styled.p`
   line-height: normal;
 `;
 
-const AppDetail = styled.p`
+const AppDetailParagraph = styled.p`
   justify-content: center;
 
   color: ${({ theme }) => theme.COLORS.HD_BLK};
@@ -158,7 +158,7 @@ const AppDownLoadBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-const AppDownLoad = styled.p`
+const AppDownLoadParagraph = styled.p`
   color: ${({ theme }) => theme.COLORS.HD_BLUE_02};
   text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};

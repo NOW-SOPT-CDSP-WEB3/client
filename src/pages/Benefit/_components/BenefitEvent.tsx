@@ -19,6 +19,7 @@ const CurrentEvenSection = styled.div`
 `;
 
 const CurrentEventTitle = styled.h2`
-  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
   margin-bottom: 2rem;
+
+  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
 `;

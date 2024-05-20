@@ -65,6 +65,7 @@ export default CategoryBox;
 const CategoryBoxLayout = styled.section`
   display: flex;
   flex-direction: column;
+
   margin-top: 6rem;
 `;
 
@@ -75,8 +76,9 @@ const CategoryBoxTitle = styled.h1`
 `;
 
 const CategoryInfo = styled.p`
+  margin-top: 1rem;
+
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
-  margin-top: 1rem;
 `;

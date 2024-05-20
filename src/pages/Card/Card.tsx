@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
+import CardBanner from '@/pages/Card/_components/CardBanner';
+import CardInfo from '@/pages/Card/_components/CardInfo';
+import CategoryBox from '@/pages/Card/_components/CategoryBox';
+import SidebarFilter from '@/pages/Card/_components/SidebarFilter';
 import { CARD_DATA } from '@/pages/Card/_constants/cardData';
-
-import CardBanner from './_components/CardBanner';
-import CardInfo from './_components/CardInfo';
-import CategoryBox from './_components/CategoryBox';
-import SidebarFilter from './_components/SidebarFilter';
 
 function Card() {
   return (
@@ -33,7 +32,8 @@ const CardLayout = styled.div`
 `;
 
 const CardBoxContainer = styled.div`
-  flex-grow: 1;
   flex-direction: column;
+  flex-grow: 1;
+
   margin-left: 3.6rem;
 `;

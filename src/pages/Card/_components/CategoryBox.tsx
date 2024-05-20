@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { CARD_DATA } from '@/pages/Card/_constants/cardData';
+import { CATEGORY_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
 import CardBox from './CardBox';
 
@@ -36,9 +37,17 @@ function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
   const tags = Object.keys(groupedCards);
   const isLastCategory = CARD_DATA[CARD_DATA.length - 1].category === categoryBoxTitle;
 
+  const categoryInfoMap = {
+    'hyundai-originals': CATEGORY_BOX_DATA.HYUNDAI,
+    'Champion-Brands': CATEGORY_BOX_DATA.CHAMPION,
+    'My Business': CATEGORY_BOX_DATA.BUSINESS,
+  };
+
+  const categoryInfoText = categoryInfoMap[categoryBoxTitle as keyof typeof categoryInfoMap];
   return (
     <CategoryBoxLayout>
       <CategoryBoxTitle>{categoryBoxTitle}</CategoryBoxTitle>
+      {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
       {tags.map((tag, index) => (
         <CardBox
           key={tag}
@@ -63,4 +72,11 @@ const CategoryBoxTitle = styled.h1`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
+`;
+
+const CategoryInfo = styled.p`
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
+  margin-top: 1rem;
 `;

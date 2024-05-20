@@ -1,14 +1,8 @@
-/*export const CARD_BOX_DATA = [
-  {
-    cardBoxTitle: 'Premium',
-  },
-  {
-    cardBoxTitle: 'Premium',
-  },
-  {
-    cardBoxTitle: 'Premium',
-  },
-];*/
+export const CATEGORY_BOX_DATA = {
+  HYUNDAI: '현대카드의 오리지널리티를 담은 진정한 현대카드',
+  CHAMPION: '현대카드의 오리지널리티를 담은 진정한 현대카드',
+  BUSINESS: '현대카드 혜택을 더한 개인사업자 전용카드',
+};
 
 export const CHECK_BOX_DATA = [
   {

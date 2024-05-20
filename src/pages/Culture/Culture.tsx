@@ -70,99 +70,109 @@ export default Culture;
 
 const CultureLayout = styled.div`
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
   gap: 9.2rem;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
 `;
 const CardListBox = styled.div`
   align-items: flex-start;
 `;
 const Name = styled.h1`
-  font-family: ${({ theme }) => theme.FONTS.HEAD_01};
-  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
-  color: ${({ theme }) => theme.COLORS.HD_BLK};
-  font-weight: 400;
-  font-style: normal;
-  line-height: 4.8rem;
-  text-align: left;
-  margin-bottom: 4rem;
   margin-top: 4.8rem;
+  margin-bottom: 4rem;
+
+  font-family: ${({ theme }) => theme.FONTS.HEAD_01};
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
+  font-style: normal;
+  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
+  font-weight: 400;
+  text-align: left;
+  line-height: 4.8rem;
 `;
 
 const InfoBox = styled.div`
   display: flex;
-  width: 90rem;
+  flex-wrap: wrap;
+  gap: 7.2rem 2.4rem;
   align-items: flex-start;
   align-content: flex-start;
-  gap: 7.2rem 2.4rem;
-  flex-wrap: wrap;
+
+  width: 90rem;
 `;
 
 const DiveAppBox = styled.div`
   display: flex;
-  width: 136.6rem;
-  height: 30.5rem;
-  padding: 3.9rem 0rem 3.8rem 0rem;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+
+  width: 136.6rem;
+  height: 30.5rem;
+  padding: 3.9rem 0 3.8rem;
+
   background: ${({ theme }) => theme.COLORS.HD_GRAY_04};
 `;
 const DiveBox = styled.div`
   display: ruby;
+  flex-shrink: 0;
+
   width: 23.9rem;
   height: 22.8rem;
-  flex-shrink: 0;
 `;
 const AppTitleBox = styled.div`
-  margin-top: 2.678rem;
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.2rem;
+  align-items: center;
+
+  margin-top: 2.678rem;
 `;
 
 const AppImg = styled(IconApp)`
   justify-content: center;
+  flex-shrink: 0;
+
   width: 10.2rem;
   height: 10%.2rem;
-  flex-shrink: 0;
 `;
 
 const AppTitleParagraph = styled.p`
   justify-content: center;
-  color: ${({ theme }) => theme.COLORS.HD_BLK};
-  text-align: center;
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-style: normal;
+  font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_03};
+  text-align: center;
   line-height: normal;
 `;
 
 const AppDetailParagraph = styled.p`
   justify-content: center;
 
-  color: ${({ theme }) => theme.COLORS.HD_BLK};
-  text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_BOLD};
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-style: normal;
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_BOLD};
+  text-align: center;
   line-height: normal;
 `;
 
 const AppDownLoadBox = styled.div`
-  margin-top: 2.3rem;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+
+  margin-top: 2.3rem;
 `;
 const AppDownLoadParagraph = styled.p`
-  color: ${({ theme }) => theme.COLORS.HD_BLUE_02};
-  text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_02_BOLD};
+  color: ${({ theme }) => theme.COLORS.HD_BLUE_02};
   font-style: normal;
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_02_BOLD};
+  text-align: center;
   line-height: normal;
 `;

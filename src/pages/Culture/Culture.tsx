@@ -18,10 +18,10 @@ function Culture() {
               <InfoWrapper>
                 {cultures.map((Info) => (
                   <CultureCard
-                    key={Info.name}
+                    key={name}
                     description={Info.description}
                     image={Info.image}
-                    artist={Info.artist}
+                    name={Info.name}
                     summary={Info.summary}
                     period={Info.period}
                   />
@@ -34,6 +34,7 @@ function Culture() {
       <DiveApp>
         <AppImg />
         <AppTitle>현대카드 DIVE</AppTitle>
+        <AppDetail>놀면 놀수록 빠져드는 컬처 앱</AppDetail>
       </DiveApp>
     </CultureBody>
   );
@@ -99,6 +100,15 @@ const AppTitle = styled.p`
   text-align: center;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_04};
+  font-style: normal;
+  line-height: normal;
+`;
+
+const AppDetail = styled.p`
+  color: ${({ theme }) => theme.COLORS.HD_BLK};
+  text-align: center;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_BOLD};
   font-style: normal;
   line-height: normal;
 `;

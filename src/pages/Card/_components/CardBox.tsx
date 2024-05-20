@@ -1,37 +1,36 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import CardContent from '@/pages/Card/_components/CardContent';
 import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
 interface CardBoxProps {
-  cardBoxTitle: string;
+  tag: string;
+  cards: {
+    id: number;
+    cardTitle: string;
+    cardSrc: string;
+    cardTarget: string;
+    cardInfo: string;
+    hasEvent: boolean;
+    tags: string[];
+  }[];
 }
 
-function CardBox({ cardBoxTitle }: CardBoxProps) {
-  // 북마크 상태를 관리하는 상태 배열 초기화
-  const [bookmarked, setBookmarked] = useState(new Array(CARD_DATA.length).fill(false));
-
-  // 북마크 상태를 변경하는 함수
-  const handleBookmarkClick = (index: number) => {
-    const updatedBookmarked = [...bookmarked];
-    updatedBookmarked[index] = !updatedBookmarked[index];
-    setBookmarked(updatedBookmarked);
-  };
-
+function CardBox({ tag, cards }: CardBoxProps) {
   return (
     <CardBoxLayout>
-      <CardBoxTitle>{cardBoxTitle}</CardBoxTitle>
+      <CardBoxTitle>{tag}</CardBoxTitle>
       <CardGridBox>
-        {CARD_DATA.map((data, index) => (
+        {cards.map((card) => (
           <CardContent
-            key={index}
-            cardTitle={data.cardTitle}
-            cardSrc={data.cardSrc}
-            cardTarget={data.cardTarget}
-            cardInfo={data.cardInfo}
-            isBookmarked={bookmarked[index]}
-            onBookmarkClick={() => handleBookmarkClick(index)}
+            key={card.id}
+            cardTitle={card.cardTitle}
+            cardSrc={card.cardSrc}
+            cardTarget={card.cardTarget}
+            cardInfo={card.cardInfo}
+            isBookmarked={false}
+            onBookmarkClick={() => {}}
           />
         ))}
       </CardGridBox>
@@ -49,7 +48,7 @@ const CardBoxLayout = styled.section`
 
   width: 91.7rem;
   margin-top: 6.5rem;
-  margin-left: 3.6rem;
+  // margin-left: 3.6rem;
 `;
 
 const CardBoxTitle = styled.h1`

@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import CardBox from '@/pages/Card/_components/CardBox';
-import { CARD_BOX_DATA } from '@/pages/Card/_constants/cardData';
+import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
+import CategoryBox from './_components/CategoryBox';
 import SidebarFilter from './_components/SidebarFilter';
 
 function Card() {
@@ -10,8 +11,8 @@ function Card() {
     <CardLayout>
       <SidebarFilter />
       <CardBoxContainer>
-        {CARD_BOX_DATA.map((data, index) => (
-          <CardBox key={index} cardBoxTitle={data.cardBoxTitle} />
+        {CARD_DATA.map((categoryData) => (
+          <CategoryBox key={categoryData.category} categoryBoxTitle={categoryData.category} />
         ))}
       </CardBoxContainer>
     </CardLayout>
@@ -24,7 +25,7 @@ const CardLayout = styled.div`
   display: flex;
 
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
 `;
 
 const CardBoxContainer = styled.div`

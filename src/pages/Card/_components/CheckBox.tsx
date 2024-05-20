@@ -41,6 +41,7 @@ const CheckBoxStyled = styled.div<{ checked: boolean; size: string; imgSize: str
   align-items: center;
 
   svg {
-    width: ${({ imgSize }) => imgSize}; 
-    height: ${({ imgSize }) => imgSize}; 
+    width: ${({ imgSize }) => imgSize};
+    height: ${({ imgSize }) => imgSize};
+  }
 `;

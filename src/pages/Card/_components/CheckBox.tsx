@@ -29,18 +29,21 @@ const CheckBoxHidden = styled.input.attrs({ type: 'checkbox' })`
   display: none;
 `;
 const CheckBoxStyled = styled.div<{ checked: boolean; size: string; imgSize: string }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: ${({ size }) => size};
   height: ${({ size }) => size};
   border: 0.1rem solid
     ${({ theme, checked }) => (checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_GRAY_03)};
   border-radius: 2px;
+
   background-color: ${({ theme, checked }) =>
     checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_WHITE};
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   svg {
-    width: ${({ imgSize }) => imgSize}; 
-    height: ${({ imgSize }) => imgSize}; 
+    width: ${({ imgSize }) => imgSize};
+    height: ${({ imgSize }) => imgSize};
+  }
 `;

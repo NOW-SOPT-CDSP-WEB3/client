@@ -2,17 +2,19 @@ import styled from 'styled-components';
 
 import CardContent from '@/pages/Card/_components/CardContent';
 
-interface CardBoxProps {
+interface Card {
+  id: number;
+  cardTitle: string;
+  cardSrc: string;
+  cardTarget: string;
+  cardInfo: string;
+  hasEvent: boolean;
+  tags: string[];
+}
+
+interface CardBoxProps<T = Card> {
   tag: string;
-  cards: {
-    id: number;
-    cardTitle: string;
-    cardSrc: string;
-    cardTarget: string;
-    cardInfo: string;
-    hasEvent: boolean;
-    tags: string[];
-  }[];
+  cards: T[];
   isLast: boolean;
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Carousel from '@/pages/Home/_components/Carousel';
@@ -14,7 +14,11 @@ function Home() {
   const [searchWord, setSearchWord] = useState('');
   const handleSearchWord = (keyword: string) => {
     setSearchWord(keyword);
+    if (eventSectionRef.current) {
+      eventSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
+  const eventSectionRef = useRef<HTMLDivElement>(null);
 
   return (
     <HomePageLayout>
@@ -35,7 +39,7 @@ function Home() {
           hashtags={['프리미엄', '쓸 때마다 할인', '어디서나 포인트적립', '3F 시스템 혜택']}
         />
       </HomeCardSection>
-      <EventSection>
+      <EventSection ref={eventSectionRef}>
         <EventBox isShowPeriod={false} searchWord={searchWord} />
       </EventSection>
     </HomePageLayout>

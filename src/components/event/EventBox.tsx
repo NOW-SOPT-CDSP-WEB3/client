@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Event from '@/components/event/Event';
 
-import { axiosEventsData } from '@/api/axios/Home/homeAxios';
+import { getEventsData } from '@/api/axios/Home/homeAxios';
 
 interface EventBoxProps {
   isShowPeriod: boolean;
@@ -24,7 +24,7 @@ function EventBox({ isShowPeriod, searchWord }: EventBoxProps) {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const eventData = await axiosEventsData(searchWord);
+        const eventData = await getEventsData(searchWord);
         setEventData(eventData);
       } catch (error) {
         console.error(error);

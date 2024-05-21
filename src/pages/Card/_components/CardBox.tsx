@@ -23,6 +23,8 @@ function CardBox({ tag, cards, isLast }: CardBoxProps) {
             cardInfo={card.cardInfo}
             isBookmarked={false}
             onBookmarkClick={() => {}}
+            hoverInfo1={card.hoverInfo1}
+            hoverInfo2={card.hoverInfo2}
           />
         ))}
       </CardGridBox>

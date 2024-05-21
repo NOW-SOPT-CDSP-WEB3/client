@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import CardHover from '@/pages/Card/_components/CardHover';
+
 import BookMarkIcon from '@/assets/svg/ic_bookmark.svg?react';
 import BookMarkActiveIcon from '@/assets/svg/ic_bookmark_active.svg?react';
 
@@ -10,6 +12,8 @@ interface CardContentProps {
   cardInfo: string;
   isBookmarked: boolean;
   onBookmarkClick: () => void;
+  hoverInfo1: number;
+  hoverInfo2: number;
 }
 
 function CardContent({
@@ -19,12 +23,15 @@ function CardContent({
   cardInfo,
   isBookmarked,
   onBookmarkClick,
+  hoverInfo1,
+  hoverInfo2,
 }: CardContentProps) {
   return (
     <CardContentLayout>
       <CardContentTitle>{cardTitle}</CardContentTitle>
       <CardContentImgBox>
         <CardContentImg src={cardSrc} alt={cardTitle} />
+        <CardHover hoverInfo1={hoverInfo1} hoverInfo2={hoverInfo2} />
         <BookmarkIconBox onClick={onBookmarkClick}>
           {isBookmarked ? <BookMarkActiveIcon /> : <BookMarkIcon />}
         </BookmarkIconBox>
@@ -77,6 +84,9 @@ const CardContentInfoParagraph = styled.p`
 
 const CardContentImgBox = styled.div`
   position: relative;
+  &:hover div {
+    opacity: 1;
+  }
 `;
 
 const BookmarkIconBox = styled.div`

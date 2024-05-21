@@ -1,20 +1,11 @@
 import styled from 'styled-components';
 
 import CardContent from '@/pages/Card/_components/CardContent';
+import { Card } from '@/pages/Card/_interfaces/CardInterface';
 
-interface Card {
-  id: number;
-  cardTitle: string;
-  cardSrc: string;
-  cardTarget: string;
-  cardInfo: string;
-  hasEvent: boolean;
-  tags: string[];
-}
-
-interface CardBoxProps<T = Card> {
+interface CardBoxProps<> {
   tag: string;
-  cards: T[];
+  cards: Card[];
   isLast: boolean;
 }
 

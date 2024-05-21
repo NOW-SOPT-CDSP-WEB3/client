@@ -1,12 +1,32 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import IconSearch from '@/assets/svg/ic_search.svg?react';
 
-function Input() {
+interface InputProps {
+  searchWord: string;
+  handleSearchWord: (keyword: string) => void;
+}
+
+function Input({ searchWord, handleSearchWord }: InputProps) {
+  const [inputValue, setInputValue] = useState(searchWord);
+
+  const handleKeyPress = () => {
+    handleSearchWord(inputValue);
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   return (
     <InputLayout>
-      <InputBox placeholder='카드, 메뉴, 혜택을 검색해 보세요'></InputBox>
-      <IconSearch />
+      <InputBox
+        placeholder='카드, 메뉴, 혜택을 검색해 보세요'
+        value={inputValue}
+        onChange={handleChange}
+      ></InputBox>
+      <IconSearch onClick={handleKeyPress} />
     </InputLayout>
   );
 }

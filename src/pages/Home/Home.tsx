@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import Carousel from '@/pages/Home/_components/Carousel';
@@ -10,9 +11,14 @@ import EventBox from '@/components/event/EventBox';
 import IconVector from '@/assets/svg/vector2.svg?react';
 
 function Home() {
+  const [searchWord, setSearchWord] = useState<string>('');
+  const handleSearchWord = (keyword: string) => {
+    setSearchWord(keyword);
+  };
+
   return (
     <HomePageLayout>
-      <Input />
+      <Input searchWord={searchWord} handleSearchWord={handleSearchWord} />
       <Carousel />
       <HomeCardSection>
         <HomeCardArea
@@ -30,7 +36,7 @@ function Home() {
         />
       </HomeCardSection>
       <EventSection>
-        <EventBox isShowPeriod={false} />
+        <EventBox isShowPeriod={false} searchWord={searchWord} />
       </EventSection>
     </HomePageLayout>
   );

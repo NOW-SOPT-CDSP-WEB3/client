@@ -7,6 +7,7 @@ import { axiosEventsData } from '@/api/axios/Home/homeAxios';
 
 interface EventBoxProps {
   isShowPeriod: boolean;
+  searchWord?: string;
 }
 
 interface EventData {
@@ -17,13 +18,13 @@ interface EventData {
   period: string;
 }
 
-function EventBox({ isShowPeriod }: EventBoxProps) {
+function EventBox({ isShowPeriod, searchWord }: EventBoxProps) {
   const [eventData, setEventData] = useState<EventData[]>([]);
 
   useEffect(() => {
     const fetchEventData = async () => {
       try {
-        const eventData = await axiosEventsData();
+        const eventData = await axiosEventsData(searchWord);
         setEventData(eventData);
       } catch (error) {
         console.error(error);
@@ -31,7 +32,7 @@ function EventBox({ isShowPeriod }: EventBoxProps) {
     };
 
     fetchEventData();
-  }, []);
+  }, [searchWord]);
 
   return (
     <EventBoxLayout>

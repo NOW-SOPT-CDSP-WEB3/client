@@ -18,9 +18,13 @@ interface EventData {
   period: string;
 }
 
-export const axiosEventsData = async (): Promise<EventData[]> => {
+export const axiosEventsData = async (searchContent = ''): Promise<EventData[]> => {
   try {
-    const response = await instance.get(AUTH_URL.getEventsUrl);
+    const response = await instance.get(AUTH_URL.getEventsUrl, {
+      params: {
+        content: searchContent,
+      },
+    });
     return response.data.data.events;
   } catch (error) {
     if (isAxiosError(error)) throw error;

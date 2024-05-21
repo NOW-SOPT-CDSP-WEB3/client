@@ -1,21 +1,17 @@
-import { useAtom } from 'jotai';
-import { useState } from 'react';
 import styled from 'styled-components';
-
-import { memberIdAtom } from '@/store/globalStore';
 
 import CardContent from '@/pages/Card/_components/CardContent';
 import { Card } from '@/pages/Card/_interfaces/CardInterface';
-
-import { postBookmark } from '@/api/axios/Card/cardAxios';
 
 interface CardBoxProps {
   tag: string;
   cards: Card[];
   isLast: boolean;
+  bookmarkedCards: Set<number>;
+  toggleBookmark: (cardId: number) => void;
 }
 
-function CardBox({ tag, cards, isLast }: CardBoxProps) {
+function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBoxProps) {
   return (
     <CardBoxLayout>
       <CardBoxTitle>{tag}</CardBoxTitle>
@@ -23,13 +19,14 @@ function CardBox({ tag, cards, isLast }: CardBoxProps) {
         {cards.map((card) => (
           <CardContent
             key={card.id}
-            cardId={card.id}
             cardTitle={card.cardTitle}
             cardSrc={card.cardSrc}
             cardTarget={card.cardTarget}
             cardInfo={card.cardInfo}
             hoverInfo1={card.hoverInfo1}
             hoverInfo2={card.hoverInfo2}
+            isBookmarked={bookmarkedCards.has(card.id)}
+            onBookmarkClick={() => toggleBookmark(card.id)}
           />
         ))}
       </CardGridBox>
@@ -37,7 +34,6 @@ function CardBox({ tag, cards, isLast }: CardBoxProps) {
     </CardBoxLayout>
   );
 }
-
 export default CardBox;
 
 const CardBoxLayout = styled.section`

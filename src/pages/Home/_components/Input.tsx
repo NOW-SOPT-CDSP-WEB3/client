@@ -19,13 +19,19 @@ function Input({ searchWord, handleSearchWord }: InputProps) {
     setInputValue(event.target.value);
   };
 
+  const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearchWord(inputValue);
+    }
+  };
   return (
     <InputLayout>
       <InputBox
         placeholder='카드, 메뉴, 혜택을 검색해 보세요'
         value={inputValue}
         onChange={handleChange}
-      ></InputBox>
+        onKeyDown={handleEnterKey}
+      />
       <IconSearch onClick={handleKeyPress} />
     </InputLayout>
   );

@@ -11,14 +11,14 @@ import EventBox from '@/components/event/EventBox';
 import IconVector from '@/assets/svg/vector2.svg?react';
 
 function Home() {
-  const [searchWord, setSearchWord] = useState<string>('');
+  const [searchWord, setSearchWord] = useState('');
   const handleSearchWord = (keyword: string) => {
     setSearchWord(keyword);
   };
 
   return (
     <HomePageLayout>
-      <Input searchWord={searchWord} handleSearchWord={handleSearchWord} />
+      <Input handleSearchWord={handleSearchWord} />
       <Carousel />
       <HomeCardSection>
         <HomeCardArea

@@ -4,12 +4,11 @@ import styled from 'styled-components';
 import IconSearch from '@/assets/svg/ic_search.svg?react';
 
 interface InputProps {
-  searchWord: string;
   handleSearchWord: (keyword: string) => void;
 }
 
-function Input({ searchWord, handleSearchWord }: InputProps) {
-  const [inputValue, setInputValue] = useState(searchWord);
+function Input({ handleSearchWord }: InputProps) {
+  const [inputValue, setInputValue] = useState('');
 
   const handleKeyPress = () => {
     handleSearchWord(inputValue);

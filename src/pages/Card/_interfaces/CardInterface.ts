@@ -6,4 +6,6 @@ export interface Card {
   cardInfo: string;
   hasEvent: boolean;
   tags: string[];
+  hoverInfo1: number;
+  hoverInfo2: number;
 }

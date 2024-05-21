@@ -10,11 +10,11 @@ interface InputProps {
 function Input({ handleSearchWord }: InputProps) {
   const [inputValue, setInputValue] = useState('');
 
-  const handleKeyPress = () => {
+  const handleClickSearch = () => {
     handleSearchWord(inputValue);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
   };
 
@@ -28,10 +28,10 @@ function Input({ handleSearchWord }: InputProps) {
       <InputBox
         placeholder='카드, 메뉴, 혜택을 검색해 보세요'
         value={inputValue}
-        onChange={handleChange}
+        onChange={handleChangeInput}
         onKeyDown={handleEnterKey}
       />
-      <IconSearch onClick={handleKeyPress} />
+      <IconSearch onClick={handleClickSearch} />
     </InputLayout>
   );
 }

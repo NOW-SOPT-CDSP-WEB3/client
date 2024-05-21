@@ -61,24 +61,26 @@ const CardHost = styled(IconCard)`
   width: 8.315rem;
   height: 4.0035rem;
   flex-shrink: 0;
-  box-shadow: 0.4rem 0rem 0.4rem 0rem rgba(0, 0, 0, 0.25);
 `;
+
 const CardBtn = styled(IconVector)`
-  box-shadow: 0rem 0.4rem 0.4rem 0rem rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
 `;
 const Description = styled.p`
   word-break: keep-all; //단어 단위로 줄바꿈
-  max-width: 19rem;
+  max-lines: 2;
+  max-width: 30rem;
   height: 5rem;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_04};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-style: normal;
   line-height: normal;
-  text-shadow: 0rem 0.4rem 0.4rem 0rem rgba(0, 0, 0, 0.25);
+  text-shadow: 0rem 0.4rem 0.4rem rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
 `;
 const CardDownBox = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.4rem;

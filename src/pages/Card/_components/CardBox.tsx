@@ -1,9 +1,15 @@
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 import styled from 'styled-components';
+
+import { memberIdAtom } from '@/store/globalStore';
 
 import CardContent from '@/pages/Card/_components/CardContent';
 import { Card } from '@/pages/Card/_interfaces/CardInterface';
 
-interface CardBoxProps<> {
+import { postBookmark } from '@/api/axios/Card/cardAxios';
+
+interface CardBoxProps {
   tag: string;
   cards: Card[];
   isLast: boolean;
@@ -17,12 +23,11 @@ function CardBox({ tag, cards, isLast }: CardBoxProps) {
         {cards.map((card) => (
           <CardContent
             key={card.id}
+            cardId={card.id}
             cardTitle={card.cardTitle}
             cardSrc={card.cardSrc}
             cardTarget={card.cardTarget}
             cardInfo={card.cardInfo}
-            isBookmarked={false}
-            onBookmarkClick={() => {}}
             hoverInfo1={card.hoverInfo1}
             hoverInfo2={card.hoverInfo2}
           />

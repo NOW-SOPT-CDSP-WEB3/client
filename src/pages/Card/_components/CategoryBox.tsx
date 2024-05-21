@@ -13,7 +13,6 @@ interface CategoryBoxProps {
 function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
   const [groupedCards, setGroupedCards] = useState<{ [key: string]: Card[] }>({});
 
-  // 카테고리 데이터를 그룹화
   const groupCategoryData = useCallback(() => {
     const categoryData = CARD_DATA.find((category) => category.category === categoryBoxTitle);
     if (categoryData) {
@@ -30,7 +29,6 @@ function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
       setGroupedCards(grouped);
     }
   }, [categoryBoxTitle]);
-
   useEffect(() => {
     groupCategoryData();
   }, [groupCategoryData]);

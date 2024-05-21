@@ -21,8 +21,9 @@ interface IloginData {
 
 export const userLogin = async (loginData: IloginData) => {
   try {
-    await instance.post(AUTH_URL.LOGIN, loginData);
+    const response = await instance.post(AUTH_URL.LOGIN, loginData);
     alert(MESSAGES.LOGIN.SUCCESS);
+    return response;
   } catch (e) {
     if (isAxiosError(e)) alert(MESSAGES.LOGIN.ERROR);
     else alert(MESSAGES.UNKNOWN_ERROR);

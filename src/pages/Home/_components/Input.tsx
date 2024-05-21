@@ -31,7 +31,7 @@ function Input({ handleSearchWord }: InputProps) {
         onChange={handleChangeInput}
         onKeyDown={handleEnterKey}
       />
-      <IconSearch onClick={handleClickSearch} />
+      <IconSearchStyled onClick={handleClickSearch} />
     </InputLayout>
   );
 }
@@ -56,5 +56,9 @@ const InputBox = styled.input`
 
   color: ${({ theme }) => theme.COLORS.HD_GRAY_02};
   outline: none;
+`;
+
+const IconSearchStyled = styled(IconSearch)`
+  cursor: pointer;
 `;
 export default Input;

@@ -9,9 +9,25 @@ interface DropDownTopProps {
 }
 
 function DropDownTop({ title, onClick, isActive }: DropDownTopProps) {
+  // title을 조건에 따라 변경
+  const getDisplayTitle = (title: string) => {
+    switch (title) {
+      case 'HYUNDAI_ORIGINALS':
+        return 'Hyundai Originals';
+      case 'CHAMPION_BRANDS':
+        return 'Champion Brands';
+      case 'AFFILIATE':
+        return '제휴카드';
+      case 'MY_BUSINESS':
+        return 'My Business';
+      default:
+        return title;
+    }
+  };
+
   return (
     <DropDownTopLayout onClick={onClick} isActive={isActive}>
-      <DropDownTopTitle isActive={isActive}>{title}</DropDownTopTitle>
+      <DropDownTopTitle isActive={isActive}>{getDisplayTitle(title)}</DropDownTopTitle>
       <StyledDropDownIcon isActive={isActive} />
     </DropDownTopLayout>
   );

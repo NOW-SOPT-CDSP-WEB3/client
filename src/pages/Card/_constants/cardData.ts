@@ -6,10 +6,10 @@ export const CATEGORY_BOX_DATA = {
 
 export const CHECK_BOX_DATA = [
   {
-    categoryName: 'Hyundai Originals',
+    categoryName: 'HYUNDAI_ORIGINALS',
     checkboxes: [
-      { title: 'All' },
-      { title: 'Premium' },
+      { title: 'ALL' },
+      { title: 'PREMIUM' },
       { title: 'M' },
       { title: 'X' },
       { title: 'Z' },
@@ -17,10 +17,10 @@ export const CHECK_BOX_DATA = [
     ],
   },
   {
-    categoryName: 'Champion Brands',
+    categoryName: 'CHAMPION_BRANDS',
     checkboxes: [
-      { title: 'All' },
-      { title: 'Premium' },
+      { title: 'ALL' },
+      { title: 'PREMIUM' },
       { title: 'M' },
       { title: 'X' },
       { title: 'Z' },
@@ -28,10 +28,10 @@ export const CHECK_BOX_DATA = [
     ],
   },
   {
-    categoryName: '제휴카드',
+    categoryName: 'AFFILIATE',
     checkboxes: [
-      { title: 'All' },
-      { title: 'Premium' },
+      { title: 'ALL' },
+      { title: 'PREMIUM' },
       { title: 'M' },
       { title: 'X' },
       { title: 'Z' },
@@ -39,10 +39,10 @@ export const CHECK_BOX_DATA = [
     ],
   },
   {
-    categoryName: 'My Business',
+    categoryName: 'MY_BUSINESS',
     checkboxes: [
-      { title: 'All' },
-      { title: 'Premium' },
+      { title: 'ALL' },
+      { title: 'PREMIUM' },
       { title: 'M' },
       { title: 'X' },
       { title: 'Z' },
@@ -51,7 +51,7 @@ export const CHECK_BOX_DATA = [
   },
 ];
 
-export const CARD_DATA = [
+/*export const CARD_DATA = [
   {
     category: 'hyundai-originals',
     card: [
@@ -237,4 +237,4 @@ export const CARD_DATA = [
       },
     ],
   },
-];
+];*/

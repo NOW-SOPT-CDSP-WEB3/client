@@ -39,11 +39,16 @@ export const getAllCard = async () => {
   }
 };
 
-export const getFilteringCard = async () => {
+export const getFilteringCard = async (categoryData: string, tagData: string) => {
   try {
-    const response = await instance.get(AUTH_URL.GET_FILTERING_CARD_URL);
-    console.log('카드 필터링 API 응답:', response);
-    return response;
+    const response = await instance.get(AUTH_URL.GET_FILTERING_CARD_URL, {
+      params: {
+        category: categoryData,
+        tags: tagData,
+      },
+    });
+    console.log('카드 필터링 API 응답:', response.data);
+    return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;
     else alert(MESSAGES.UNKNOWN_ERROR);

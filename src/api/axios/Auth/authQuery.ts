@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { memberIdAtom } from '@/store/globalStore';
 
 import { userLogin } from '@/api/axios/Auth/authAxios';
-import { IloginData } from '@/api/axios/Auth/authInterfaces';
+import { ILoginResponse, IloginData } from '@/api/axios/Auth/authInterfaces';
 
 const MESSAGES = {
   LOGIN: {
@@ -14,9 +14,6 @@ const MESSAGES = {
   },
   UNKNOWN_ERROR: '알수없는 오류가 발생했습니다. 다시 시도해주세요.',
 };
-interface ILoginResponse {
-  data: { userId: number };
-}
 
 export const useUserLogin = () => {
   const [, setMemberId] = useAtom(memberIdAtom);

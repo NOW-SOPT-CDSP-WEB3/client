@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { memberIdAtom } from '@/store/globalStore';
@@ -12,15 +12,16 @@ import { postBookmark } from '@/api/axios/Card/cardAxios';
 
 interface CategoryBoxProps {
   categoryData: CardCategory;
+  selectedTags: string[];
 }
 
-function CategoryBox({ categoryData }: CategoryBoxProps) {
+function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
   const { cardCategory, card } = categoryData;
   const [groupedCards, setGroupedCards] = useState<{ [key: string]: CardDetail[] }>({});
   const [bookmarkedCards, setBookmarkedCards] = useState<Set<number>>(new Set());
   const [memberId] = useAtom(memberIdAtom);
+  const [selectedTag, setSelectedTag] = useState('All');
 
-  // 카테고리 태그 별로
   const groupCategoryData = useCallback(() => {
     const grouped = card.reduce(
       (acc, card) => {
@@ -37,7 +38,15 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
     groupCategoryData();
   }, [groupCategoryData]);
 
-  // 북마크 상태 변경
+  useEffect(() => {
+    // 사이드바 필터가 선택된 태그로 설정
+    if (selectedTags.length > 0) {
+      setSelectedTag(selectedTags[0]);
+    } else {
+      setSelectedTag('All');
+    }
+  }, [selectedTags]);
+
   const toggleBookmark = async (cardId: number) => {
     try {
       const response = await postBookmark({ memberId, cardId });
@@ -62,31 +71,71 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
     CHAMPION_BRANDS: CATEGORY_BOX_DATA.CHAMPION,
     MY_BUSINESS: CATEGORY_BOX_DATA.BUSINESS,
   };
-  const categoryInfoText = categoryInfoMap[cardCategory as keyof typeof categoryInfoMap];
 
-  // 카테고리 이름 변환
+  const categoryInfoText = categoryInfoMap[cardCategory as keyof typeof categoryInfoMap];
   const categoryNameMap: { [key: string]: string } = {
     HYUNDAI_ORIGINALS: 'Hyundai Originals',
     CHAMPION_BRANDS: 'Champion Brands',
     AFFILIATE: '제휴카드',
     MY_BUSINESS: 'My Business',
   };
+
   const displayCategoryName = categoryNameMap[cardCategory] || cardCategory;
+  const isSpecialCategory = ['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory);
 
   return (
     <CategoryBoxLayout>
       <CategoryBoxTitle>{displayCategoryName}</CategoryBoxTitle>
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
-      {Object.keys(groupedCards).map((tag, index) => (
-        <CardBox
-          key={tag}
-          tag={tag}
-          cards={groupedCards[tag]}
-          isLast={index === Object.keys(groupedCards).length - 1}
-          isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
-          onToggleBookmark={toggleBookmark}
-        />
-      ))}
+      {isSpecialCategory && (
+        <TagButtonsLayout>
+          <TagButton selected={selectedTag === 'All'} onClick={() => setSelectedTag('All')}>
+            All
+          </TagButton>
+          {Object.keys(groupedCards).map((tag) => (
+            <TagButton key={tag} selected={selectedTag === tag} onClick={() => setSelectedTag(tag)}>
+              {tag}
+            </TagButton>
+          ))}
+        </TagButtonsLayout>
+      )}
+      {isSpecialCategory ? (
+        selectedTag === 'All' ? (
+          <CardBox
+            key='all-cards'
+            tag='All'
+            cards={card}
+            isLast={true}
+            isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+            onToggleBookmark={toggleBookmark}
+            showTitle={false}
+          />
+        ) : (
+          groupedCards[selectedTag] && (
+            <CardBox
+              key={selectedTag}
+              tag={selectedTag}
+              cards={groupedCards[selectedTag]}
+              isLast={true}
+              isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+              onToggleBookmark={toggleBookmark}
+              showTitle={false}
+            />
+          )
+        )
+      ) : (
+        Object.keys(groupedCards).map((tag, index) => (
+          <CardBox
+            key={tag}
+            tag={tag}
+            cards={groupedCards[tag]}
+            isLast={index === Object.keys(groupedCards).length - 1}
+            isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+            onToggleBookmark={toggleBookmark}
+            showTitle={true}
+          />
+        ))
+      )}
     </CategoryBoxLayout>
   );
 }
@@ -104,6 +153,7 @@ const CategoryBoxTitle = styled.h1`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
+  margin-top: 2rem;
 `;
 
 const CategoryInfo = styled.p`
@@ -112,4 +162,27 @@ const CategoryInfo = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
+`;
+
+const TagButtonsLayout = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 4.4rem;
+
+  & > div:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    width: 0.1rem;
+    height: 1rem;
+    background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+    margin-left: 1rem;
+  }
+`;
+
+const TagButton = styled.div<{ selected: boolean }>`
+  margin-right: 1rem;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  color: ${({ selected, theme }) => (selected ? theme.COLORS.HD_BLK : theme.COLORS.HD_GRAY_02)};
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_04_BOLD};
+  cursor: pointer;
 `;

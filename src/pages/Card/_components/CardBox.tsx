@@ -11,10 +11,25 @@ interface CardBoxProps {
   onToggleBookmark: (cardId: number) => void;
 }
 
-function CardBox({ tag, cards, isLast, isBookmarked, onToggleBookmark }: CardBoxProps) {
+interface CardBoxProps {
+  tag: string;
+  cards: CardDetail[];
+  isLast: boolean;
+  isBookmarked: (cardId: number) => boolean;
+  onToggleBookmark: (cardId: number) => void;
+}
+
+function CardBox({
+  tag,
+  cards,
+  isLast,
+  isBookmarked,
+  onToggleBookmark,
+  showTitle = true,
+}: CardBoxProps & { showTitle?: boolean }) {
   return (
     <CardBoxLayout>
-      <CardBoxTitle>{tag}</CardBoxTitle>
+      {showTitle && <CardBoxTitle>{tag}</CardBoxTitle>}
       <CardGridBox>
         {cards.map((card) => (
           <CardContent
@@ -29,7 +44,6 @@ function CardBox({ tag, cards, isLast, isBookmarked, onToggleBookmark }: CardBox
     </CardBoxLayout>
   );
 }
-
 export default CardBox;
 
 const CardBoxLayout = styled.section`
@@ -38,13 +52,14 @@ const CardBoxLayout = styled.section`
   align-items: flex-start;
 
   width: 91.7rem;
-  margin-top: 6.5rem;
+  //margin-top: 6.5rem;
 `;
 
 const CardBoxTitle = styled.h1`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_02};
+  margin-top: 6.5rem;
 `;
 
 const CardGridBox = styled.div`

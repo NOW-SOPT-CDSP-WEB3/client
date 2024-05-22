@@ -12,6 +12,7 @@ import { getAllCard, getFilteringCard } from '@/api/axios/Card/cardAxios';
 function Card() {
   const [cardData, setCardData] = useState<CardCategory[]>([]);
   const [isAllCards, setIsAllCards] = useState(true); // 전체 카드 상태를 추적하는 변수
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const getCard = async () => {
     try {
@@ -43,11 +44,16 @@ function Card() {
 
   return (
     <CardLayout>
-      <SidebarFilter onFilterChange={fetchFilteredCards} onAllCheck={getCard} />
+      <SidebarFilter
+        onFilterChange={fetchFilteredCards}
+        onAllCheck={getCard}
+        selectedTags={selectedTags}
+        setSelectedTags={setSelectedTags}
+      />
       <CardBoxContainer>
         {cardData.map((categoryData, index) => (
           <div key={categoryData.cardCategory}>
-            <CategoryBox categoryData={categoryData} />
+            <CategoryBox categoryData={categoryData} selectedTags={selectedTags} />
             {isAllCards && index === 0 && <CardBanner />} {/* 전체 카드일 때만 CardBanner 표시 */}
           </div>
         ))}

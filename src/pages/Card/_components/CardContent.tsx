@@ -38,6 +38,7 @@ const CardContentLayout = styled.article`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  height: 36rem;
 `;
 
 const CardContentImg = styled.img`

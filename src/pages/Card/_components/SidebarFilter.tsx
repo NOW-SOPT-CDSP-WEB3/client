@@ -10,9 +10,16 @@ import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
 interface SidebarFilterProps {
   onFilterChange: (filter: { category: string; tags: string }) => void;
   onAllCheck: () => void;
+  selectedTags: string[]; // 추가된 부분
+  setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>; // 추가된 부분
 }
 
-function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
+function SidebarFilter({
+  onFilterChange,
+  onAllCheck,
+  selectedTags,
+  setSelectedTags,
+}: SidebarFilterProps) {
   const [isAllChecked, setIsAllChecked] = useState(false);
   const [activeCategories, setActiveCategories] = useState(
     Array(CHECK_BOX_DATA.length).fill(false),
@@ -20,6 +27,7 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
   const [checkboxStates, setCheckboxStates] = useState(
     CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
   );
+  const [lastSelectedCategory, setLastSelectedCategory] = useState<number | null>(null);
 
   // "전체보기" 체크박스 변경
   const handleCheckChange = () => {
@@ -45,17 +53,28 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
   const handleCheckboxChange = (categoryIndex: number, checkboxIndex: number) => {
     setIsAllChecked(false);
     setCheckboxStates((prevStates) => {
-      const updatedStates = prevStates.map(
-        (category, catIdx) =>
-          catIdx === categoryIndex
-            ? category.map((checked, chkIdx) => (chkIdx === checkboxIndex ? !checked : checked))
-            : Array(category.length).fill(false), // 다른 카테고리 체크박스 해제
-      );
+      const updatedStates = prevStates.map((category, catIdx) => {
+        const isMultipleSelectionAllowed =
+          CHECK_BOX_DATA[catIdx].categoryName === 'HYUNDAI_ORIGINALS' ||
+          CHECK_BOX_DATA[catIdx].categoryName === 'CHAMPION_BRANDS';
+
+        if (catIdx === categoryIndex) {
+          return category.map((checked, chkIdx) =>
+            chkIdx === checkboxIndex ? !checked : isMultipleSelectionAllowed ? checked : false,
+          );
+        }
+        return category;
+      });
+
+      if (lastSelectedCategory !== null && lastSelectedCategory !== categoryIndex) {
+        updatedStates[lastSelectedCategory] = updatedStates[lastSelectedCategory].map(() => false);
+      }
+
+      setLastSelectedCategory(categoryIndex);
 
       const selectedTags: string[] = [];
       let selectedCategory = '';
 
-      // 선택된 태그들을 수집
       updatedStates.forEach((category, catIdx) => {
         const categorySelectedTags: string[] = [];
         category.forEach((checked, chkIdx) => {
@@ -69,8 +88,10 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
         }
       });
 
+      setSelectedTags(selectedTags);
+
       if (selectedTags.length === 0) {
-        onAllCheck(); // 선택된 태그가 없으면 전체카드를 가져옴
+        onAllCheck();
       } else {
         onFilterChange({ category: selectedCategory, tags: selectedTags.join(',') });
       }

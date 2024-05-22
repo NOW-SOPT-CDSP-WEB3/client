@@ -9,3 +9,29 @@ export interface Card {
   hoverInfo1: number;
   hoverInfo2: number;
 }
+
+interface CardResponse {
+  status: number;
+  success: boolean;
+  message: string;
+  data: {
+    cards: CardCategory[];
+  };
+}
+
+interface CardCategory {
+  cardCategory: string;
+  card: CardDetail[];
+}
+
+interface CardDetail {
+  id: number;
+  name: string;
+  invitation: boolean;
+  description: string;
+  image: string;
+  hasEvent: boolean;
+  cardTags: string[];
+  visaFee: number;
+  domesticFee: number;
+}

@@ -34,6 +34,7 @@ function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
       setGroupedCards(grouped);
     }
   }, [categoryBoxTitle]);
+
   useEffect(() => {
     groupCategoryData();
   }, [groupCategoryData]);

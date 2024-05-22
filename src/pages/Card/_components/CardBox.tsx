@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
+import CardContent from '@/pages/Card/_components/CardContent';
 import { CardDetail } from '@/pages/Card/_interfaces/CardInterface';
-
-import CardContent from './CardContent';
 
 interface CardBoxProps {
   tag: string;

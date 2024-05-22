@@ -5,10 +5,9 @@ import CardBanner from '@/pages/Card/_components/CardBanner';
 import CardInfo from '@/pages/Card/_components/CardInfo';
 import CategoryBox from '@/pages/Card/_components/CategoryBox';
 import SidebarFilter from '@/pages/Card/_components/SidebarFilter';
+import { CardCategory } from '@/pages/Card/_interfaces/CardInterface';
 
 import { getAllCard, getFilteringCard } from '@/api/axios/Card/cardAxios';
-
-import { CardCategory } from './_interfaces/CardInterface';
 
 function Card() {
   const [cardData, setCardData] = useState<CardCategory[]>([]);
@@ -18,7 +17,6 @@ function Card() {
     try {
       const response = await getAllCard();
       if (response && response.data) {
-        console.log('전체카드', response.data.cards);
         setCardData(response.data.cards);
         setIsAllCards(true); // 전체 카드를 가져왔으므로 true로 설정
       }
@@ -31,7 +29,6 @@ function Card() {
     try {
       const response = await getFilteringCard(category, tags);
       if (response && response.data) {
-        console.log('필터링된 카드', response.data.cards);
         setCardData(response.data.cards);
         setIsAllCards(false); // 필터링된 카드를 가져왔으므로 false로 설정
       }

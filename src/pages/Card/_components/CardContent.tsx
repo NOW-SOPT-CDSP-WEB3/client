@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
+import CardHover from '@/pages/Card/_components/CardHover';
 import { CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 import BookMarkIcon from '@/assets/svg/ic_bookmark.svg?react';
 import BookMarkActiveIcon from '@/assets/svg/ic_bookmark_active.svg?react';
-
-import CardHover from './CardHover';
 
 interface CardContentProps {
   card: CardDetail;

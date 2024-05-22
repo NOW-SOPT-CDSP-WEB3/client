@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 import { memberIdAtom } from '@/store/globalStore';
 
+import CardBox from '@/pages/Card/_components/CardBox';
 import { CATEGORY_BOX_DATA } from '@/pages/Card/_constants/cardData';
 import { CardCategory, CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 import { postBookmark } from '@/api/axios/Card/cardAxios';
-
-import CardBox from './CardBox';
 
 interface CategoryBoxProps {
   categoryData: CardCategory;

@@ -20,7 +20,6 @@ interface BookmarkData {
 export const postBookmark = async (bookmarkData: BookmarkData) => {
   try {
     const response = await instance.post(AUTH_URL.POST_BOOKMARK_URL, bookmarkData);
-    console.log('북마크 API 응답:', response.data);
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;
@@ -31,7 +30,6 @@ export const postBookmark = async (bookmarkData: BookmarkData) => {
 export const getAllCard = async () => {
   try {
     const response = await instance.get(AUTH_URL.GET_ALL_CARD_URL);
-    console.log('전체 카드 API 응답:', response.data);
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;
@@ -47,7 +45,6 @@ export const getFilteringCard = async (categoryData: string, tagData: string) =>
         tags: tagData,
       },
     });
-    console.log('카드 필터링 API 응답:', response.data);
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;

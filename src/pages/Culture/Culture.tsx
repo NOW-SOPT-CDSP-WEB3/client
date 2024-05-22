@@ -1,42 +1,50 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import AppDownIcon from '@/assets/svg/culture_app_box_download_ic_next.svg?react';
 import IconApp from '@/assets/svg/img_dive_app.svg?react';
 
+import { getCultureData } from '@/api/axios/Culture/cultureAxios';
+
 import CultureCard from './_components/CultureCard';
-import { CULTURE_DATA } from './_constants/cultureData';
+
+interface CultureInfo {
+  id: number;
+  description: string;
+  image: string;
+  name: string;
+  summary: string;
+  period: string;
+}
+
+interface Category {
+  name: string;
+  cultures: CultureInfo[];
+}
 
 function Culture() {
-  const { categories } = CULTURE_DATA; //객체를 가져오는 다른 방법!
+  const [categories, setCategories] = useState<Category[]>([]);
+  try {
+    const fetchData = async () => {
+      const data = await getCultureData();
+
+      setCategories(data.data.categories);
+    };
+
+    useEffect(() => {
+      fetchData();
+    });
+  } catch {
+    console.error(Error);
+  }
+
   return (
     <CultureLayout>
-      {/* {categories.map((categorie) => {
-        const { cultures, name } = categorie;
-        return (
-          <>
-            <CardListBox key={categorie.name}>
-              <Name>{name}</Name>
-              <InfoBox>
-                {cultures.map((Info) => (
-                  <CultureCard
-                    key={Info.id}
-                    description={Info.description}
-                    image={Info.image}
-                    name={Info.name}
-                    summary={Info.summary}
-                    period={Info.period}
-                  />
-                ))}
-              </InfoBox>
-            </CardListBox>
-          </>
-        );
-      })} */}
-      {categories.map((category) => (
+      {categories?.map((category) => (
         <CardListBox key={category.name}>
           <Name>{category.name}</Name>
           <InfoBox>
-            {category.cultures.map((Info) => (
+            {category.cultures.map((Info: CultureInfo) => (
               <CultureCard
                 key={Info.id}
                 description={Info.description}

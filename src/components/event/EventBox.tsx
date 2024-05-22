@@ -1,42 +1,24 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import Event from '@/components/event/Event';
 
-import { getEventsData } from '@/api/axios/Home/homeAxios';
+import { useGetEvents } from '@/api/axios/Home/homeAxios';
 
 interface EventBoxProps {
   isShowPeriod: boolean;
   searchWord?: string;
 }
 
-interface EventData {
-  id: number;
-  image: string;
-  name: string;
-  description: string;
-  period: string;
-}
-
 function EventBox({ isShowPeriod, searchWord }: EventBoxProps) {
-  const [eventData, setEventData] = useState<EventData[]>([]);
+  const { data: eventData, error, isError } = useGetEvents(searchWord);
 
-  useEffect(() => {
-    const fetchEventData = async () => {
-      try {
-        const eventData = await getEventsData(searchWord);
-        setEventData(eventData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchEventData();
-  }, [searchWord]);
+  if (isError) {
+    console.error(error);
+  }
 
   return (
     <EventBoxLayout>
-      {eventData.map(({ id, image, name, description, period }) => (
+      {eventData?.map(({ id, image, name, description, period }) => (
         <Event
           key={id}
           image={image}

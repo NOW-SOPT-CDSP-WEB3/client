@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 
-import instance from '../instance';
+import instance from '@/api/axios/instance';
 
 export const getCultureData = async () => {
   try {

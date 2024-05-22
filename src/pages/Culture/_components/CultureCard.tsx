@@ -69,7 +69,7 @@ const CardBtn = styled(IconVector)`
 const Description = styled.p`
   word-break: keep-all; //단어 단위로 줄바꿈
   max-lines: 2;
-  max-width: 30rem;
+  max-width: 25rem;
   height: 5rem;
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_04};

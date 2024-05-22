@@ -27,7 +27,7 @@ function Culture() {
 
   const fetchData = async () => {
     const data = await getCultureData();
-    console.log(data);
+
     setCategories(data.data.categories);
     return;
   };

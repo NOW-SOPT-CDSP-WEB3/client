@@ -28,7 +28,7 @@ function DropDownTop({ title, onClick, isActive }: DropDownTopProps) {
   return (
     <DropDownTopLayout onClick={onClick} $isActive={isActive}>
       <DropDownTopTitle $isActive={isActive}>{getDisplayTitle(title)}</DropDownTopTitle>
-      <StyledDropDownIcon isActive={isActive} />
+      <StyledDropDownIcon $isActive={isActive} />
     </DropDownTopLayout>
   );
 }
@@ -59,8 +59,8 @@ const DropDownTopTitle = styled.h1<{ $isActive: boolean }>`
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
 `;
 
-const StyledDropDownIcon = styled(DropDownIcon)<{ isActive: boolean }>`
+const StyledDropDownIcon = styled(DropDownIcon)<{ $isActive: boolean }>`
   position: absolute;
   right: 1.4rem;
-  ${({ isActive }) => isActive && 'transform: rotate(180deg);'}
+  ${({ $isActive }) => $isActive && 'transform: rotate(180deg);'}
 `;

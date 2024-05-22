@@ -35,3 +35,8 @@ export interface CardDetail {
   visaFee: number;
   domesticFee: number;
 }
+
+export interface Filter {
+  category: string;
+  tag: string;
+}

@@ -45,10 +45,11 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
   const handleCheckboxChange = (categoryIndex: number, checkboxIndex: number) => {
     setIsAllChecked(false);
     setCheckboxStates((prevStates) => {
-      const updatedStates = prevStates.map((category, catIdx) =>
-        catIdx === categoryIndex
-          ? category.map((checked, chkIdx) => (chkIdx === checkboxIndex ? !checked : checked))
-          : category,
+      const updatedStates = prevStates.map(
+        (category, catIdx) =>
+          catIdx === categoryIndex
+            ? category.map((checked, chkIdx) => (chkIdx === checkboxIndex ? !checked : checked))
+            : Array(category.length).fill(false), // 다른 카테고리 체크박스 해제
       );
 
       const selectedTags: string[] = [];

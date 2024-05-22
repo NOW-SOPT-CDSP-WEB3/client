@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 import Carousel from '@/pages/Home/_components/Carousel';
@@ -10,9 +11,18 @@ import EventBox from '@/components/event/EventBox';
 import IconVector from '@/assets/svg/vector2.svg?react';
 
 function Home() {
+  const [searchWord, setSearchWord] = useState('');
+  const handleSearchWord = (keyword: string) => {
+    setSearchWord(keyword);
+    if (eventSectionRef.current) {
+      eventSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+  const eventSectionRef = useRef<HTMLDivElement>(null);
+
   return (
     <HomePageLayout>
-      <Input />
+      <Input handleSearchWord={handleSearchWord} />
       <Carousel />
       <HomeCardSection>
         <HomeCardArea
@@ -29,8 +39,8 @@ function Home() {
           hashtags={['프리미엄', '쓸 때마다 할인', '어디서나 포인트적립', '3F 시스템 혜택']}
         />
       </HomeCardSection>
-      <EventSection>
-        <EventBox isShowPeriod={false} />
+      <EventSection ref={eventSectionRef}>
+        <EventBox isShowPeriod={false} searchWord={searchWord} />
       </EventSection>
     </HomePageLayout>
   );

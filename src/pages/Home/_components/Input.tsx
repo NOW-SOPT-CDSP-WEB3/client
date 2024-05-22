@@ -1,12 +1,37 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import IconSearch from '@/assets/svg/ic_search.svg?react';
 
-function Input() {
+interface InputProps {
+  handleSearchWord: (keyword: string) => void;
+}
+
+function Input({ handleSearchWord }: InputProps) {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleClickSearch = () => {
+    handleSearchWord(inputValue);
+  };
+
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleEnterKey = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      handleSearchWord(inputValue);
+    }
+  };
   return (
     <InputLayout>
-      <InputBox placeholder='카드, 메뉴, 혜택을 검색해 보세요'></InputBox>
-      <IconSearch />
+      <InputBox
+        placeholder='카드, 메뉴, 혜택을 검색해 보세요'
+        value={inputValue}
+        onChange={handleChangeInput}
+        onKeyDown={handleEnterKey}
+      />
+      <IconSearchStyled onClick={handleClickSearch} />
     </InputLayout>
   );
 }
@@ -31,5 +56,9 @@ const InputBox = styled.input`
 
   color: ${({ theme }) => theme.COLORS.HD_GRAY_02};
   outline: none;
+`;
+
+const IconSearchStyled = styled(IconSearch)`
+  cursor: pointer;
 `;
 export default Input;

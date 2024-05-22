@@ -15,20 +15,8 @@ const MESSAGES = {
   UNKNOWN_ERROR: '알수없는 오류가 발생했습니다. 다시 시도해주세요.',
 };
 interface ILoginResponse {
-  memberId: number;
+  data: { userId: number };
 }
-
-// export const useUserLogin = () => {
-//   return useMutation({
-//     mutationFn: userLogin,
-//     onSuccess: (data) => {
-//       const { setMemberId } = useAtom(memberIdAtom);
-//       setMemberId(data.memberId);
-//       alert(MESSAGES.LOGIN.SUCCESS);
-//     },
-
-//   });
-// };
 
 export const useUserLogin = () => {
   const [, setMemberId] = useAtom(memberIdAtom);
@@ -36,7 +24,8 @@ export const useUserLogin = () => {
   const mutation = useMutation<ILoginResponse, AxiosError, IloginData>({
     mutationFn: userLogin,
     onSuccess: (data) => {
-      setMemberId(data.memberId);
+      const { userId } = data.data;
+      setMemberId(userId);
       alert(MESSAGES.LOGIN.SUCCESS);
     },
     onError: (e) => {

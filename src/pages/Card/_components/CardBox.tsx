@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
 import CardContent from '@/pages/Card/_components/CardContent';
-import { Card } from '@/pages/Card/_interfaces/CardInterface';
+import { CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 interface CardBoxProps {
   tag: string;
-  cards: Card[];
+  cards: CardDetail[];
   isLast: boolean;
   bookmarkedCards: Set<number>;
   toggleBookmark: (cardId: number) => void;
@@ -19,12 +19,12 @@ function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBo
         {cards.map((card) => (
           <CardContent
             key={card.id}
-            cardTitle={card.cardTitle}
-            cardSrc={card.cardSrc}
-            cardTarget={card.cardTarget}
-            cardInfo={card.cardInfo}
-            hoverInfo1={card.hoverInfo1}
-            hoverInfo2={card.hoverInfo2}
+            cardTitle={card.name}
+            cardSrc={card.image}
+            cardTarget={card.invitation ? 'Invitation Only' : 'Open to All'}
+            cardInfo={card.description}
+            hoverInfo1={card.visaFee}
+            hoverInfo2={card.domesticFee}
             isBookmarked={bookmarkedCards.has(card.id)}
             onBookmarkClick={() => toggleBookmark(card.id)}
           />
@@ -34,8 +34,8 @@ function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBo
     </CardBoxLayout>
   );
 }
-export default CardBox;
 
+export default CardBox;
 const CardBoxLayout = styled.section`
   display: flex;
   flex-direction: column;

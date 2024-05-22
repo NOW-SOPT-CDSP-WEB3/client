@@ -5,50 +5,42 @@ import styled from 'styled-components';
 import { memberIdAtom } from '@/store/globalStore';
 
 import CardBox from '@/pages/Card/_components/CardBox';
-import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 import { CATEGORY_BOX_DATA } from '@/pages/Card/_constants/cardData';
-import { Card } from '@/pages/Card/_interfaces/CardInterface';
+import { CardCategory, CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 import { postBookmark } from '@/api/axios/Card/cardAxios';
 
 interface CategoryBoxProps {
-  categoryBoxTitle: string;
+  categoryData: CardCategory;
 }
 
-function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
-  const [groupedCards, setGroupedCards] = useState<{ [key: string]: Card[] }>({});
+function CategoryBox({ categoryData }: CategoryBoxProps) {
+  const { cardCategory, card } = categoryData;
+  const [groupedCards, setGroupedCards] = useState<{ [key: string]: CardDetail[] }>({});
+  const [bookmarkedCards, setBookmarkedCards] = useState<Set<number>>(new Set());
+  const [memberId] = useAtom(memberIdAtom);
 
   const groupCategoryData = useCallback(() => {
-    const categoryData = CARD_DATA.find((category) => category.category === categoryBoxTitle);
-    if (categoryData) {
-      const grouped = categoryData.card.reduce(
-        (acc, card) => {
-          const tag = card.tags[1]; // 태그의 두 번째 요소 사용
-          // 불변성을 지키면서 삼항 연산자와 스프레드 연산자 사용
-          acc[tag] = acc[tag] ? [...acc[tag], card] : [card];
-          return acc;
-        },
-        {} as { [key: string]: (typeof CARD_DATA)[0]['card'] },
-      );
-
-      setGroupedCards(grouped);
-    }
-  }, [categoryBoxTitle]);
+    const grouped = card.reduce(
+      (acc, card) => {
+        const tag = card.cardTags[1];
+        acc[tag] = acc[tag] ? [...acc[tag], card] : [card];
+        return acc;
+      },
+      {} as { [key: string]: CardDetail[] },
+    );
+    setGroupedCards(grouped);
+  }, [card]);
 
   useEffect(() => {
     groupCategoryData();
   }, [groupCategoryData]);
 
-  const tags = Object.keys(groupedCards);
-  const isLastCategory = CARD_DATA[CARD_DATA.length - 1].category === categoryBoxTitle;
-
-  const [bookmarkedCards, setBookmarkedCards] = useState<Set<number>>(new Set());
-  const [memberId] = useAtom(memberIdAtom); // memberId 상태 관리
-
   const toggleBookmark = async (cardId: number) => {
     try {
       const response = await postBookmark({ memberId, cardId });
-      if (response?.data?.success) {
+      console.log('data', response);
+      if (response?.success) {
         setBookmarkedCards((prev) => {
           const updated = new Set(prev);
           if (updated.has(cardId)) {
@@ -64,23 +56,25 @@ function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
     }
   };
 
+  useEffect(() => {}, [bookmarkedCards]);
+
   const categoryInfoMap = {
     'hyundai-originals': CATEGORY_BOX_DATA.HYUNDAI,
     'Champion-Brands': CATEGORY_BOX_DATA.CHAMPION,
     'My Business': CATEGORY_BOX_DATA.BUSINESS,
   };
+  const categoryInfoText = categoryInfoMap[cardCategory as keyof typeof categoryInfoMap];
 
-  const categoryInfoText = categoryInfoMap[categoryBoxTitle as keyof typeof categoryInfoMap];
   return (
     <CategoryBoxLayout>
-      <CategoryBoxTitle>{categoryBoxTitle}</CategoryBoxTitle>
+      <CategoryBoxTitle>{cardCategory}</CategoryBoxTitle>
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
-      {tags.map((tag, index) => (
+      {Object.keys(groupedCards).map((tag, index) => (
         <CardBox
           key={tag}
           tag={tag}
           cards={groupedCards[tag]}
-          isLast={isLastCategory && index === tags.length - 1}
+          isLast={index === Object.keys(groupedCards).length - 1}
           bookmarkedCards={bookmarkedCards}
           toggleBookmark={toggleBookmark}
         />

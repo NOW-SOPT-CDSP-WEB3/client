@@ -5,22 +5,21 @@ import CardBanner from '@/pages/Card/_components/CardBanner';
 import CardInfo from '@/pages/Card/_components/CardInfo';
 import CategoryBox from '@/pages/Card/_components/CategoryBox';
 import SidebarFilter from '@/pages/Card/_components/SidebarFilter';
-import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
 import { getAllCard } from '@/api/axios/Card/cardAxios';
 
 import { CardCategory } from './_interfaces/CardInterface';
 
 function Card() {
-  const [cardData, setCardData] = useState<CardCategory>();
+  const [cardData, setCardData] = useState<CardCategory[]>([]);
 
   useEffect(() => {
     const getCard = async () => {
       try {
         const response = await getAllCard();
         if (response && response.data) {
-          console.log('전체카드', response.data);
-          //setCardData(response.data);
+          console.log('전체카드', response.data.cards);
+          setCardData(response.data.cards);
         }
       } catch (error) {
         console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -33,9 +32,9 @@ function Card() {
     <CardLayout>
       <SidebarFilter />
       <CardBoxContainer>
-        {CARD_DATA.map((categoryData, index) => (
-          <div key={categoryData.category}>
-            <CategoryBox categoryBoxTitle={categoryData.category} />
+        {cardData.map((categoryData, index) => (
+          <div key={categoryData.cardCategory}>
+            <CategoryBox categoryData={categoryData} />
             {index === 0 && <CardBanner />} {/* 첫 번째 카테고리 박스 밑에만 CardBanner 표시 */}
           </div>
         ))}

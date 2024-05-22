@@ -41,6 +41,7 @@ function CardContent({
     </CardContentLayout>
   );
 }
+
 export default CardContent;
 
 const CardContentLayout = styled.article`

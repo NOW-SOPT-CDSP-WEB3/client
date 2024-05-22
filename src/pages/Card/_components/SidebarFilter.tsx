@@ -21,10 +21,12 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
     CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
   );
 
+  // "전체보기" 체크박스 변경
   const handleCheckChange = () => {
     const newAllChecked = !isAllChecked;
     setIsAllChecked(newAllChecked);
     if (newAllChecked) {
+      // "전체보기"가 체크되면 모든 체크박스를 해제하고, 전체카드를 가져옴
       setCheckboxStates(
         CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
       );
@@ -34,10 +36,12 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
     }
   };
 
+  // 카테고리 클릭
   const handleCategoryClick = (index: number) => {
     setActiveCategories((prev) => prev.map((isActive, i) => (i === index ? !isActive : isActive)));
   };
 
+  // 개별 체크박스 변경
   const handleCheckboxChange = (categoryIndex: number, checkboxIndex: number) => {
     setIsAllChecked(false);
     setCheckboxStates((prevStates) => {
@@ -50,6 +54,7 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
       const selectedTags: string[] = [];
       let selectedCategory = '';
 
+      // 선택된 태그들을 수집
       updatedStates.forEach((category, catIdx) => {
         const categorySelectedTags: string[] = [];
         category.forEach((checked, chkIdx) => {

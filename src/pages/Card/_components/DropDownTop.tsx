@@ -26,8 +26,8 @@ function DropDownTop({ title, onClick, isActive }: DropDownTopProps) {
   };
 
   return (
-    <DropDownTopLayout onClick={onClick} isActive={isActive}>
-      <DropDownTopTitle isActive={isActive}>{getDisplayTitle(title)}</DropDownTopTitle>
+    <DropDownTopLayout onClick={onClick} $isActive={isActive}>
+      <DropDownTopTitle $isActive={isActive}>{getDisplayTitle(title)}</DropDownTopTitle>
       <StyledDropDownIcon isActive={isActive} />
     </DropDownTopLayout>
   );
@@ -35,7 +35,7 @@ function DropDownTop({ title, onClick, isActive }: DropDownTopProps) {
 
 export default DropDownTop;
 
-const DropDownTopLayout = styled.div<{ isActive: boolean }>`
+const DropDownTopLayout = styled.div<{ $isActive: boolean }>`
   display: flex;
   align-items: center;
   position: relative;
@@ -45,17 +45,17 @@ const DropDownTopLayout = styled.div<{ isActive: boolean }>`
   border: 0.1rem solid ${({ theme }) => theme.COLORS.HD_GRAY_03};
   border-radius: 4px;
 
-  background-color: ${({ theme, isActive }) =>
-    isActive ? theme.COLORS.HD_GRAY_04 : theme.COLORS.HD_WHITE};
+  background-color: ${({ theme, $isActive }) =>
+    $isActive ? theme.COLORS.HD_GRAY_04 : theme.COLORS.HD_WHITE};
 
   cursor: pointer;
 `;
 
-const DropDownTopTitle = styled.h1<{ isActive: boolean }>`
+const DropDownTopTitle = styled.h1<{ $isActive: boolean }>`
   margin-left: 1.2rem;
 
   font-family: ${({ theme }) => theme.FONTS.BOLD};
-  color: ${({ theme, isActive }) => (isActive ? theme.COLORS.HD_GRAY_01 : theme.COLORS.HD_BLK)};
+  color: ${({ theme, $isActive }) => ($isActive ? theme.COLORS.HD_GRAY_01 : theme.COLORS.HD_BLK)};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_01_BOLD};
 `;
 

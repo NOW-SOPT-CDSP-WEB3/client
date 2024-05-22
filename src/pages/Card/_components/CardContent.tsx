@@ -76,6 +76,7 @@ const CardContentInfoParagraph = styled.p`
 const CardContentImgBox = styled.div`
   position: relative;
   z-index: 1;
+
   &:hover div {
     opacity: 1;
   }
@@ -85,17 +86,19 @@ const BookmarkIconBox = styled.div`
   position: absolute;
   top: 2.1rem;
   right: 0.4rem;
+
   cursor: pointer;
 `;
 
 const CardContentEvent = styled.div`
+  margin-top: 1.3rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 10px;
+
+  background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_GRAY_01};
   font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_02_BOLD};
   text-align: center;
-  background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
-  padding: 0.4rem 0.7rem;
-
-  margin-top: 1.3rem;
-  border-radius: 10px;
 `;

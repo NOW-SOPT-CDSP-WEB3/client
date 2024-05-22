@@ -24,19 +24,20 @@ interface Category {
 
 function Culture() {
   const [categories, setCategories] = useState<Category[]>([]);
-  try {
-    const fetchData = async () => {
+
+  const fetchData = async () => {
+    try {
       const data = await getCultureData();
 
       setCategories(data.data.categories);
-    };
+    } catch {
+      console.error(Error);
+    }
+  };
 
-    useEffect(() => {
-      fetchData();
-    });
-  } catch {
-    console.error(Error);
-  }
+  useEffect(() => {
+    fetchData();
+  });
 
   return (
     <CultureLayout>

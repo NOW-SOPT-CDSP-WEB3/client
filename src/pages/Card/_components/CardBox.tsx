@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
-import CardContent from '@/pages/Card/_components/CardContent';
 import { CardDetail } from '@/pages/Card/_interfaces/CardInterface';
+
+import CardContent from './CardContent';
 
 interface CardBoxProps {
   tag: string;
   cards: CardDetail[];
   isLast: boolean;
-  bookmarkedCards: Set<number>;
-  toggleBookmark: (cardId: number) => void;
+  isBookmarked: (cardId: number) => boolean;
+  onToggleBookmark: (cardId: number) => void;
 }
 
-function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBoxProps) {
+function CardBox({ tag, cards, isLast, isBookmarked, onToggleBookmark }: CardBoxProps) {
   return (
     <CardBoxLayout>
       <CardBoxTitle>{tag}</CardBoxTitle>
@@ -19,14 +20,9 @@ function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBo
         {cards.map((card) => (
           <CardContent
             key={card.id}
-            cardTitle={card.name}
-            cardSrc={card.image}
-            cardTarget={card.invitation ? 'Invitation Only' : 'Open to All'}
-            cardInfo={card.description}
-            hoverInfo1={card.visaFee}
-            hoverInfo2={card.domesticFee}
-            isBookmarked={bookmarkedCards.has(card.id)}
-            onBookmarkClick={() => toggleBookmark(card.id)}
+            card={card}
+            isBookmarked={isBookmarked(card.id)}
+            onToggleBookmark={onToggleBookmark}
           />
         ))}
       </CardGridBox>
@@ -36,6 +32,7 @@ function CardBox({ tag, cards, isLast, bookmarkedCards, toggleBookmark }: CardBo
 }
 
 export default CardBox;
+
 const CardBoxLayout = styled.section`
   display: flex;
   flex-direction: column;

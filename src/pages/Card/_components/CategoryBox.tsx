@@ -4,11 +4,12 @@ import styled from 'styled-components';
 
 import { memberIdAtom } from '@/store/globalStore';
 
-import CardBox from '@/pages/Card/_components/CardBox';
 import { CATEGORY_BOX_DATA } from '@/pages/Card/_constants/cardData';
 import { CardCategory, CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 import { postBookmark } from '@/api/axios/Card/cardAxios';
+
+import CardBox from './CardBox';
 
 interface CategoryBoxProps {
   categoryData: CardCategory;
@@ -20,6 +21,7 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
   const [bookmarkedCards, setBookmarkedCards] = useState<Set<number>>(new Set());
   const [memberId] = useAtom(memberIdAtom);
 
+  // 카테고리 태그 별로
   const groupCategoryData = useCallback(() => {
     const grouped = card.reduce(
       (acc, card) => {
@@ -36,10 +38,10 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
     groupCategoryData();
   }, [groupCategoryData]);
 
+  // 북마크 상태 변경
   const toggleBookmark = async (cardId: number) => {
     try {
       const response = await postBookmark({ memberId, cardId });
-      console.log('data', response);
       if (response?.success) {
         setBookmarkedCards((prev) => {
           const updated = new Set(prev);
@@ -56,18 +58,25 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
     }
   };
 
-  useEffect(() => {}, [bookmarkedCards]);
-
   const categoryInfoMap = {
-    'hyundai-originals': CATEGORY_BOX_DATA.HYUNDAI,
-    'Champion-Brands': CATEGORY_BOX_DATA.CHAMPION,
-    'My Business': CATEGORY_BOX_DATA.BUSINESS,
+    HYUNDAI_ORIGINALS: CATEGORY_BOX_DATA.HYUNDAI,
+    CHAMPION_BRANDS: CATEGORY_BOX_DATA.CHAMPION,
+    MY_BUSINESS: CATEGORY_BOX_DATA.BUSINESS,
   };
   const categoryInfoText = categoryInfoMap[cardCategory as keyof typeof categoryInfoMap];
 
+  // 카테고리 이름 변환
+  const categoryNameMap: { [key: string]: string } = {
+    HYUNDAI_ORIGINALS: 'Hyundai Originals',
+    CHAMPION_BRANDS: 'Champion Brands',
+    AFFILIATE: '제휴카드',
+    MY_BUSINESS: 'My Business',
+  };
+  const displayCategoryName = categoryNameMap[cardCategory] || cardCategory;
+
   return (
     <CategoryBoxLayout>
-      <CategoryBoxTitle>{cardCategory}</CategoryBoxTitle>
+      <CategoryBoxTitle>{displayCategoryName}</CategoryBoxTitle>
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
       {Object.keys(groupedCards).map((tag, index) => (
         <CardBox
@@ -75,8 +84,8 @@ function CategoryBox({ categoryData }: CategoryBoxProps) {
           tag={tag}
           cards={groupedCards[tag]}
           isLast={index === Object.keys(groupedCards).length - 1}
-          bookmarkedCards={bookmarkedCards}
-          toggleBookmark={toggleBookmark}
+          isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+          onToggleBookmark={toggleBookmark}
         />
       ))}
     </CategoryBoxLayout>

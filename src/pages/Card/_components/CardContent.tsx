@@ -1,43 +1,34 @@
 import styled from 'styled-components';
 
-import CardHover from '@/pages/Card/_components/CardHover';
+import { CardDetail } from '@/pages/Card/_interfaces/CardInterface';
 
 import BookMarkIcon from '@/assets/svg/ic_bookmark.svg?react';
 import BookMarkActiveIcon from '@/assets/svg/ic_bookmark_active.svg?react';
 
+import CardHover from './CardHover';
+
 interface CardContentProps {
-  cardTitle: string;
-  cardSrc: string;
-  cardTarget: string;
-  cardInfo: string;
-  hoverInfo1: number;
-  hoverInfo2: number;
+  card: CardDetail;
   isBookmarked: boolean;
-  onBookmarkClick: () => void;
+  onToggleBookmark: (cardId: number) => void;
 }
 
-function CardContent({
-  cardTitle,
-  cardSrc,
-  cardTarget,
-  cardInfo,
-  hoverInfo1,
-  hoverInfo2,
-  isBookmarked,
-  onBookmarkClick,
-}: CardContentProps) {
+function CardContent({ card, isBookmarked, onToggleBookmark }: CardContentProps) {
   return (
     <CardContentLayout>
-      <CardContentTitle>{cardTitle}</CardContentTitle>
+      <CardContentTitle>{card.name}</CardContentTitle>
       <CardContentImgBox>
-        <CardContentImg src={cardSrc} alt={cardTitle} />
-        <CardHover hoverInfo1={hoverInfo1} hoverInfo2={hoverInfo2} />
-        <BookmarkIconBox onClick={onBookmarkClick}>
+        <CardContentImg src={card.image} alt={card.name} />
+        <CardHover hoverInfo1={card.visaFee} hoverInfo2={card.domesticFee} />
+        <BookmarkIconBox onClick={() => onToggleBookmark(card.id)}>
           {isBookmarked ? <BookMarkActiveIcon /> : <BookMarkIcon />}
         </BookmarkIconBox>
       </CardContentImgBox>
-      <CardContentTargetParagraph>{cardTarget}</CardContentTargetParagraph>
-      <CardContentInfoParagraph>{cardInfo}</CardContentInfoParagraph>
+      <CardContentTargetParagraph>
+        {card.invitation ? 'Invitation Only' : 'Open to All'}
+      </CardContentTargetParagraph>
+      <CardContentInfoParagraph>{card.description}</CardContentInfoParagraph>
+      {card.hasEvent && <CardContentEvent>Welcome 이벤트</CardContentEvent>}
     </CardContentLayout>
   );
 }
@@ -95,4 +86,16 @@ const BookmarkIconBox = styled.div`
   top: 2.1rem;
   right: 0.4rem;
   cursor: pointer;
+`;
+
+const CardContentEvent = styled.div`
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  color: ${({ theme }) => theme.COLORS.HD_GRAY_01};
+  font-size: ${({ theme }) => theme.FONT_SIZE.DETAIL_02_BOLD};
+  text-align: center;
+  background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+  padding: 0.4rem 0.7rem;
+
+  margin-top: 1.3rem;
+  border-radius: 10px;
 `;

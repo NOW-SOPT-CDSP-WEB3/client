@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -8,14 +7,9 @@ import { CHECK_BOX_DATA } from '@/pages/Card/_constants/cardData';
 
 import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
 
-SidebarFilter.propTypes = {
-  onFilterChange: PropTypes.func.isRequired,
-  onAllCheck: PropTypes.func.isRequired, // 새로운 prop 추가
-};
-
 interface SidebarFilterProps {
   onFilterChange: (filter: { category: string; tags: string }) => void;
-  onAllCheck: () => void; // 새로운 prop 타입 정의
+  onAllCheck: () => void;
 }
 
 function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
@@ -27,23 +21,25 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
     CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
   );
 
-  // 전체보기 체크박스 상태 변경 함수
   const handleCheckChange = () => {
-    setIsAllChecked((prev) => !prev);
-    if (!isAllChecked) {
-      onAllCheck(); // 전체보기 체크박스가 체크되면 전달받은 onAllCheck 함수 호출
+    const newAllChecked = !isAllChecked;
+    setIsAllChecked(newAllChecked);
+    if (newAllChecked) {
+      setCheckboxStates(
+        CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
+      );
+      onAllCheck();
     } else {
-      onFilterChange({ category: '', tags: '' }); // 전체보기 체크박스가 해제되면 기본 필터 적용
+      onAllCheck(); // 전체보기 해제 시에도 전체카드를 다시 가져옴
     }
   };
 
-  // 드롭다운 카테고리 활성화 상태 변경 함수
   const handleCategoryClick = (index: number) => {
     setActiveCategories((prev) => prev.map((isActive, i) => (i === index ? !isActive : isActive)));
   };
 
-  // 체크박스 상태 변경 함수
   const handleCheckboxChange = (categoryIndex: number, checkboxIndex: number) => {
+    setIsAllChecked(false);
     setCheckboxStates((prevStates) => {
       const updatedStates = prevStates.map((category, catIdx) =>
         catIdx === categoryIndex
@@ -51,7 +47,6 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
           : category,
       );
 
-      // 필터 업데이트 로직
       const selectedTags: string[] = [];
       let selectedCategory = '';
 
@@ -69,7 +64,7 @@ function SidebarFilter({ onFilterChange, onAllCheck }: SidebarFilterProps) {
       });
 
       if (selectedTags.length === 0) {
-        onAllCheck(); // 모든 태그가 선택 해제되면 전체 카드를 다시 불러옴
+        onAllCheck(); // 선택된 태그가 없으면 전체카드를 가져옴
       } else {
         onFilterChange({ category: selectedCategory, tags: selectedTags.join(',') });
       }

@@ -12,6 +12,7 @@ import { CardCategory } from './_interfaces/CardInterface';
 
 function Card() {
   const [cardData, setCardData] = useState<CardCategory[]>([]);
+  const [isAllCards, setIsAllCards] = useState(true); // 전체 카드 상태를 추적하는 변수
 
   const getCard = async () => {
     try {
@@ -19,6 +20,7 @@ function Card() {
       if (response && response.data) {
         console.log('전체카드', response.data.cards);
         setCardData(response.data.cards);
+        setIsAllCards(true); // 전체 카드를 가져왔으므로 true로 설정
       }
     } catch (error) {
       console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -31,6 +33,7 @@ function Card() {
       if (response && response.data) {
         console.log('필터링된 카드', response.data.cards);
         setCardData(response.data.cards);
+        setIsAllCards(false); // 필터링된 카드를 가져왔으므로 false로 설정
       }
     } catch (error) {
       console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -43,13 +46,12 @@ function Card() {
 
   return (
     <CardLayout>
-      {/* SidebarFilter에 onAllCheck prop으로 getAllCard 함수 전달 */}
       <SidebarFilter onFilterChange={fetchFilteredCards} onAllCheck={getCard} />
       <CardBoxContainer>
         {cardData.map((categoryData, index) => (
           <div key={categoryData.cardCategory}>
             <CategoryBox categoryData={categoryData} />
-            {index === 0 && <CardBanner />} {/* 첫 번째 카테고리 박스 밑에만 CardBanner 표시 */}
+            {isAllCards && index === 0 && <CardBanner />} {/* 전체 카드일 때만 CardBanner 표시 */}
           </div>
         ))}
         <CardInfo />
@@ -59,42 +61,6 @@ function Card() {
 }
 
 export default Card;
-
-/*function Card() {
-  const [cardData, setCardData] = useState<CardCategory[]>([]);
-
-  useEffect(() => {
-    const getCard = async () => {
-      try {
-        const response = await getAllCard();
-        if (response && response.data) {
-          console.log('전체카드', response.data.cards);
-          setCardData(response.data.cards);
-        }
-      } catch (error) {
-        console.error('카드를 불러오는 중 오류가 발생했습니다', error);
-      }
-    };
-    getCard();
-  }, []);
-
-  return (
-    <CardLayout>
-      <SidebarFilter />
-      <CardBoxContainer>
-        {cardData.map((categoryData, index) => (
-          <div key={categoryData.cardCategory}>
-            <CategoryBox categoryData={categoryData} />
-            {index === 0 && <CardBanner />} 
-          </div>
-        ))}
-        <CardInfo />
-      </CardBoxContainer>
-    </CardLayout>
-  );
-}
-
-export default Card;*/
 
 const CardLayout = styled.div`
   display: flex;

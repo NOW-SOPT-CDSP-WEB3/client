@@ -10,7 +10,7 @@ export interface Card {
   hoverInfo2: number;
 }
 
-interface CardResponse {
+export interface CardResponse {
   status: number;
   success: boolean;
   message: string;
@@ -19,12 +19,12 @@ interface CardResponse {
   };
 }
 
-interface CardCategory {
+export interface CardCategory {
   cardCategory: string;
   card: CardDetail[];
 }
 
-interface CardDetail {
+export interface CardDetail {
   id: number;
   name: string;
   invitation: boolean;

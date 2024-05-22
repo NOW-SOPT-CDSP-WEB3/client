@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import CardBanner from '@/pages/Card/_components/CardBanner';
@@ -6,7 +7,28 @@ import CategoryBox from '@/pages/Card/_components/CategoryBox';
 import SidebarFilter from '@/pages/Card/_components/SidebarFilter';
 import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 
+import { getAllCard } from '@/api/axios/Card/cardAxios';
+
+import { CardCategory } from './_interfaces/CardInterface';
+
 function Card() {
+  const [cardData, setCardData] = useState<CardCategory>();
+
+  useEffect(() => {
+    const getCard = async () => {
+      try {
+        const response = await getAllCard();
+        if (response && response.data) {
+          console.log('전체카드', response.data);
+          //setCardData(response.data);
+        }
+      } catch (error) {
+        console.error('카드를 불러오는 중 오류가 발생했습니다', error);
+      }
+    };
+    getCard();
+  }, []);
+
   return (
     <CardLayout>
       <SidebarFilter />

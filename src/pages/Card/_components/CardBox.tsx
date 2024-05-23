@@ -49,10 +49,11 @@ const CardBoxLayout = styled.section`
 `;
 
 const CardBoxTitle = styled.h1`
+  margin-top: 6.5rem;
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_02};
-  margin-top: 6.5rem;
 `;
 
 const CardGridBox = styled.div`

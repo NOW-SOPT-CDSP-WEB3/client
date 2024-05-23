@@ -32,6 +32,8 @@ const HomeCardExplanationBox = styled.div`
 
 const HomeCardTitleText = styled.h1`
   margin-bottom: 0.9rem;
+  -webkit-text-stroke-width: 0.3rem;
+  -webkit-text-stroke-color: ${({ theme }) => theme.COLORS.HD_BLK};
 
   font-family: ${({ theme }) => theme.FONTS.HEAD_01};
   color: ${({ theme }) => theme.COLORS.HD_BLK};

@@ -162,10 +162,13 @@ const CategoryBoxLayout = styled.section`
 `;
 
 const CategoryBoxTitle = styled.h1`
-  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  margin-top: 2rem;
+
+  font-family: ${({ theme }) => theme.FONTS.HEAD_01};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
-  margin-top: 2rem;
+  -webkit-text-stroke-width: 0.3rem;
+  -webkit-text-stroke-color: ${({ theme }) => theme.COLORS.HD_BLK};
 `;
 
 const CategoryInfo = styled.p`
@@ -179,22 +182,27 @@ const CategoryInfo = styled.p`
 const TagButtonsLayout = styled.div`
   display: flex;
   align-items: center;
+
   margin-top: 4.4rem;
 
   & > div:not(:last-child)::after {
-    content: '';
     display: inline-block;
+
     width: 0.1rem;
     height: 1rem;
-    background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
     margin-left: 1rem;
+
+    background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+    content: '';
   }
 `;
 
 const TagButton = styled.div<{ selected: boolean }>`
   margin-right: 1rem;
+
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ selected, theme }) => (selected ? theme.COLORS.HD_BLK : theme.COLORS.HD_GRAY_02)};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_04_BOLD};
+
   cursor: pointer;
 `;

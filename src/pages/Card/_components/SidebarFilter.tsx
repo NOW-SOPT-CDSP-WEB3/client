@@ -10,17 +10,18 @@ import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
 interface SidebarFilterProps {
   onFilterChange: (filter: { category: string; tags: string }) => void;
   onAllCheck: () => void;
-  setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>;
+  setSelectedTags: (tags: string[]) => void;
 }
+
+const initialActiveCategories = Array(CHECK_BOX_DATA.length).fill(false);
+const initailCheckBoxStates = CHECK_BOX_DATA.map((category) =>
+  Array(category.checkboxes.length).fill(false),
+);
 
 function SidebarFilter({ onFilterChange, onAllCheck, setSelectedTags }: SidebarFilterProps) {
   const [isAllChecked, setIsAllChecked] = useState(false);
-  const [activeCategories, setActiveCategories] = useState(
-    Array(CHECK_BOX_DATA.length).fill(false),
-  );
-  const [checkboxStates, setCheckboxStates] = useState(
-    CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
-  );
+  const [activeCategories, setActiveCategories] = useState(initialActiveCategories);
+  const [checkboxStates, setCheckboxStates] = useState(initailCheckBoxStates);
   const [lastSelectedCategory, setLastSelectedCategory] = useState<number | null>(null);
 
   // "전체보기" 체크박스 변경
@@ -33,8 +34,6 @@ function SidebarFilter({ onFilterChange, onAllCheck, setSelectedTags }: SidebarF
         CHECK_BOX_DATA.map((category) => Array(category.checkboxes.length).fill(false)),
       );
       onAllCheck();
-    } else {
-      onAllCheck(); // 전체보기 해제 시에도 전체카드를 다시 가져옴
     }
   };
 

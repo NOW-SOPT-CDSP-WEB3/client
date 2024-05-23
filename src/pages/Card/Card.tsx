@@ -11,7 +11,7 @@ import { getAllCard, getFilteringCard } from '@/api/axios/Card/cardAxios';
 
 function Card() {
   const [cardData, setCardData] = useState<CardCategory[]>([]);
-  const [isAllCards, setIsAllCards] = useState(true); // 전체 카드 상태를 추적
+  const [isAllCards, setIsAllCards] = useState(true);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const getCard = async () => {
@@ -31,7 +31,7 @@ function Card() {
       const response = await getFilteringCard(category, tags);
       if (response && response.data) {
         setCardData(response.data.cards);
-        setIsAllCards(false); // 필터링된 카드를 가져왔으므로 false로
+        setIsAllCards(false);
       }
     } catch (error) {
       console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -39,21 +39,25 @@ function Card() {
   };
 
   useEffect(() => {
-    getCard(); // 초기에는 전체 카드를 가져옴
+    getCard();
   }, []);
+
+  const handleSetSelectedTags = (tags: string[]) => {
+    setSelectedTags(tags);
+  };
 
   return (
     <CardLayout>
       <SidebarFilter
         onFilterChange={fetchFilteredCards}
         onAllCheck={getCard}
-        setSelectedTags={setSelectedTags}
+        setSelectedTags={handleSetSelectedTags} // 함수를 전달
       />
       <CardBoxContainer>
         {cardData.map((categoryData, index) => (
           <div key={categoryData.cardCategory}>
             <CategoryBox categoryData={categoryData} selectedTags={selectedTags} />
-            {isAllCards && index === 0 && <CardBanner />} {/* 전체 카드일 때만 CardBanner 표시 */}
+            {isAllCards && index === 0 && <CardBanner />}
           </div>
         ))}
         <CardInfo />

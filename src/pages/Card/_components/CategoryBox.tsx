@@ -38,7 +38,6 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
     groupCategoryData();
   }, [groupCategoryData]);
 
-  // AFFILIATE와 MY_BUSINESS 카테고리에서는 selectedTags 변경사항 무시
   useEffect(() => {
     if (['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory)) {
       setSelectedTag('All');
@@ -88,7 +87,6 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
   if (isSpecialCategory) {
     displayTags = Object.keys(groupedCards);
   } else {
-    // selectedTags가 있으면 selectedTags만 표시하고, 없으면 'All' 표시
     displayTags = selectedTags.length > 0 ? selectedTags : ['All'];
   }
 
@@ -100,7 +98,6 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
       {isSpecialCategory && (
         <TagButtonsLayout>
-          {/* All 태그 버튼 표시 여부를 결정하는 조건 추가 */}
           {shouldShowAllTagButton && (
             <TagButton selected={selectedTag === 'All'} onClick={() => setSelectedTag('All')}>
               All
@@ -123,7 +120,6 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
             key='all-cards'
             tag='All'
             cards={card}
-            isLast={true}
             isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
             onToggleBookmark={toggleBookmark}
             showTitle={false}
@@ -134,7 +130,6 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
               key={selectedTag}
               tag={selectedTag}
               cards={groupedCards[selectedTag]}
-              isLast={true}
               isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
               onToggleBookmark={toggleBookmark}
               showTitle={false}
@@ -142,12 +137,11 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
           )
         )
       ) : (
-        Object.keys(groupedCards).map((tag, index) => (
+        Object.keys(groupedCards).map((tag) => (
           <CardBox
             key={tag}
             tag={tag}
             cards={groupedCards[tag]}
-            isLast={index === Object.keys(groupedCards).length - 1}
             isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
             onToggleBookmark={toggleBookmark}
             showTitle={true}

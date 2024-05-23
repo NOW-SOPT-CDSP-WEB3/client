@@ -7,20 +7,19 @@ interface DropDownMenuProps {
   checkedStates: boolean[];
   handleCheckboxChange: (index: number) => void;
 }
+// title을 변환하는 함수
+const formatTitle = (title: string) => {
+  switch (title) {
+    case 'ALL':
+      return 'All';
+    case 'PREMIUM':
+      return 'Premium';
+    default:
+      return title;
+  }
+};
 
 function DropDownMenu({ checkboxesData, checkedStates, handleCheckboxChange }: DropDownMenuProps) {
-  // title을 변환하는 함수
-  const formatTitle = (title: string) => {
-    switch (title) {
-      case 'ALL':
-        return 'All';
-      case 'PREMIUM':
-        return 'Premium';
-      default:
-        return title;
-    }
-  };
-
   return (
     <DropDownMenuLayout>
       {checkedStates.map((checked, index) => (

@@ -1,7 +1,4 @@
-import { useAtom } from 'jotai';
 import styled from 'styled-components';
-
-import { readMemberIdAtom } from '@/store/globalStore';
 
 import BenefitBoard from '@/pages/Benefit/_components/BenefitBoard';
 import BenefitEvent from '@/pages/Benefit/_components/BenefitEvent';
@@ -10,9 +7,6 @@ import BenefitInfo from '@/pages/Benefit/_components/BenefitInfo';
 import BenefitTitle from '@/pages/Benefit/_components/BenefitTitle';
 
 function Benefit() {
-  const [memberId] = useAtom(readMemberIdAtom);
-  console.log(memberId);
-
   return (
     <BenefitLayout>
       <BenefitTitle />

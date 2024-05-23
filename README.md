@@ -108,7 +108,7 @@
 </details>
 
 <details>
-<summary> 2️⃣ 코딩 컨벤션 </summary>
+<summary> 3️⃣ 코딩 컨벤션 </summary>
 <br/>
   
 1. **변수명, 함수명을 고민을 우선적으로 하되, 주석이 필요한 경우는 어떤 역할을 하는지 다른 사람이 이해할 수 있도록 작성하자**
@@ -206,13 +206,13 @@
 |-- 📁 public
 |-- 📁 src
   |-- 📁 apis
-	|-- 📁 assets
-	|-- 📁 components
+  |-- 📁 assets
+  |-- 📁 components
   |-- 📁 layout
-	|-- 📁 pages
+  |-- 📁 pages
   |-- 📁 routes
   |-- 📁 store
-	|-- 📁 styles
+  |-- 📁 styles
 |-- .env
 |-- .eslintrc.cjs
 |-- .gitignore
@@ -268,7 +268,7 @@
         </td>
         <td>
             Benefit View <br/>
-            로그인 API <br />회원가입 API
+            로그인 API <br />회원가입 API <br /> 레이아웃 구현
       </td>
         <td>
             Culture View <br />

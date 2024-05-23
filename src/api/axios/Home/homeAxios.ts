@@ -1,6 +1,6 @@
 import { isAxiosError } from 'axios';
 
-import { EventData } from '@/api/axios/Home/HomeInterface';
+import { EventData } from '@/api/axios/Home/homeInterface';
 import instance from '@/api/axios/instance';
 
 const AUTH_URL = {

@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
+import CultureCard from '@/pages/Culture/_components/CultureCard';
+import { capitalize } from '@/pages/Culture/_utils/capitalize';
+
 import AppDownIcon from '@/assets/svg/culture_app_box_download_ic_next.svg?react';
 import IconApp from '@/assets/svg/img_dive_app.svg?react';
 
 import { getCultureData } from '@/api/axios/Culture/cultureAxios';
-
-import CultureCard from './_components/CultureCard';
 
 interface CultureInfo {
   id: number;
@@ -36,7 +37,7 @@ function Culture() {
     <CultureLayout>
       {categories?.map((category: { name: string; cultures: CultureInfo[] }) => (
         <CardListBox key={category.name}>
-          <Name>{category.name}</Name>
+          <Name>{capitalize(category.name)}</Name>
           <InfoBox>
             {category.cultures.map((Info: CultureInfo) => (
               <CultureCard
@@ -93,6 +94,9 @@ const Name = styled.h1`
   font-weight: 400;
   text-align: left;
   line-height: 4.8rem;
+
+  -webkit-text-stroke-width: 0.3rem;
+  -webkit-text-stroke-color: ${({ theme }) => theme.COLORS.HD_BLK};
 `;
 
 const InfoBox = styled.div`

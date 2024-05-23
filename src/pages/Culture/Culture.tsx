@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
 import AppDownIcon from '@/assets/svg/culture_app_box_download_ic_next.svg?react';
@@ -17,30 +17,24 @@ interface CultureInfo {
   period: string;
 }
 
-interface Category {
-  name: string;
-  cultures: CultureInfo[];
-}
-
 function Culture() {
-  const [categories, setCategories] = useState<Category[]>([]);
-  try {
-    const fetchData = async () => {
-      const data = await getCultureData();
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['culturePageData'],
+    queryFn: getCultureData,
+  });
 
-      setCategories(data.data.categories);
-    };
-
-    useEffect(() => {
-      fetchData();
-    });
-  } catch {
-    console.error(Error);
+  if (isLoading) {
+    return <div>isLoading</div>;
   }
+  if (isError) {
+    return <div>error</div>;
+  }
+
+  const categories = data.data.categories;
 
   return (
     <CultureLayout>
-      {categories?.map((category) => (
+      {categories?.map((category: { name: string; cultures: CultureInfo[] }) => (
         <CardListBox key={category.name}>
           <Name>{category.name}</Name>
           <InfoBox>

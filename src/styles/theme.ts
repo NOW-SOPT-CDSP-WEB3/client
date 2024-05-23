@@ -7,6 +7,7 @@ const COLORS = {
   HD_WHITE: '#FFFFFF',
   HD_BLUE_01: '#F6F7FA',
   HD_BLUE_02: '#0070F0',
+  HD_GRADI_04: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8))',
 };
 
 const FONT_SIZE = {

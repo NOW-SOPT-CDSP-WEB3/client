@@ -13,7 +13,7 @@ function CheckBox({ checked, onChange, size = '1rem', imgSize = '0.5rem' }: Chec
   return (
     <CheckboxLayout>
       <CheckBoxHidden type='checkbox' checked={checked} onChange={onChange} />
-      <CheckBoxStyled checked={checked} onClick={onChange} size={size} imgSize={imgSize}>
+      <CheckBoxStyled $checked={checked} onClick={onChange} $size={size} $imgSize={imgSize}>
         {checked && <CheckBoxImg />}
       </CheckBoxStyled>
     </CheckboxLayout>
@@ -28,22 +28,22 @@ const CheckboxLayout = styled.div`
 const CheckBoxHidden = styled.input.attrs({ type: 'checkbox' })`
   display: none;
 `;
-const CheckBoxStyled = styled.div<{ checked: boolean; size: string; imgSize: string }>`
+const CheckBoxStyled = styled.div<{ $checked: boolean; $size: string; $imgSize: string }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: ${({ size }) => size};
-  height: ${({ size }) => size};
+  width: ${({ $size }) => $size};
+  height: ${({ $size }) => $size};
   border: 0.1rem solid
-    ${({ theme, checked }) => (checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_GRAY_03)};
+    ${({ theme, $checked }) => ($checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_GRAY_03)};
   border-radius: 2px;
 
-  background-color: ${({ theme, checked }) =>
-    checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_WHITE};
+  background-color: ${({ theme, $checked }) =>
+    $checked ? theme.COLORS.HD_GRAY_02 : theme.COLORS.HD_WHITE};
 
   svg {
-    width: ${({ imgSize }) => imgSize};
-    height: ${({ imgSize }) => imgSize};
+    width: ${({ $imgSize }) => $imgSize};
+    height: ${({ $imgSize }) => $imgSize};
   }
 `;

@@ -1,62 +1,153 @@
+import { useAtom } from 'jotai';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { memberIdAtom } from '@/store/globalStore';
+
 import CardBox from '@/pages/Card/_components/CardBox';
-import { CARD_DATA } from '@/pages/Card/_constants/cardData';
 import { CATEGORY_BOX_DATA } from '@/pages/Card/_constants/cardData';
-import { Card } from '@/pages/Card/_interfaces/CardInterface';
+import { CardCategory, CardDetail } from '@/pages/Card/_interfaces/CardInterface';
+
+import { postBookmark } from '@/api/axios/Card/cardAxios';
 
 interface CategoryBoxProps {
-  categoryBoxTitle: string;
+  categoryData: CardCategory;
+  selectedTags: string[];
 }
 
-function CategoryBox({ categoryBoxTitle }: CategoryBoxProps) {
-  const [groupedCards, setGroupedCards] = useState<{ [key: string]: Card[] }>({});
+function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
+  const { cardCategory, card } = categoryData;
+  const [groupedCards, setGroupedCards] = useState<{ [key: string]: CardDetail[] }>({});
+  const [bookmarkedCards, setBookmarkedCards] = useState<Set<number>>(new Set());
+  const [memberId] = useAtom(memberIdAtom);
+  const [selectedTag, setSelectedTag] = useState('All');
 
-  // 카테고리 데이터를 그룹화
   const groupCategoryData = useCallback(() => {
-    const categoryData = CARD_DATA.find((category) => category.category === categoryBoxTitle);
-    if (categoryData) {
-      const grouped = categoryData.card.reduce(
-        (acc, card) => {
-          const tag = card.tags[1]; // 태그의 두 번째 요소 사용
-          // 불변성을 지키면서 삼항 연산자와 스프레드 연산자 사용
-          acc[tag] = acc[tag] ? [...acc[tag], card] : [card];
-          return acc;
-        },
-        {} as { [key: string]: (typeof CARD_DATA)[0]['card'] },
-      );
-
-      setGroupedCards(grouped);
-    }
-  }, [categoryBoxTitle]);
+    const grouped = card.reduce(
+      (acc, card) => {
+        const tag = card.cardTags[1];
+        acc[tag] = acc[tag] ? [...acc[tag], card] : [card];
+        return acc;
+      },
+      {} as { [key: string]: CardDetail[] },
+    );
+    setGroupedCards(grouped);
+  }, [card]);
 
   useEffect(() => {
     groupCategoryData();
   }, [groupCategoryData]);
 
-  const tags = Object.keys(groupedCards);
-  const isLastCategory = CARD_DATA[CARD_DATA.length - 1].category === categoryBoxTitle;
+  useEffect(() => {
+    if (['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory)) {
+      setSelectedTag('All');
+    } else if (selectedTags.length > 0) {
+      setSelectedTag(selectedTags[0]);
+    } else {
+      setSelectedTag('All');
+    }
+  }, [selectedTags, cardCategory]);
 
-  const categoryInfoMap = {
-    'hyundai-originals': CATEGORY_BOX_DATA.HYUNDAI,
-    'Champion-Brands': CATEGORY_BOX_DATA.CHAMPION,
-    'My Business': CATEGORY_BOX_DATA.BUSINESS,
+  const toggleBookmark = async (cardId: number) => {
+    try {
+      const response = await postBookmark({ memberId, cardId });
+      if (response?.success) {
+        setBookmarkedCards((prev) => {
+          const updated = new Set(prev);
+          if (updated.has(cardId)) {
+            updated.delete(cardId);
+          } else {
+            updated.add(cardId);
+          }
+          return updated;
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const categoryInfoText = categoryInfoMap[categoryBoxTitle as keyof typeof categoryInfoMap];
+  const categoryInfoMap = {
+    HYUNDAI_ORIGINALS: CATEGORY_BOX_DATA.HYUNDAI,
+    CHAMPION_BRANDS: CATEGORY_BOX_DATA.CHAMPION,
+    MY_BUSINESS: CATEGORY_BOX_DATA.BUSINESS,
+  };
+
+  const categoryInfoText = categoryInfoMap[cardCategory as keyof typeof categoryInfoMap];
+  const categoryNameMap: { [key: string]: string } = {
+    HYUNDAI_ORIGINALS: 'Hyundai Originals',
+    CHAMPION_BRANDS: 'Champion Brands',
+    AFFILIATE: '제휴카드',
+    MY_BUSINESS: 'My Business',
+  };
+
+  const displayCategoryName = categoryNameMap[cardCategory] || cardCategory;
+  const isSpecialCategory = ['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory);
+  let displayTags;
+  if (isSpecialCategory) {
+    displayTags = Object.keys(groupedCards);
+  } else {
+    displayTags = selectedTags.length > 0 ? selectedTags : ['All'];
+  }
+
+  const shouldShowAllTagButton = selectedTags.length === 0 || selectedTags.includes('ALL');
+
   return (
     <CategoryBoxLayout>
-      <CategoryBoxTitle>{categoryBoxTitle}</CategoryBoxTitle>
+      <CategoryBoxTitle>{displayCategoryName}</CategoryBoxTitle>
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
-      {tags.map((tag, index) => (
-        <CardBox
-          key={tag}
-          tag={tag}
-          cards={groupedCards[tag]}
-          isLast={isLastCategory && index === tags.length - 1}
-        />
-      ))}
+      {isSpecialCategory && (
+        <TagButtonsLayout>
+          {shouldShowAllTagButton && (
+            <TagButton selected={selectedTag === 'All'} onClick={() => setSelectedTag('All')}>
+              All
+            </TagButton>
+          )}
+          {displayTags.map((tag) => (
+            <TagButton
+              key={tag}
+              selected={selectedTag === tag || selectedTags.includes(tag)}
+              onClick={() => setSelectedTag(tag)}
+            >
+              {tag}
+            </TagButton>
+          ))}
+        </TagButtonsLayout>
+      )}
+      {isSpecialCategory ? (
+        selectedTag === 'All' ? (
+          <CardBox
+            key='all-cards'
+            tag='All'
+            cards={card}
+            isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+            onToggleBookmark={toggleBookmark}
+            showTitle={false}
+          />
+        ) : (
+          groupedCards[selectedTag] && (
+            <CardBox
+              key={selectedTag}
+              tag={selectedTag}
+              cards={groupedCards[selectedTag]}
+              isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+              onToggleBookmark={toggleBookmark}
+              showTitle={false}
+            />
+          )
+        )
+      ) : (
+        Object.keys(groupedCards).map((tag) => (
+          <CardBox
+            key={tag}
+            tag={tag}
+            cards={groupedCards[tag]}
+            isBookmarked={(cardId) => bookmarkedCards.has(cardId)}
+            onToggleBookmark={toggleBookmark}
+            showTitle={true}
+          />
+        ))
+      )}
     </CategoryBoxLayout>
   );
 }
@@ -74,6 +165,7 @@ const CategoryBoxTitle = styled.h1`
   font-family: ${({ theme }) => theme.FONTS.BOLD};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.HEAD_01};
+  margin-top: 2rem;
 `;
 
 const CategoryInfo = styled.p`
@@ -82,4 +174,27 @@ const CategoryInfo = styled.p`
   font-family: ${({ theme }) => theme.FONTS.MEDIUM};
   color: ${({ theme }) => theme.COLORS.HD_BLK};
   font-size: ${({ theme }) => theme.FONT_SIZE.BODY_01_MED};
+`;
+
+const TagButtonsLayout = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 4.4rem;
+
+  & > div:not(:last-child)::after {
+    content: '';
+    display: inline-block;
+    width: 0.1rem;
+    height: 1rem;
+    background-color: ${({ theme }) => theme.COLORS.HD_GRAY_04};
+    margin-left: 1rem;
+  }
+`;
+
+const TagButton = styled.div<{ selected: boolean }>`
+  margin-right: 1rem;
+  font-family: ${({ theme }) => theme.FONTS.BOLD};
+  color: ${({ selected, theme }) => (selected ? theme.COLORS.HD_BLK : theme.COLORS.HD_GRAY_02)};
+  font-size: ${({ theme }) => theme.FONT_SIZE.BODY_04_BOLD};
+  cursor: pointer;
 `;

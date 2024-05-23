@@ -7,6 +7,17 @@ interface DropDownMenuProps {
   checkedStates: boolean[];
   handleCheckboxChange: (index: number) => void;
 }
+// title을 변환하는 함수
+const formatTitle = (title: string) => {
+  switch (title) {
+    case 'ALL':
+      return 'All';
+    case 'PREMIUM':
+      return 'Premium';
+    default:
+      return title;
+  }
+};
 
 function DropDownMenu({ checkboxesData, checkedStates, handleCheckboxChange }: DropDownMenuProps) {
   return (
@@ -14,7 +25,7 @@ function DropDownMenu({ checkboxesData, checkedStates, handleCheckboxChange }: D
       {checkedStates.map((checked, index) => (
         <DropDownMenuBox key={index}>
           <CheckBox checked={checked} onChange={() => handleCheckboxChange(index)} />
-          <DropDownMenuSpan>{checkboxesData[index].title}</DropDownMenuSpan>
+          <DropDownMenuSpan>{formatTitle(checkboxesData[index].title)}</DropDownMenuSpan>
         </DropDownMenuBox>
       ))}
     </DropDownMenuLayout>

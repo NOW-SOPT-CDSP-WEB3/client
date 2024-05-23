@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import Event from '@/components/event/Event';
 
-import { useGetEvents } from '@/api/axios/Home/homeAxios';
+import { useGetEvents } from '@/api/axios/Home/homeQuery';
 
 interface EventBoxProps {
   isShowPeriod: boolean;

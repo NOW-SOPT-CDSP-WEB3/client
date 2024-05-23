@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 
+import { EventData } from '@/api/axios/Home/HomeInterface';
 import instance from '@/api/axios/instance';
 
 const AUTH_URL = {
@@ -10,14 +10,6 @@ const AUTH_URL = {
 const MESSAGES = {
   UNKNOWN_ERROR: '알수없는 오류가 발생했습니다. 다시 시도해주세요.',
 };
-
-interface EventData {
-  id: number;
-  image: string;
-  name: string;
-  description: string;
-  period: string;
-}
 
 export const getEventsData = async (searchContent = ''): Promise<EventData[]> => {
   try {
@@ -31,13 +23,4 @@ export const getEventsData = async (searchContent = ''): Promise<EventData[]> =>
     if (isAxiosError(error)) throw error;
     else throw new Error(MESSAGES.UNKNOWN_ERROR);
   }
-};
-
-export const useGetEvents = (searchWord?: string) => {
-  const { data, error, isError } = useQuery<EventData[], Error>({
-    queryKey: ['events', searchWord],
-    queryFn: () => getEventsData(searchWord || ''),
-  });
-
-  return { data, error, isError };
 };

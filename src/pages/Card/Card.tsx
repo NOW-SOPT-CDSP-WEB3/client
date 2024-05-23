@@ -11,7 +11,7 @@ import { getAllCard, getFilteringCard } from '@/api/axios/Card/cardAxios';
 
 function Card() {
   const [cardData, setCardData] = useState<CardCategory[]>([]);
-  const [isAllCards, setIsAllCards] = useState(true); // 전체 카드 상태를 추적하는 변수
+  const [isAllCards, setIsAllCards] = useState(true); // 전체 카드 상태를 추적
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const getCard = async () => {
@@ -19,7 +19,7 @@ function Card() {
       const response = await getAllCard();
       if (response && response.data) {
         setCardData(response.data.cards);
-        setIsAllCards(true); // 전체 카드를 가져왔으므로 true로 설정
+        setIsAllCards(true);
       }
     } catch (error) {
       console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -31,7 +31,7 @@ function Card() {
       const response = await getFilteringCard(category, tags);
       if (response && response.data) {
         setCardData(response.data.cards);
-        setIsAllCards(false); // 필터링된 카드를 가져왔으므로 false로 설정
+        setIsAllCards(false); // 필터링된 카드를 가져왔으므로 false로
       }
     } catch (error) {
       console.error('카드를 불러오는 중 오류가 발생했습니다', error);
@@ -47,7 +47,6 @@ function Card() {
       <SidebarFilter
         onFilterChange={fetchFilteredCards}
         onAllCheck={getCard}
-        //selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
       />
       <CardBoxContainer>

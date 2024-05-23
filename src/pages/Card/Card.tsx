@@ -47,7 +47,7 @@ function Card() {
       <SidebarFilter
         onFilterChange={fetchFilteredCards}
         onAllCheck={getCard}
-        selectedTags={selectedTags}
+        //selectedTags={selectedTags}
         setSelectedTags={setSelectedTags}
       />
       <CardBoxContainer>

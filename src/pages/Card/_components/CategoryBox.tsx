@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { memberIdAtom } from '@/store/globalStore';
@@ -38,14 +38,16 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
     groupCategoryData();
   }, [groupCategoryData]);
 
+  // AFFILIATE와 MY_BUSINESS 카테고리에서는 selectedTags 변경사항 무시
   useEffect(() => {
-    // 사이드바 필터가 선택된 태그로 설정
-    if (selectedTags.length > 0) {
+    if (['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory)) {
+      setSelectedTag('All');
+    } else if (selectedTags.length > 0) {
       setSelectedTag(selectedTags[0]);
     } else {
       setSelectedTag('All');
     }
-  }, [selectedTags]);
+  }, [selectedTags, cardCategory]);
 
   const toggleBookmark = async (cardId: number) => {
     try {
@@ -82,6 +84,15 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
 
   const displayCategoryName = categoryNameMap[cardCategory] || cardCategory;
   const isSpecialCategory = ['AFFILIATE', 'MY_BUSINESS'].includes(cardCategory);
+  let displayTags;
+  if (isSpecialCategory) {
+    displayTags = Object.keys(groupedCards);
+  } else {
+    // selectedTags가 있으면 selectedTags만 표시하고, 없으면 'All' 표시
+    displayTags = selectedTags.length > 0 ? selectedTags : ['All'];
+  }
+
+  const shouldShowAllTagButton = selectedTags.length === 0 || selectedTags.includes('ALL');
 
   return (
     <CategoryBoxLayout>
@@ -89,11 +100,18 @@ function CategoryBox({ categoryData, selectedTags }: CategoryBoxProps) {
       {categoryInfoText && <CategoryInfo>{categoryInfoText}</CategoryInfo>}
       {isSpecialCategory && (
         <TagButtonsLayout>
-          <TagButton selected={selectedTag === 'All'} onClick={() => setSelectedTag('All')}>
-            All
-          </TagButton>
-          {Object.keys(groupedCards).map((tag) => (
-            <TagButton key={tag} selected={selectedTag === tag} onClick={() => setSelectedTag(tag)}>
+          {/* All 태그 버튼 표시 여부를 결정하는 조건 추가 */}
+          {shouldShowAllTagButton && (
+            <TagButton selected={selectedTag === 'All'} onClick={() => setSelectedTag('All')}>
+              All
+            </TagButton>
+          )}
+          {displayTags.map((tag) => (
+            <TagButton
+              key={tag}
+              selected={selectedTag === tag || selectedTags.includes(tag)}
+              onClick={() => setSelectedTag(tag)}
+            >
               {tag}
             </TagButton>
           ))}

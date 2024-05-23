@@ -10,14 +10,14 @@ import CardFinder from '@/assets/svg/img_cardfinder.svg?react';
 interface SidebarFilterProps {
   onFilterChange: (filter: { category: string; tags: string }) => void;
   onAllCheck: () => void;
-  selectedTags: string[]; // 추가된 부분
+  //selectedTags: string[]; // 추가된 부분
   setSelectedTags: React.Dispatch<React.SetStateAction<string[]>>; // 추가된 부분
 }
 
 function SidebarFilter({
   onFilterChange,
   onAllCheck,
-  selectedTags,
+  //selectedTags,
   setSelectedTags,
 }: SidebarFilterProps) {
   const [isAllChecked, setIsAllChecked] = useState(false);

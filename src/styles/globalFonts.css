@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'YouandiModernTR';
+  src:
+    url('@/assets/fonts/YouandiModernTR.woff2') format('woff2'),
+    url('@/assets/fonts/YouandiModernTR.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeoRegular';
+  src:
+    url('@/assets/fonts/SpoqaHanSansNeoRegular.woff2') format('woff2'),
+    url('@/assets/fonts/SpoqaHanSansNeoRegular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeoMedium';
+  src:
+    url('@/assets/fonts/SpoqaHanSansNeoMedium.woff2') format('woff2'),
+    url('@/assets/fonts/SpoqaHanSansNeoMedium.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeoBold';
+  src:
+    url('@/assets/fonts/SpoqaHanSansNeoBold.woff2') format('woff2'),
+    url('@/assets/fonts/SpoqaHanSansNeoBold.ttf') format('truetype');
+  font-display: swap;
+}

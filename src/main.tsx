@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { queryClient } from '@/api/queryClient.ts';
 
 import GlobalStyle from '@/styles/GlobalStyles.ts';
+import '@/styles/globalFonts.css';
 import theme from '@/styles/theme.ts';
 
 import App from './App.tsx';

@@ -1,0 +1,40 @@
+name: Auto Sync
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync:
+    name: Sync forked repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.AUTO_SYNC }}
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 21.4.0
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build project
+        run: yarn run build
+
+      - name: Add remote URL
+        run: |
+          git remote add forked_repo https://suwonthugger:${{ secrets.AUTO_SYNC }}@github.com/suwonthugger/hyundai_redesign_client
+          git config user.name suwonthugger
+          git config user.email ddww1029wwdd@gmail.com
+
+      - name: Push Changes to forked_repo
+        run: |
+          git push -f forked_repo main
+
+      - name: Clean up
+        run: |
+          git remote remove forked_repo

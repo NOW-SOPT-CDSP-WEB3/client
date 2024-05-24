@@ -1,14 +1,19 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
+import LayoutFooter from '@/layout/_components/LayoutFooter';
+import LayoutHeader from '@/layout/_components/LayoutHeader';
+
 function Layout() {
+  const { pathname }: { pathname: string } = useLocation();
+
   return (
     <Container>
-      <header style={{ backgroundColor: 'aquamarine' }}>헤더</header>
+      <LayoutHeader pathname={pathname} />
       <Wrapper>
         <Outlet />
       </Wrapper>
-      <footer style={{ backgroundColor: 'aquamarine' }}>fdsaf푸터</footer>
+      <LayoutFooter pathname={pathname} />
     </Container>
   );
 }
